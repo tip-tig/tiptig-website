@@ -1,0 +1,96 @@
+---
+---
+
+<section class="ct-hero">
+  <div class="ct-hero-bg"></div>
+  <div class="inner">
+    <div class="ct-hero-eyebrow">Contact</div>
+    <h1>Get in<br><span class="blue">Touch</span></h1>
+    <p class="ct-hero-desc">
+      Have a question about our welding systems or need technical support?
+      Our team is ready to help.
+    </p>
+  </div>
+</section>
+
+<style>
+  .ct-hero {
+    padding: 160px 60px 72px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .ct-hero-bg {
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .ct-hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ct-hero-eyebrow::before,
+  .ct-hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .blue { color: var(--sapphire); }
+
+  .ct-hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 960px) {
+    .ct-hero { padding: 120px 24px 72px; }
+  }
+</style>

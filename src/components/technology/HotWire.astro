@@ -1,0 +1,271 @@
+---
+import { Zap, Flame, ArrowUpRight } from '@lucide/astro';
+---
+
+<section class="hotwire">
+  <div class="inner">
+    <div class="hotwire-grid">
+      <div class="hotwire-text">
+        <div class="section-eyebrow reveal">How It Works</div>
+        <h2 class="section-title reveal">Hot Wire TIG —<br>Reinvented</h2>
+        <p class="section-lead reveal">
+          The filler wire is electrically heated to its melting point using a deliberately
+          low open circuit voltage (OCV), integrating seamlessly into the molten pool to
+          dramatically augment deposition rates.
+        </p>
+        <div class="hotwire-points reveal">
+          <div class="hotwire-point">
+            <div class="point-icon"><Zap size={20} /></div>
+            <div>
+              <strong>Enhanced Wetting</strong>
+              <span>The heated wire enhances weld pool wetting rather than cooling it — unlike conventional cold wire approaches.</span>
+            </div>
+          </div>
+          <div class="hotwire-point">
+            <div class="point-icon"><Flame size={20} /></div>
+            <div>
+              <strong>No Secondary Arc</strong>
+              <span>The low OCV prevents separate arcing between wire and base metal. The tungsten tip sustains the primary arc while a distinct power source energizes the wire.</span>
+            </div>
+          </div>
+          <div class="hotwire-point">
+            <div class="point-icon"><ArrowUpRight size={20} /></div>
+            <div>
+              <strong>Easy to Learn</strong>
+              <span>Operates manually in all positions with a straightforward learning curve, making it immediately economically viable.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hotwire-visual reveal">
+        <div class="visual-card">
+          <div class="visual-stat">
+            <span class="stat-value u-imp">8.8</span>
+            <span class="stat-value u-met">4.0</span>
+            <span class="stat-unit u-imp">lbs/hr</span>
+            <span class="stat-unit u-met">kg/hr</span>
+          </div>
+          <span class="stat-label">Peak Deposition Rate</span>
+          <div class="stat-compare">
+            <span class="u-imp">vs. 0.7 lbs/hr conventional TIG</span>
+            <span class="u-met">vs. 0.3 kg/hr conventional TIG</span>
+          </div>
+          <div class="stat-bar-group">
+            <div class="stat-bar-row">
+              <span class="bar-label">TIG</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 8%"></div></div>
+            </div>
+            <div class="stat-bar-row">
+              <span class="bar-label">TIP TIG</span>
+              <div class="bar-track"><div class="bar-fill bar-highlight" style="width: 100%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hotwire {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hotwire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+
+  .hotwire-points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hotwire-point {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .point-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--sapphire-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+  }
+
+  .hotwire-point strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .hotwire-point span {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Right visual card */
+  .visual-card {
+    background: var(--sapphire);
+    border-radius: 24px;
+    padding: 48px 40px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visual-card::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+
+  .visual-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-family: 'Manrope', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-unit {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.85;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .stat-compare {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 28px;
+  }
+
+  .stat-bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bar-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 56px;
+    min-width: 56px;
+    opacity: 0.7;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+
+  .bar-highlight {
+    background: white;
+  }
+
+  @media (max-width: 960px) {
+    .hotwire {
+      padding: 72px 24px;
+    }
+    .hotwire-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

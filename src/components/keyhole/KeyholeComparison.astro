@@ -1,0 +1,168 @@
+---
+const rows = [
+  { label: 'Penetration', plasmaImp: 'Up to 5/16 in', plasmaMet: 'Up to 8 mm', focusImp: 'Up to ½ in', focusMet: 'Up to 12 mm' },
+  { label: 'Max Speed', plasmaImp: '20 IPM', plasmaMet: '500 mm/min', focusImp: '47 IPM', focusMet: '1200 mm/min' },
+  { label: 'Complexity', plasma: 'Complex — many critical parameters', focus: 'Very simple setup' },
+  { label: 'Fit-Up Tolerance', plasma: 'Requires exact fit-up', focus: 'Tolerates joint imperfections' },
+  { label: 'Keyhole Close-Out', plasma: 'Difficulties — voids and defects', focus: 'Simple — no voids' },
+  { label: 'Consistency', plasma: 'Inconsistent — orifice erosion', focus: 'Very consistent — no process drift' },
+  { label: 'Maintenance Cost', plasma: 'High', focus: 'Low' },
+  { label: 'Consumable Cost', plasma: 'High', focus: 'Low' },
+];
+---
+
+<section class="kh-comparison">
+  <div class="inner">
+    <div class="section-eyebrow reveal">Head to Head</div>
+    <h2 class="section-title reveal">TIP TIG focus vs.<br>Plasma Welding (PAW)</h2>
+    <p class="section-lead reveal">
+      Plasma keyhole welding has been the standard — but TIP TIG focus outperforms it
+      in every measurable category.
+    </p>
+
+    <div class="table-wrapper reveal">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-label"></th>
+            <th class="th-plasma">Plasma (PAW)</th>
+            <th class="th-focus">TIP TIG focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <td class="td-label">{row.label}</td>
+              <td class="td-plasma">
+                {row.plasma ?? <><span class="u-imp">{row.plasmaImp}</span><span class="u-met">{row.plasmaMet}</span></>}
+              </td>
+              <td class="td-focus">
+                {row.focus ?? <><span class="u-imp">{row.focusImp}</span><span class="u-met">{row.focusMet}</span></>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kh-comparison {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 560px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--gray-light);
+    background: var(--bg);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+
+  thead {
+    background: var(--sapphire-light);
+  }
+
+  th {
+    padding: 18px 24px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-dark);
+    text-align: left;
+    border-bottom: 2px solid var(--gray-light);
+  }
+
+  .th-label {
+    width: 160px;
+  }
+
+  .th-focus {
+    color: var(--sapphire);
+    background: var(--sapphire-mid);
+  }
+
+  td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--gray-mid);
+  }
+
+  .td-label {
+    font-weight: 600;
+    color: var(--gray-dark);
+  }
+
+  .td-plasma {
+    color: var(--gray-mid);
+  }
+
+  .td-focus {
+    color: var(--sapphire);
+    font-weight: 600;
+    background: rgba(27, 58, 140, 0.03);
+  }
+
+  tr:hover {
+    background: rgba(27, 58, 140, 0.02);
+  }
+
+  @media (max-width: 960px) {
+    .kh-comparison { padding: 72px 24px; }
+  }
+</style>

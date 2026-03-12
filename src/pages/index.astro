@@ -1,17 +1,21 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import LogoBar from '../components/home/LogoBar.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import Benefits from '../components/home/Benefits.astro';
+import Industries from '../components/home/Industries.astro';
+import CTA from '../components/home/CTA.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="TIG Welding Equipment & Wire Feed Technology"
+  description="TIP TIG delivers up to 300% faster TIG welding with dynamic wire feed technology. Reduce costs by up to 72%, improve weld quality. Request a demo today."
+>
+  <Hero />
+  <LogoBar />
+  <HowItWorks />
+  <Benefits />
+  <Industries />
+  <CTA />
+</BaseLayout>

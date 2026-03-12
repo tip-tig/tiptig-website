@@ -1,0 +1,308 @@
+---
+const bars = [
+  { label: 'MIG', imp: 23.4, met: 0.92, color: 'gray' },
+  { label: 'TIG', imp: 19.3, met: 0.76, color: 'gray' },
+  { label: 'TIP TIG', imp: 11.9, met: 0.47, color: 'highlight' },
+];
+const maxImp = 25;
+const maxMet = 1.0;
+---
+
+<section class="heat-input">
+  <div class="inner">
+    <div class="heat-grid">
+      <div class="heat-chart reveal">
+        {bars.map((bar) => (
+          <div class="heat-bar-wrapper">
+            <div class="heat-bar-column">
+              <span class={`heat-value ${bar.color === 'highlight' ? 'heat-value-highlight' : ''}`}>
+                <span class="u-imp">{bar.imp}</span>
+                <span class="u-met">{bar.met}</span>
+              </span>
+              <div class="heat-bar-track">
+                <div
+                  class={`heat-bar-fill ${bar.color === 'highlight' ? 'heat-fill-highlight' : ''}`}
+                  data-imp-height={`${(bar.imp / maxImp) * 100}%`}
+                  data-met-height={`${(bar.met / maxMet) * 100}%`}
+                  style={`height: ${(bar.imp / maxImp) * 100}%`}
+                >
+                </div>
+              </div>
+            </div>
+            <span class={`heat-label ${bar.color === 'highlight' ? 'heat-label-highlight' : ''}`}>
+              {bar.label}
+            </span>
+          </div>
+        ))}
+        <div class="heat-unit">
+          <span class="u-imp">kJ/in</span>
+          <span class="u-met">kJ/mm</span>
+        </div>
+      </div>
+
+      <div class="heat-text">
+        <div class="section-eyebrow reveal">Heat Input</div>
+        <h2 class="section-title reveal">Lowest Heat Input<br>of Any Process</h2>
+        <p class="section-lead reveal">
+          <span class="u-imp">At just 11.9 kJ/in, TIP TIG delivers nearly half the heat input of MIG welding</span>
+          <span class="u-met">At just 0.47 kJ/mm, TIP TIG delivers nearly half the heat input of MIG welding</span>
+          and significantly less than conventional TIG — reducing distortion, preserving
+          material properties, and improving overall weld quality.
+        </p>
+        <div class="heat-formula reveal">
+          <span class="formula-label">Calculated per ASME IX 2017</span>
+          <div class="formula-math">
+            <span class="formula-var">H</span>
+            <span class="formula-eq">=</span>
+            <div class="formula-fraction">
+              <span class="formula-num"><em>V</em> &times; <em>A</em> &times; 60</span>
+              <span class="formula-denom"><em>S</em> &times; 1000</span>
+            </div>
+          </div>
+          <div class="formula-legend">
+            <span><em>H</em> = Heat Input (<span class="u-imp">kJ/in</span><span class="u-met">kJ/mm</span>)</span>
+            <span><em>V</em> = Voltage</span>
+            <span><em>A</em> = Amperage</span>
+            <span><em>S</em> = Travel Speed (<span class="u-imp">in/min</span><span class="u-met">mm/min</span>)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .heat-input {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .heat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Chart (vertical bars) */
+  .heat-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 32px;
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 48px 40px 36px;
+    position: relative;
+  }
+
+  .heat-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .heat-bar-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 200px;
+    justify-content: flex-end;
+  }
+
+  .heat-value {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-mid);
+  }
+
+  .heat-value-highlight {
+    color: var(--sapphire);
+    font-size: 1.3rem;
+  }
+
+  .heat-bar-track {
+    width: 64px;
+    height: 160px;
+    background: var(--gray-light);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .heat-bar-fill {
+    width: 100%;
+    background: var(--sapphire-mid);
+    border-radius: 10px;
+    transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .heat-fill-highlight {
+    background: var(--sapphire);
+  }
+
+  .heat-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+  }
+
+  .heat-label-highlight {
+    color: var(--sapphire);
+    font-weight: 700;
+  }
+
+  .heat-unit {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    opacity: 0.4;
+  }
+
+  /* Text */
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .heat-formula {
+    background: var(--sapphire-light);
+    border: 1px solid var(--sapphire-mid);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .formula-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .formula-math {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0 16px;
+  }
+
+  .formula-var {
+    font-family: 'Times New Roman', 'Georgia', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--black);
+    font-weight: 400;
+  }
+
+  .formula-eq {
+    font-size: 1.3rem;
+    color: var(--gray-mid);
+  }
+
+  .formula-fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .formula-num,
+  .formula-denom {
+    font-family: 'Times New Roman', 'Georgia', serif;
+    font-size: 1.1rem;
+    color: var(--black);
+    padding: 4px 12px;
+    white-space: nowrap;
+  }
+
+  .formula-num {
+    border-bottom: 1.5px solid var(--gray-dark);
+  }
+
+  .formula-num em,
+  .formula-denom em {
+    font-style: italic;
+  }
+
+  .formula-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 0.75rem;
+    color: var(--gray-mid);
+    font-weight: 400;
+  }
+
+  .formula-legend em {
+    font-family: 'Times New Roman', 'Georgia', serif;
+    font-style: italic;
+    color: var(--gray-dark);
+  }
+
+  @media (max-width: 960px) {
+    .heat-input { padding: 72px 24px; }
+    .heat-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .heat-chart {
+      padding: 36px 28px 28px;
+    }
+    .heat-bar-track {
+      width: 52px;
+      height: 130px;
+    }
+    .heat-bar-column {
+      height: 160px;
+    }
+  }
+</style>

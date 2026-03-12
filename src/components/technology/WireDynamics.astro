@@ -1,0 +1,173 @@
+---
+import { Waves, Shield, Gauge, Thermometer, Droplets, Wrench } from '@lucide/astro';
+
+const benefits = [
+  {
+    icon: 'Waves',
+    title: 'Weld Pool Agitation',
+    desc: 'Mechanical vibration transfers into the weld pool, agitating and disrupting surface tension for superior fusion.',
+  },
+  {
+    icon: 'Shield',
+    title: 'Stress Relief',
+    desc: 'Dynamic wire oscillation relieves residual stresses during welding, improving joint integrity.',
+  },
+  {
+    icon: 'Droplets',
+    title: 'Reduced Porosity',
+    desc: 'Weld pool agitation minimizes pore defects — particularly beneficial for sluggish alloys like stainless steel and duplex.',
+  },
+  {
+    icon: 'Gauge',
+    title: 'Higher Deposition Rates',
+    desc: 'Extended weld fluidity facilitates increased wire deposition and higher welding current.',
+  },
+  {
+    icon: 'Thermometer',
+    title: 'Lower Heat Input',
+    desc: 'Reduced heat input curbs metal distortion and preserves corrosion-resistant material properties.',
+  },
+  {
+    icon: 'Wrench',
+    title: 'All-Position Capability',
+    desc: 'Operates in all welding positions with consistent quality and straightforward technique.',
+  },
+];
+
+const iconMap: Record<string, any> = { Waves, Shield, Gauge, Thermometer, Droplets, Wrench };
+---
+
+<section class="wire-dynamics">
+  <div class="inner">
+    <div class="section-eyebrow reveal">Wire Dynamics</div>
+    <h2 class="section-title reveal">Four-Drive Roll<br>Oscillation System</h2>
+    <p class="section-lead reveal">
+      An innovative four-drive roll mechanism continuously feeds and oscillates the filler
+      wire via a mechanized drive plate — synergizing hot wire feeding with mechanical
+      agitation for maximum welding energy with minimal heat input.
+    </p>
+
+    <div class="benefits-grid">
+      {benefits.map((b, i) => {
+        const Icon = iconMap[b.icon];
+        return (
+          <div class={`benefit-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class="benefit-icon">
+              <Icon size={24} />
+            </div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wire-dynamics {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .benefit-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 24px rgba(27, 58, 140, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--sapphire-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+  }
+
+  .benefit-card h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .benefit-card p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  @media (max-width: 960px) {
+    .wire-dynamics { padding: 72px 24px; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+const logos = [
+  { src: '/images/logoslider/NASA_fertig.png', alt: 'NASA' },
+  { src: '/images/logoslider/Boeing_fertig.png', alt: 'Boeing' },
+  { src: '/images/logoslider/SpaceX_fertig.png', alt: 'SpaceX' },
+  { src: '/images/logoslider/Blue-Origin_fertig.png', alt: 'Blue Origin' },
+  { src: '/images/logoslider/ExxonMobil_fertig.png', alt: 'ExxonMobil' },
+  { src: '/images/logoslider/Caterpillar_fertig.png', alt: 'Caterpillar' },
+  { src: '/images/logoslider/Northrop Grumman.png', alt: 'Northrop Grumman' },
+];
+---
+
+<div class="logo-bar">
+  <span class="logo-bar-label">Engineered for those who won't compromise</span>
+  <div class="logo-bar-logos">
+    {logos.map((logo) => (
+      <img src={logo.src} alt={logo.alt} class="logo-bar-img" loading="lazy" />
+    ))}
+  </div>
+</div>
+
+<style>
+  .logo-bar {
+    background: var(--bg);
+    border-top: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .logo-bar-label {
+    font-size: 0.78rem;
+    color: var(--gray-mid);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .logo-bar-logos {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .logo-bar-img {
+    height: 42px;
+    width: 140px;
+    object-fit: contain;
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  .logo-bar-img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  @media (max-width: 960px) {
+    .logo-bar {
+      padding: 20px 24px;
+      gap: 16px;
+    }
+    .logo-bar-logos {
+      gap: 20px 32px;
+    }
+    .logo-bar-img {
+      height: 32px;
+      width: 110px;
+    }
+  }
+</style>

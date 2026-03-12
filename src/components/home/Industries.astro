@@ -1,0 +1,216 @@
+---
+import { Plane, Atom, Fuel, Zap, FlaskConical, Heater, UtensilsCrossed, Layers, Cable, Shield, Ship, Pill } from '@lucide/astro';
+---
+
+<section class="section section-alt">
+  <div class="inner">
+    <div class="section-eyebrow reveal">Markets We Serve</div>
+    <h2 class="section-title reveal">Where Quality<br>Is Non-Negotiable.</h2>
+    <p class="section-lead reveal">
+      TIP TIG is the trusted welding standard across the world's most demanding industries.
+    </p>
+
+    <div class="industries-grid">
+      <a href="/industries/aerospace" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><Plane size={24} /></span>
+        <div class="industry-name">Aerospace</div>
+        <p class="industry-desc">Mission-critical welds with zero tolerance for defects on high-performance alloys.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/nuclear" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Atom size={24} /></span>
+        <div class="industry-name">Nuclear Industry</div>
+        <p class="industry-desc">Certified quality for the world's most regulated and critical environments.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/oil-gas" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><Fuel size={24} /></span>
+        <div class="industry-name">Oil & Gas</div>
+        <p class="industry-desc">Offshore reliability under extreme pressure and temperature conditions.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/power-generation" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Zap size={24} /></span>
+        <div class="industry-name">Power Generation</div>
+        <p class="industry-desc">High-pressure, high-temperature pipe welding for power plants worldwide.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/petrochemical" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><FlaskConical size={24} /></span>
+        <div class="industry-name">Petrochemical</div>
+        <p class="industry-desc">Corrosion-resistant alloy welding done right — the first time.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/heat-exchangers" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Heater size={24} /></span>
+        <div class="industry-name">Heat Exchangers</div>
+        <p class="industry-desc">Consistent tube-to-tubesheet welds at production scale, slag-free.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/food-dairy" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><UtensilsCrossed size={24} /></span>
+        <div class="industry-name">Food & Dairy</div>
+        <p class="industry-desc">Hygienic, smooth-surface welds meeting the strictest sanitary standards.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/weld-overlay-cladding" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Layers size={24} /></span>
+        <div class="industry-name">Weld Overlay Cladding</div>
+        <p class="industry-desc">Up to 80% reduced dilution rate for superior overlay and cladding quality.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/pipelines" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><Cable size={24} /></span>
+        <div class="industry-name">Pipelines</div>
+        <p class="industry-desc">Orbital and manual solutions for cross-country, subsea, and process pipelines.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/defense" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Shield size={24} /></span>
+        <div class="industry-name">Defense & Naval</div>
+        <p class="industry-desc">Mission-critical weld quality for the platforms that protect nations.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/shipbuilding" class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon"><Ship size={24} /></span>
+        <div class="industry-name">Shipbuilding</div>
+        <p class="industry-desc">Higher productivity without compromising classification society standards.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+
+      <a href="/industries/pharma" class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon"><Pill size={24} /></span>
+        <div class="industry-name">Pharmaceutical</div>
+        <p class="industry-desc">Ultra-clean orbital welds meeting ASME BPE standards for hygienic environments.</p>
+        <span class="industry-arrow">Learn more →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 110px 60px;
+  }
+  .section-alt { background: var(--bg); }
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .industry-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+    display: block;
+  }
+  .industry-card:hover {
+    border-color: var(--sapphire);
+    box-shadow: 0 8px 32px rgba(27,58,140,0.1);
+    transform: translateY(-3px);
+  }
+
+  .industry-icon {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--sapphire);
+    line-height: 0;
+  }
+
+  .industry-name {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .industry-desc {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .industry-arrow {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--sapphire);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .industry-card:hover .industry-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 960px) {
+    .section { padding: 72px 24px; }
+    .industries-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  }
+  @media (max-width: 480px) {
+    .industries-grid { grid-template-columns: 1fr; }
+  }
+</style>

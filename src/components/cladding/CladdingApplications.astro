@@ -1,0 +1,183 @@
+---
+import { Waves, Circle, Wind, Cog, Pipette, Hammer } from '@lucide/astro';
+
+const applications = [
+  { icon: 'Waves', title: 'Subsea Components' },
+  { icon: 'Circle', title: 'Bearing Seal Surfaces' },
+  { icon: 'Wind', title: 'Turbine Blades' },
+  { icon: 'Cog', title: 'Valve & Pump Components' },
+  { icon: 'Pipette', title: 'CRA Pipes & Elbows' },
+  { icon: 'Hammer', title: 'Forging Dies & Mining Bits' },
+];
+
+const appIconMap: Record<string, any> = { Waves, Circle, Wind, Cog, Pipette, Hammer };
+
+const industries = [
+  'Oil & Gas',
+  'Aerospace',
+  'Petrochemical',
+  'Power Generation',
+  'Nuclear',
+  'Mining',
+  'Shipbuilding',
+  'Food & Dairy',
+  'Heat Exchanger Mfg.',
+  'Chemical Processing',
+  'Desalination',
+  'Pulp & Paper',
+];
+---
+
+<section class="cl-applications">
+  <div class="inner">
+    <div class="cl-app-grid">
+      <div class="cl-app-left">
+        <div class="section-eyebrow reveal">Applications</div>
+        <h2 class="section-title reveal">Built for Critical<br>Components</h2>
+        <div class="app-list reveal">
+          {applications.map((app) => {
+            const Icon = appIconMap[app.icon];
+            return (
+              <div class="app-item">
+                <div class="app-icon"><Icon size={20} /></div>
+                <span>{app.title}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="cl-app-right">
+        <div class="section-eyebrow reveal">Industries</div>
+        <h2 class="section-title reveal">Trusted Across<br>Demanding Sectors</h2>
+        <div class="ind-tags reveal">
+          {industries.map((ind) => (
+            <span class="ind-tag">{ind}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cl-applications {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cl-app-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  /* Application list */
+  .app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .app-item:hover {
+    border-color: var(--sapphire-mid);
+    transform: translateX(4px);
+  }
+
+  .app-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: var(--sapphire-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+  }
+
+  .app-item span {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--black);
+  }
+
+  /* Industry tags */
+  .ind-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ind-tag {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    background: var(--white);
+    border: 1px solid var(--sapphire-mid);
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .ind-tag:hover {
+    background: var(--sapphire);
+    color: white;
+    border-color: var(--sapphire);
+  }
+
+  @media (max-width: 960px) {
+    .cl-applications { padding: 72px 24px; }
+    .cl-app-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+  }
+</style>

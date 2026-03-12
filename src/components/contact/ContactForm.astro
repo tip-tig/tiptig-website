@@ -1,0 +1,266 @@
+---
+import { MapPin, Mail, Phone } from '@lucide/astro';
+---
+
+<section class="ct-form">
+  <div class="inner">
+    <div class="ct-form-grid">
+      <div class="ct-info">
+        <div class="section-eyebrow reveal">Reach Us</div>
+        <h2 class="section-title reveal">Head Office</h2>
+
+        <div class="info-cards">
+          <div class="info-card reveal">
+            <div class="info-icon"><MapPin size={20} /></div>
+            <div>
+              <strong>Address</strong>
+              <span>Baumayrweg 4<br>4631 Krenglbach, Austria</span>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-1">
+            <div class="info-icon"><Mail size={20} /></div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:office@tiptig.com">office@tiptig.com</a>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-2">
+            <div class="info-icon"><Phone size={20} /></div>
+            <div>
+              <strong>Phone</strong>
+              <a href="tel:+43720303500">+43 720 303500</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-form-card reveal">
+        <form action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a topic</option>
+              <option value="sales">Sales Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="reseller">Become a Reseller</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ct-form {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ct-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  /* Info cards */
+  .info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+
+  .info-card:hover {
+    border-color: var(--sapphire-mid);
+    transform: translateX(4px);
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--sapphire-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+  }
+
+  .info-card strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .info-card span,
+  .info-card a {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .info-card a:hover {
+    color: var(--sapphire);
+  }
+
+  /* Form card */
+  .ct-form-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px 36px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--black);
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.08);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--gray-mid);
+    font-weight: 300;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px 24px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    background: var(--sapphire);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover {
+    background: var(--sapphire-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(27, 58, 140, 0.2);
+  }
+
+  @media (max-width: 960px) {
+    .ct-form { padding: 72px 24px; }
+    .ct-form-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .ct-form-card { padding: 28px 20px; }
+  }
+</style>

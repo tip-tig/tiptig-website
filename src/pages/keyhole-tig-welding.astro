@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import KeyholeHero from '../components/keyhole/KeyholeHero.astro';
+import KeyholeIntro from '../components/keyhole/KeyholeIntro.astro';
+import KeyholeVideo from '../components/keyhole/KeyholeVideo.astro';
+import KeyholeBenefits from '../components/keyhole/KeyholeBenefits.astro';
+import KeyholeMaterials from '../components/keyhole/KeyholeMaterials.astro';
+import KeyholeComparison from '../components/keyhole/KeyholeComparison.astro';
+import KeyholeCost from '../components/keyhole/KeyholeCost.astro';
+import CTA from '../components/home/CTA.astro';
+---
+
+<BaseLayout
+  title="TIP TIG focus — Keyhole TIG Welding Process"
+  description="TIP TIG focus delivers full-penetration, single-pass keyhole TIG welding up to 12mm — 600% faster than TIG, 80% cost savings, with x-ray-quality results."
+>
+  <div id="kh-page" data-units="imperial">
+    <KeyholeHero />
+    <KeyholeIntro />
+    <KeyholeVideo />
+    <KeyholeBenefits />
+    <KeyholeMaterials />
+    <KeyholeComparison />
+    <KeyholeCost />
+    <CTA />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  #kh-page[data-units="imperial"] .u-met { display: none !important; }
+  #kh-page[data-units="metric"] .u-imp { display: none !important; }
+</style>
+
+<script>
+  const page = document.getElementById('kh-page');
+  const toggle = document.getElementById('unit-toggle');
+
+  if (toggle && page) {
+    toggle.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.unit-btn') as HTMLElement;
+      if (!btn) return;
+      const unit = btn.dataset.unit;
+      if (!unit) return;
+
+      page.dataset.units = unit;
+      toggle.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update cost chart bar widths
+      document.querySelectorAll('.cost-bar-fill[data-imp-width]').forEach(bar => {
+        const el = bar as HTMLElement;
+        el.style.width = unit === 'imperial' ? el.dataset.impWidth! : el.dataset.metWidth!;
+      });
+    });
+  }
+</script>

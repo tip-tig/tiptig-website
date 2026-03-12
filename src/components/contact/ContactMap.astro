@@ -1,0 +1,418 @@
+---
+/* ──────────────────────────────────────────────
+   ContactMap  — SVG world-map with dealer markers
+   Uses Natural Earth 110m country data via d3-geo
+   + Europe inset zoom panel
+   ────────────────────────────────────────────── */
+
+// @ts-nocheck
+import { feature } from 'topojson-client';
+import { geoNaturalEarth1, geoPath } from 'd3-geo';
+import topology from 'world-atlas/countries-110m.json';
+
+/* ── Generate WORLD map at build time ─────────── */
+const countries = feature(topology, topology.objects.countries);
+const projection = geoNaturalEarth1()
+  .fitSize([960, 480], countries)
+  .precision(0.1);
+const pathGen = geoPath(projection);
+const countryPaths = countries.features.map(f => pathGen(f) || '').filter(p => p);
+
+/* ── Generate EUROPE inset at build time ──────── */
+const europeProjection = geoNaturalEarth1()
+  .center([9, 50.5])
+  .scale(500)
+  .translate([160, 95])
+  .precision(0.1);
+const europePathGen = geoPath(europeProjection);
+const europeCountryPaths = countries.features.map(f => europePathGen(f) || '').filter(p => p);
+
+/* ── Compute Europe highlight box on world map ── */
+const euBoundsTopLeft = projection([-7, 62]) || [0, 0];
+const euBoundsBottomRight = projection([25, 39]) || [0, 0];
+
+/* ── Marker data ──────────────────────────────── */
+interface Marker {
+  label: string;
+  city: string;
+  lat: number;
+  lon: number;
+  tier: 'hq' | 'main' | 'sub';
+}
+
+const markers: Marker[] = [
+  /* HQ */
+  { label: 'TIP TIG HQ',               city: 'Krenglbach, Austria',    lat: 48.1, lon: 14.0,    tier: 'hq' },
+
+  /* Haupthändler */
+  { label: 'TIP TIG International',     city: 'Singapore',              lat: 1.3,  lon: 103.8,   tier: 'main' },
+  { label: 'TIP TIG International',     city: 'Wollerau, CH',           lat: 47.2, lon: 8.7,     tier: 'main' },
+  { label: 'TIP TIG Benelux',           city: 'Duffel, Belgium',        lat: 51.1, lon: 4.5,     tier: 'main' },
+  { label: 'TIP TIG China',             city: "Xi'an, China",           lat: 34.3, lon: 108.9,   tier: 'main' },
+  { label: 'TIP TIG Europe',            city: 'Neuenhagen, Germany',    lat: 52.5, lon: 13.7,    tier: 'main' },
+  { label: 'TIP TIG Poland',            city: 'Bielsko-Biała',          lat: 49.8, lon: 19.0,    tier: 'main' },
+  { label: 'TIP TIG UK',                city: 'Galston, Ayrshire',      lat: 55.6, lon: -4.4,    tier: 'main' },
+  { label: 'TIP TIG USA',               city: 'Runnemede, NJ',          lat: 39.85, lon: -75.07, tier: 'main' },
+  { label: 'TIP TIG USA Texas',         city: 'Stafford, TX',           lat: 29.679, lon: -95.386, tier: 'main' },
+
+  /* Sub-dealers: Europe */
+  { label: 'Leicher Welding',           city: 'Bad Waldsee, DE',        lat: 47.9, lon: 9.9,     tier: 'sub' },
+  { label: 'Orbital Weldingtools',      city: 'Frauenberg, FR',         lat: 49.1, lon: 7.1,     tier: 'sub' },
+  { label: 'CODESOL',                   city: 'Barcelona, ES',          lat: 41.4, lon: 2.2,     tier: 'sub' },
+  { label: 'Data Welding',              city: 'Vermezzo, IT',           lat: 45.4, lon: 9.0,     tier: 'sub' },
+  { label: 'WB Alloy Welding',          city: 'Glasgow, UK',            lat: 55.9, lon: -4.3,    tier: 'sub' },
+  { label: 'TIP TIG Finland',           city: 'Turku, FI',              lat: 60.5, lon: 22.3,    tier: 'sub' },
+  { label: 'Technotronic',              city: 'Thessaloniki, GR',       lat: 40.6, lon: 22.9,    tier: 'sub' },
+  { label: 'Servus d.o.o.',             city: 'Čakovec, HR',            lat: 46.4, lon: 16.4,    tier: 'sub' },
+  { label: 'IPRO ING d.o.o.',           city: 'Ljubljana, SI',          lat: 46.1, lon: 14.5,    tier: 'sub' },
+  { label: 'TIP TIG South Africa',      city: 'Cape Town, ZA',          lat: -33.9, lon: 18.4,   tier: 'sub' },
+
+  /* Sub-dealers: North America */
+  { label: 'Morgan Industrial',          city: 'Ozark, MO',              lat: 37.02, lon: -93.21, tier: 'sub' },
+  { label: 'SEC Industrial',             city: 'Peachtree Corners, GA',  lat: 33.97, lon: -84.22, tier: 'sub' },
+  { label: 'Maquisol Services',          city: 'Buenos Aires, AR',       lat: -34.6, lon: -58.4,  tier: 'sub' },
+
+  /* Sub-dealers: Asia-Pacific */
+  { label: 'Western Welding',            city: 'Spearwood, AU',          lat: -32.1, lon: 115.8,  tier: 'sub' },
+  { label: 'South Pacific Welding',      city: 'Carole Park, AU',        lat: -27.6, lon: 152.9,  tier: 'sub' },
+
+  /* Sub-dealers: MEA & India */
+  { label: 'Ador Welding',               city: 'Pune, India',            lat: 18.5,  lon: 73.9,   tier: 'sub' },
+  { label: 'Mem Bet Ltd.',               city: 'Petah Tikva, IL',        lat: 32.1,  lon: 34.9,   tier: 'sub' },
+  { label: 'WB Alloys FZC',              city: 'Ras Al Khaimah, UAE',    lat: 25.8,  lon: 55.9,   tier: 'sub' },
+];
+
+/* ── Project markers for WORLD map ────────────── */
+const projected = markers.map(m => {
+  const [x, y] = projection([m.lon, m.lat]) || [0, 0];
+  return { ...m, x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
+});
+
+/* ── Project markers for EUROPE inset ─────────── */
+const europeMarkers = markers.filter(m =>
+  m.lon >= -7 && m.lon <= 25 && m.lat >= 39 && m.lat <= 62
+);
+const projectedEurope = europeMarkers.map(m => {
+  const [x, y] = europeProjection([m.lon, m.lat]) || [0, 0];
+  return { ...m, x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
+});
+
+/* ── Inset panel position (in world SVG coords) ─ */
+const insetX = 630;
+const insetY = 290;
+const insetW = 320;
+const insetH = 190;
+---
+
+<section class="cm-map">
+  <div class="inner">
+    <div class="section-eyebrow reveal"><span>Global Network</span></div>
+    <h2 class="section-title reveal">Worldwide Presence</h2>
+
+    <div class="map-wrap reveal">
+      <svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" class="world-svg" role="img" aria-label="World map showing TIP TIG distributor locations">
+        <defs>
+          <clipPath id="europe-clip">
+            <rect x="0" y="0" width={insetW} height={insetH} rx="4" />
+          </clipPath>
+        </defs>
+
+        {/* ── World countries with borders ─────────── */}
+        {countryPaths.map(d => (
+          <path class="country" d={d} />
+        ))}
+
+        {/* ── Europe highlight box on world map ─────── */}
+        <rect
+          class="eu-highlight"
+          x={euBoundsTopLeft[0]}
+          y={euBoundsTopLeft[1]}
+          width={euBoundsBottomRight[0] - euBoundsTopLeft[0]}
+          height={euBoundsBottomRight[1] - euBoundsTopLeft[1]}
+          rx="3"
+        />
+
+        {/* ── Connecting line from highlight to inset ─ */}
+        <line
+          class="eu-connector"
+          x1={euBoundsBottomRight[0]}
+          y1={euBoundsBottomRight[1]}
+          x2={insetX}
+          y2={insetY}
+        />
+
+        {/* ── World markers (non-Europe only) ───────── */}
+        {projected.filter(m => !(m.lon >= -7 && m.lon <= 25 && m.lat >= 39 && m.lat <= 62)).map((m) => (
+          <g class={`marker-group marker-${m.tier}`}>
+            {m.tier === 'hq' && (
+              <circle class="pulse-ring" cx={m.x} cy={m.y} r="12" />
+            )}
+            <circle
+              class="marker-dot"
+              cx={m.x}
+              cy={m.y}
+              r={m.tier === 'hq' ? 7 : m.tier === 'main' ? 5.5 : 3.5}
+            />
+            <g class="marker-tooltip">
+              <rect x={m.x - 72} y={m.y - 44} width="144" height="32" rx="6" />
+              <polygon points={`${m.x - 5},${m.y - 12} ${m.x + 5},${m.y - 12} ${m.x},${m.y - 5}`} />
+              <text x={m.x} y={m.y - 30} class="tt-label">{m.label}</text>
+              <text x={m.x} y={m.y - 18} class="tt-city">{m.city}</text>
+            </g>
+          </g>
+        ))}
+
+        {/* ── EUROPE INSET PANEL ────────────────────── */}
+        <g transform={`translate(${insetX}, ${insetY})`}>
+          {/* Inset background */}
+          <rect class="inset-bg" x="-1" y="-1" width={insetW + 2} height={insetH + 2} rx="8" />
+          <rect class="inset-border" x="0" y="0" width={insetW} height={insetH} rx="7" />
+
+          {/* Inset label */}
+          <text class="inset-label" x="12" y="16">Europe</text>
+
+          {/* Clipped Europe content */}
+          <g clip-path="url(#europe-clip)">
+            {/* Europe countries with borders */}
+            {europeCountryPaths.map(d => (
+              <path class="country inset-country" d={d} />
+            ))}
+
+            {/* Europe markers (in inset coordinates) */}
+            {projectedEurope.map((m) => (
+              <g class={`marker-group marker-${m.tier}`}>
+                {m.tier === 'hq' && (
+                  <circle class="pulse-ring" cx={m.x} cy={m.y} r="10" />
+                )}
+                <circle
+                  class="marker-dot"
+                  cx={m.x}
+                  cy={m.y}
+                  r={m.tier === 'hq' ? 6 : m.tier === 'main' ? 4.5 : 3}
+                />
+              </g>
+            ))}
+          </g>
+
+          {/* Europe tooltips (outside clip so they can overflow) */}
+          {projectedEurope.map((m) => (
+            <g class={`marker-group marker-${m.tier}`} style={`pointer-events: none;`}>
+              <circle
+                class="marker-hit"
+                cx={m.x}
+                cy={m.y}
+                r={m.tier === 'hq' ? 10 : m.tier === 'main' ? 8 : 6}
+                style="fill: transparent; pointer-events: all; cursor: pointer;"
+              />
+              <g class="marker-tooltip">
+                <rect x={m.x - 60} y={m.y - 38} width="120" height="26" rx="5" />
+                <polygon points={`${m.x - 4},${m.y - 12} ${m.x + 4},${m.y - 12} ${m.x},${m.y - 6}`} />
+                <text x={m.x} y={m.y - 26} class="tt-label tt-sm">{m.label}</text>
+                <text x={m.x} y={m.y - 16} class="tt-city tt-sm">{m.city}</text>
+              </g>
+            </g>
+          ))}
+        </g>
+      </svg>
+    </div>
+
+    {/* ── Legend ─────────────────────────────────── */}
+    <div class="legend reveal">
+      <div class="legend-item">
+        <span class="legend-dot legend-hq"></span>
+        <span>Headquarters</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot legend-main"></span>
+        <span>Authorized Dealer</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot legend-sub"></span>
+        <span>Regional Distributor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cm-map {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 48px;
+  }
+
+  /* ── Map container ──────────────────────────── */
+  .map-wrap {
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px 32px;
+    overflow: hidden;
+  }
+  .world-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Countries with borders ────────────────── */
+  .country {
+    fill: #E2E6EC;
+    stroke: #C8CDD6;
+    stroke-width: 0.4;
+    stroke-linejoin: round;
+  }
+  .inset-country {
+    fill: #E8ECF2;
+    stroke: #B8BFC8;
+    stroke-width: 0.3;
+  }
+
+  /* ── Europe highlight box on world map ──────── */
+  .eu-highlight {
+    fill: none;
+    stroke: var(--sapphire);
+    stroke-width: 1;
+    stroke-dasharray: 3 2;
+    opacity: 0.5;
+  }
+  .eu-connector {
+    stroke: var(--sapphire);
+    stroke-width: 0.6;
+    stroke-dasharray: 3 2;
+    opacity: 0.3;
+  }
+
+  /* ── Inset panel ────────────────────────────── */
+  .inset-bg {
+    fill: var(--white);
+    stroke: none;
+  }
+  .inset-border {
+    fill: none;
+    stroke: var(--sapphire-mid);
+    stroke-width: 1;
+  }
+  .inset-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    fill: var(--sapphire);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Markers ────────────────────────────────── */
+  .marker-dot {
+    transition: r 0.2s ease;
+    cursor: pointer;
+    pointer-events: all;
+  }
+  .marker-hq .marker-dot   { fill: var(--sapphire); }
+  .marker-main .marker-dot { fill: var(--sapphire); }
+  .marker-sub .marker-dot  { fill: var(--sapphire-mid); stroke: var(--sapphire); stroke-width: 0.6; }
+
+  /* HQ pulse */
+  .pulse-ring {
+    fill: var(--sapphire);
+    opacity: 0;
+    animation: pulse 2.5s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { opacity: 0.35; r: 7; }
+    100% { opacity: 0; r: 20; }
+  }
+
+  /* Hover */
+  .marker-group:hover .marker-dot { filter: brightness(1.2); }
+  .marker-hq:hover .marker-dot,
+  .marker-main:hover .marker-dot  { r: 8; }
+  .marker-sub:hover .marker-dot   { r: 5; }
+
+  /* ── Tooltips ───────────────────────────────── */
+  .marker-tooltip {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .marker-group:hover .marker-tooltip { opacity: 1; }
+
+  .marker-tooltip rect     { fill: var(--black); }
+  .marker-tooltip polygon  { fill: var(--black); }
+  .marker-tooltip text      { text-anchor: middle; font-family: 'Inter', sans-serif; }
+  .tt-label { font-size: 8.5px; font-weight: 600; fill: var(--white); }
+  .tt-city  { font-size: 7px;   font-weight: 300; fill: rgba(255,255,255,0.7); }
+  .tt-sm.tt-label { font-size: 7.5px; }
+  .tt-sm.tt-city  { font-size: 6px; }
+
+  /* ── Legend ──────────────────────────────────── */
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 24px;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--gray-mid);
+  }
+  .legend-dot { display: block; border-radius: 50%; }
+  .legend-hq {
+    width: 14px; height: 14px;
+    background: var(--sapphire);
+    box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.2);
+  }
+  .legend-main {
+    width: 11px; height: 11px;
+    background: var(--sapphire);
+  }
+  .legend-sub {
+    width: 8px; height: 8px;
+    background: var(--sapphire-mid);
+    border: 1px solid var(--sapphire);
+  }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 960px) {
+    .cm-map { padding: 72px 24px; }
+    .map-wrap { padding: 24px 16px; }
+    .legend { gap: 16px; flex-wrap: wrap; }
+  }
+</style>

@@ -1,0 +1,285 @@
+---
+import { Zap, Sparkles, Thermometer, Shield, GraduationCap, Wind } from '@lucide/astro';
+---
+
+<section class="split-section">
+  <!-- Left: Benefits list -->
+  <div class="reveal">
+    <div class="section-eyebrow">Why TIP TIG</div>
+    <h2 class="section-title">Built for the Most<br>Demanding Environments.</h2>
+    <p class="section-lead">
+      Developed and manufactured entirely in-house in Austria —
+      every component engineered for industrial-grade reliability.
+    </p>
+
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <div class="benefit-icon"><Zap size={16} /></div>
+        <div class="benefit-text">
+          <strong>Highest deposition rates of any TIG process</strong>
+          <span>Up to 400% more filler wire per hour than standard TIG welding</span>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><Sparkles size={16} /></div>
+        <div class="benefit-text">
+          <strong>No interpass cleaning required</strong>
+          <span>Slag-free process means maximum arc-on time and improved quality</span>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><Thermometer size={16} /></div>
+        <div class="benefit-text">
+          <strong>Lowest possible heat input</strong>
+          <span>Minimum distortion, stress, and Heat Affected Zone on all alloys</span>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><Shield size={16} /></div>
+        <div class="benefit-text">
+          <strong>Superior corrosion resistance</strong>
+          <span>Corrosion property retention on all corrosion-resistant alloys</span>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><GraduationCap size={16} /></div>
+        <div class="benefit-text">
+          <strong>Simple to learn and teach</strong>
+          <span>Minimal skill barrier — operators are productive in days, not months</span>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><Wind size={16} /></div>
+        <div class="benefit-text">
+          <strong>Lowest possible welding fumes</strong>
+          <span>Cleaner, safer working environment for your operators</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: ROI panel -->
+  <div class="roi-panel reveal reveal-delay-2">
+    <div class="roi-eyebrow">Return on Investment</div>
+    <div class="roi-big">9.3</div>
+    <div class="roi-big-label">Weeks to full ROI (40h/week basis)</div>
+
+    <div class="roi-grid">
+      <div>
+        <div class="roi-stat-val">$200</div>
+        <div class="roi-stat-label">Saved per<br>6" pipe weld</div>
+      </div>
+      <div>
+        <div class="roi-stat-val">$1,500</div>
+        <div class="roi-stat-label">Saved per<br>12" pipe weld</div>
+      </div>
+      <div>
+        <div class="roi-stat-val">75 joints</div>
+        <div class="roi-stat-label">To break even<br>(6" Schedule 40)</div>
+      </div>
+      <div>
+        <div class="roi-stat-val">10 joints</div>
+        <div class="roi-stat-label">To break even<br>(12" Schedule 80)</div>
+      </div>
+    </div>
+
+    <div class="roi-divider"></div>
+    <a href="/roi-calculator" class="btn-white">Calculate Your ROI →</a>
+  </div>
+</section>
+
+<style>
+  .split-section {
+    padding: 110px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .benefit-item:hover { background: var(--sapphire-light); }
+
+  .benefit-icon {
+    width: 32px; height: 32px;
+    background: var(--sapphire-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background 0.2s;
+    color: var(--sapphire);
+  }
+  .benefit-item:hover .benefit-icon {
+    background: var(--sapphire);
+    color: var(--white);
+  }
+
+  .benefit-text strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 3px;
+  }
+  .benefit-text span {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ROI Panel */
+  .roi-panel {
+    background: var(--sapphire);
+    border-radius: 24px;
+    padding: 52px 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .roi-panel::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .roi-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+  }
+
+  .roi-big {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .roi-big-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .roi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  .roi-stat-val {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: white;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .roi-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .roi-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 0 0 28px;
+  }
+
+  .btn-white {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    background: var(--white);
+    border: none;
+    padding: 13px 26px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .btn-white:hover { background: var(--gray-light); }
+
+  @media (max-width: 960px) {
+    .split-section {
+      grid-template-columns: 1fr;
+      padding: 72px 24px;
+      gap: 48px;
+    }
+  }
+</style>

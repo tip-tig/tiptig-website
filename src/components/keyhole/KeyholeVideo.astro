@@ -1,0 +1,96 @@
+---
+---
+
+<section class="kh-video">
+  <div class="inner">
+    <div class="section-eyebrow reveal">See It in Action</div>
+    <h2 class="section-title reveal">The Keyhole Welding Process</h2>
+    <p class="section-lead reveal">
+      Watch how TIP TIG focus creates full-penetration keyhole welds
+      in a single pass — with no edge preparation required.
+    </p>
+
+    <div class="video-wrapper reveal">
+      <video
+        class="video-player"
+        src="/images/keyhole/keyhole-focus.mp4"
+        poster="/images/keyhole/video-poster.jpg"
+        controls
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kh-video {
+    padding: 110px 60px;
+    background: var(--white);
+    text-align: center;
+  }
+
+  .inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto 48px;
+  }
+
+  .video-wrapper {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(27, 58, 140, 0.12);
+    border: 1px solid var(--gray-light);
+  }
+
+  .video-player {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--black);
+  }
+
+  @media (max-width: 960px) {
+    .kh-video { padding: 72px 24px; }
+  }
+</style>

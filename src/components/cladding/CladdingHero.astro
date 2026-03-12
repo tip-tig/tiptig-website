@@ -1,0 +1,220 @@
+---
+---
+
+<section class="cl-hero">
+  <div class="cl-hero-bg"></div>
+  <div class="inner">
+    <div class="cl-hero-eyebrow">TIP TIG RapidClad</div>
+    <h1>TwinWire<br><span class="blue">RapidClad 2.0</span></h1>
+    <p class="cl-hero-sub">Weld Overlay Cladding</p>
+    <p class="cl-hero-desc">
+      The highest standard in weld overlay cladding — maintaining the lowest
+      temperature and dilution rates with the highest deposition rates
+      and welding speeds on the market.
+    </p>
+    <div class="cl-hero-controls">
+      <div class="unit-toggle" id="unit-toggle">
+        <button class="unit-btn active" data-unit="imperial">Imperial</button>
+        <button class="unit-btn" data-unit="metric">Metric</button>
+      </div>
+
+      <div class="cl-hero-stats">
+      <div class="cl-stat">
+        <span class="cl-stat-value u-imp">20 lbs/hr</span>
+        <span class="cl-stat-value u-met">9.1 kg/hr</span>
+        <span class="cl-stat-label">Deposition Rate</span>
+      </div>
+      <div class="cl-stat-divider"></div>
+      <div class="cl-stat">
+        <span class="cl-stat-value">80%</span>
+        <span class="cl-stat-label">Reduced Dilution</span>
+      </div>
+      <div class="cl-stat-divider"></div>
+      <div class="cl-stat">
+        <span class="cl-stat-value">300%</span>
+        <span class="cl-stat-label">Faster than TIG</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cl-hero {
+    padding: 160px 60px 100px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cl-hero-bg {
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cl-hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cl-hero-eyebrow::before,
+  .cl-hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .blue { color: var(--sapphire); }
+
+  .cl-hero-sub {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+
+  .cl-hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .cl-hero-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 36px;
+    background: var(--sapphire);
+    padding: 24px 48px;
+    border-radius: 16px;
+  }
+
+  .cl-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cl-stat-value {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .cl-stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .cl-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .cl-hero-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 28px;
+  }
+
+  .unit-toggle {
+    display: inline-flex;
+    background: var(--sapphire-light);
+    border: 1px solid var(--sapphire-mid);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .unit-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 18px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--gray-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .unit-btn.active {
+    background: var(--sapphire);
+    color: white;
+    box-shadow: 0 2px 8px rgba(27, 58, 140, 0.2);
+  }
+
+  .unit-btn:not(.active):hover {
+    color: var(--sapphire);
+  }
+
+  @media (max-width: 960px) {
+    .cl-hero { padding: 120px 24px 72px; }
+    .cl-hero-stats {
+      flex-direction: column;
+      gap: 20px;
+      padding: 28px 36px;
+    }
+    .cl-stat-divider {
+      width: 40px;
+      height: 1px;
+    }
+  }
+</style>

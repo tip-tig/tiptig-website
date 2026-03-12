@@ -1,0 +1,247 @@
+---
+import { Youtube, Linkedin, Instagram, Facebook } from '@lucide/astro';
+const currentYear = new Date().getFullYear();
+
+const cols = [
+  {
+    title: 'Products',
+    links: [
+      { label: 'TIP TIG Systems', href: '/products' },
+      { label: 'Where to Buy', href: '/resellers' },
+    ],
+  },
+  {
+    title: 'Technology',
+    links: [
+      { label: 'How TIP TIG Works', href: '/technology' },
+      { label: 'Benefits & Results', href: '/technology#benefits' },
+      { label: 'Industries', href: '/industries' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Support', href: '/support' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+];
+---
+
+<footer>
+  <!-- Brand col -->
+  <div class="footer-brand">
+    <a href="/" class="footer-logo">
+      <img src="/images/logo-red-blue_new.webp" alt="TIP TIG" />
+    </a>
+<div class="footer-social">
+      <a href="https://www.youtube.com/user/TIPTIG" target="_blank" rel="noopener" aria-label="YouTube"><Youtube size={16} /></a>
+      <a href="https://www.linkedin.com/company/tip-tig/" target="_blank" rel="noopener" aria-label="LinkedIn"><Linkedin size={16} /></a>
+      <a href="https://www.instagram.com/tiptig/" target="_blank" rel="noopener" aria-label="Instagram"><Instagram size={16} /></a>
+      <a href="https://www.facebook.com/tiptig" target="_blank" rel="noopener" aria-label="Facebook"><Facebook size={16} /></a>
+      <a href="https://www.tiktok.com/@tiptig_usa" target="_blank" rel="noopener" aria-label="TikTok" class="tiktok-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.14a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.57z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Link cols -->
+  {cols.map(col => (
+    <div>
+      <div class="footer-col-title">{col.title}</div>
+      <ul class="footer-links">
+        {col.links.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  <!-- Contact info -->
+  <div class="footer-contact">
+    <div class="footer-address">
+      <div class="footer-col-title">Global Headquarters</div>
+      <p>Baumayrweg 4<br>4631 Krenglbach<br>Austria</p>
+      <a href="mailto:office@tiptig.com">office@tiptig.com</a>
+    </div>
+    <div class="footer-address">
+      <div class="footer-col-title">North America / USA</div>
+      <p>Looking for support in the US?</p>
+      <a href="https://tiptigusa.com" target="_blank" rel="noopener" class="footer-usa-btn">tiptigusa.com</a>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <span class="footer-bottom-text">
+      © {currentYear} Ing. Siegfried Plasch — Krenglbach, Austria. All rights reserved.
+    </span>
+    <div class="footer-bottom-links">
+      <a href="/legal">Legal Notice</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/gtc">GTC</a>
+      <a href="/warranty">Warranty</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--black);
+    padding: 72px 60px 0;
+    color: white;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
+    gap: 60px;
+  }
+
+  .footer-logo {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 14px;
+  }
+  .footer-logo img {
+    height: 240px;
+    width: auto;
+  }
+
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .footer-social a:hover {
+    border-color: var(--sapphire);
+    color: white;
+    background: var(--sapphire);
+  }
+
+  .footer-col-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-links a {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: white; }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .footer-address p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .footer-address a {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .footer-address a:hover { color: white; }
+
+  .footer-usa-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 18px;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    color: var(--red) !important;
+    background: transparent;
+    border: 1.5px solid var(--red);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .footer-usa-btn:hover {
+    background: var(--red);
+    color: white !important;
+    transform: translateY(-1px);
+  }
+
+  /* Bottom bar — spans full width */
+  .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin: 0 -60px;
+    padding: 22px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom-text {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-bottom-links a {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 960px) {
+    footer {
+      grid-template-columns: 1fr;
+      padding: 48px 24px 0;
+    }
+    .footer-bottom {
+      margin: 0 -24px;
+      padding: 18px 24px;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

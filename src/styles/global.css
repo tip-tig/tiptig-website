@@ -1,0 +1,78 @@
+/* ============================================
+   TIPTIG GLOBAL STYLES
+   ============================================ */
+
+/* Self-hosted fonts (DSGVO-konform, kein Google-Request) */
+@font-face { font-family: 'Manrope'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/manrope-400.woff2') format('woff2'); }
+@font-face { font-family: 'Manrope'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/manrope-500.woff2') format('woff2'); }
+@font-face { font-family: 'Manrope'; font-weight: 600; font-style: normal; font-display: swap; src: url('/fonts/manrope-600.woff2') format('woff2'); }
+@font-face { font-family: 'Manrope'; font-weight: 700; font-style: normal; font-display: swap; src: url('/fonts/manrope-700.woff2') format('woff2'); }
+@font-face { font-family: 'Manrope'; font-weight: 800; font-style: normal; font-display: swap; src: url('/fonts/manrope-800.woff2') format('woff2'); }
+
+@font-face { font-family: 'Inter'; font-weight: 300; font-style: normal; font-display: swap; src: url('/fonts/inter-300.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 400; font-style: normal; font-display: swap; src: url('/fonts/inter-400.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 500; font-style: normal; font-display: swap; src: url('/fonts/inter-500.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 600; font-style: normal; font-display: swap; src: url('/fonts/inter-600.woff2') format('woff2'); }
+
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --sapphire:       #1B3A8C;
+  --sapphire-dark:  #122870;
+  --sapphire-light: #EEF2FA;
+  --sapphire-mid:   #C8D4F0;
+  --red:            #E8180C;
+  --black:          #111318;
+  --gray-dark:      #3A3F4A;
+  --gray-mid:       #6B7280;
+  --gray-light:     #E8ECF0;
+  --white:          #FFFFFF;
+  --bg:             #F7F8FA;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }

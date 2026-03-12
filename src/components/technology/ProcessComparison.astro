@@ -1,0 +1,345 @@
+---
+const characteristics = [
+  'Deposition Rate',
+  'Weld Speed',
+  'Heat Input',
+  'Weld Distortion',
+  'Skill Level Requirement',
+  'Fusion Capability',
+  'Consumable Costs',
+  'Fusion Quality',
+  'Porosity / Inclusions',
+  'Start-Stop Requirements',
+  'Weld Fume',
+  'Spatter Generation',
+  'All-Position Capability',
+  'Joint Fit-Up Tolerance',
+  'Overall Performance',
+];
+
+const processes = ['TIP TIG', 'MIG', 'TIG', 'FCAW', 'Stick'];
+
+// Ratings: 3 = best, 2 = good, 1 = poor
+const ratings: Record<string, number[]> = {
+  'Deposition Rate':        [2, 2, 1, 2, 2],
+  'Weld Speed':             [2, 2, 1, 2, 2],
+  'Heat Input':             [3, 2, 1, 2, 1],
+  'Weld Distortion':        [3, 2, 1, 2, 2],
+  'Skill Level Requirement':[3, 3, 1, 2, 1],
+  'Fusion Capability':      [3, 2, 2, 2, 2],
+  'Consumable Costs':       [2, 3, 2, 1, 2],
+  'Fusion Quality':         [3, 2, 3, 2, 2],
+  'Porosity / Inclusions':  [3, 2, 3, 1, 1],
+  'Start-Stop Requirements':[3, 2, 3, 1, 1],
+  'Weld Fume':              [3, 2, 3, 1, 1],
+  'Spatter Generation':     [3, 2, 3, 2, 1],
+  'All-Position Capability':[3, 2, 2, 2, 2],
+  'Joint Fit-Up Tolerance': [2, 2, 1, 2, 2],
+  'Overall Performance':    [3, 2, 2, 2, 1],
+};
+
+const weaknesses: Record<string, string[]> = {
+  'MIG': [
+    'Lack of fusion risks',
+    'Poor weld tie-ins',
+    'Porosity concerns',
+    'Poor all-position capability',
+    'Wire stick-out issues',
+  ],
+  'TIG': [
+    'Lowest deposition rate',
+    'Lowest welding speeds',
+    'High heat input',
+    'Significant distortion',
+    'Highest skill requirement',
+  ],
+  'Stick': [
+    'Low deposition rate',
+    'Fusion concerns',
+    'Slag inclusion risk',
+    'High porosity potential',
+    'Start-stop defects',
+  ],
+  'FCAW': [
+    'Slag inclusion risk',
+    'Fusion concerns',
+    'High porosity potential',
+    'Spatter concerns',
+    'Fume generation',
+  ],
+};
+---
+
+<section class="comparison">
+  <div class="inner">
+    <div class="section-eyebrow reveal">Process Comparison</div>
+    <h2 class="section-title reveal">TIP TIG vs. Other<br>Welding Processes</h2>
+    <p class="section-lead reveal">
+      A comprehensive comparison across 15 key characteristics shows TIP TIG
+      consistently outperforming conventional welding methods.
+    </p>
+
+    <div class="table-wrapper reveal">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-characteristic">Characteristic</th>
+            {processes.map((p) => (
+              <th class={p === 'TIP TIG' ? 'th-highlight' : ''}>{p}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {characteristics.map((c, ci) => (
+            <tr class={ci === characteristics.length - 1 ? 'row-overall' : ''}>
+              <td class="td-characteristic">{c}</td>
+              {ratings[c].map((r, pi) => (
+                <td class={pi === 0 ? 'td-highlight' : ''}>
+                  <span class="stars">
+                    {Array.from({ length: 3 }, (_, i) => (
+                      <span class={`star ${i < r ? 'star-filled' : 'star-empty'}`}>★</span>
+                    ))}
+                  </span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="weaknesses-grid reveal">
+      {Object.entries(weaknesses).map(([process, items]) => (
+        <div class="weakness-card">
+          <h4>{process} <span class="weakness-tag">Challenges</span></h4>
+          <ul>
+            {items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparison {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  /* Table */
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--gray-light);
+    background: var(--white);
+    margin-bottom: 48px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  thead {
+    background: var(--sapphire-light);
+  }
+
+  th {
+    padding: 16px 20px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-dark);
+    text-align: center;
+    border-bottom: 2px solid var(--gray-light);
+  }
+
+  .th-characteristic {
+    text-align: left;
+    width: 220px;
+    min-width: 180px;
+  }
+
+  .th-highlight {
+    color: var(--sapphire);
+    background: var(--sapphire-mid);
+  }
+
+  td {
+    padding: 14px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 0.88rem;
+  }
+
+  .td-characteristic {
+    text-align: left;
+    font-weight: 500;
+    color: var(--gray-dark);
+  }
+
+  .td-highlight {
+    background: rgba(27, 58, 140, 0.03);
+  }
+
+  .row-overall {
+    background: var(--sapphire-light);
+  }
+
+  .row-overall .td-characteristic {
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  tr:hover {
+    background: rgba(27, 58, 140, 0.02);
+  }
+
+  .row-overall:hover {
+    background: var(--sapphire-light);
+  }
+
+  /* Stars */
+  .stars {
+    display: inline-flex;
+    gap: 2px;
+  }
+
+  .star {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .star-filled {
+    color: var(--sapphire);
+  }
+
+  .star-empty {
+    color: var(--gray-light);
+  }
+
+  .td-highlight .star-filled {
+    color: var(--sapphire);
+  }
+
+  /* Weaknesses */
+  .weaknesses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .weakness-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 24px;
+  }
+
+  .weakness-card h4 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .weakness-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--red);
+    background: rgba(232, 24, 12, 0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .weakness-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .weakness-card li {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    font-weight: 400;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .weakness-card li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gray-light);
+    font-weight: 600;
+  }
+
+  @media (max-width: 960px) {
+    .comparison { padding: 72px 24px; }
+    .weaknesses-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .weaknesses-grid { grid-template-columns: 1fr; }
+    .table-wrapper { border-radius: 12px; }
+  }
+</style>

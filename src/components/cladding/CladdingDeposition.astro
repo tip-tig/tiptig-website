@@ -1,0 +1,219 @@
+---
+const bars = [
+  { label: 'Standard TIG', imp: 4.2, met: 1.9, highlight: false },
+  { label: 'TIG Hot Wire', imp: 7.7, met: 3.5, highlight: false },
+  { label: 'RapidClad 2.0', imp: 20, met: 9.1, highlight: true },
+];
+const maxImp = 22;
+const maxMet = 10;
+---
+
+<section class="cl-deposition">
+  <div class="inner">
+    <div class="cl-dep-grid">
+      <div class="cl-dep-chart reveal">
+        {bars.map((bar) => (
+          <div class={`dep-row ${bar.highlight ? 'dep-row-highlight' : ''}`}>
+            <span class="dep-label">{bar.label}</span>
+            <div class="dep-bar-track">
+              <div
+                class={`dep-bar-fill ${bar.highlight ? 'dep-fill-highlight' : ''}`}
+                data-imp-width={`${(bar.imp / maxImp) * 100}%`}
+                data-met-width={`${(bar.met / maxMet) * 100}%`}
+                style={`width: ${(bar.imp / maxImp) * 100}%`}
+              >
+              </div>
+            </div>
+            <span class={`dep-value ${bar.highlight ? 'dep-value-highlight' : ''}`}>
+              <span class="u-imp">{bar.imp}</span>
+              <span class="u-met">{bar.met}</span>
+            </span>
+          </div>
+        ))}
+        <div class="dep-unit">
+          <span class="u-imp">lbs/hr</span>
+          <span class="u-met">kg/hr</span>
+        </div>
+      </div>
+
+      <div class="cl-dep-text">
+        <div class="section-eyebrow reveal">Performance</div>
+        <h2 class="section-title reveal">Unmatched<br>Deposition Rate</h2>
+        <p class="section-lead reveal">
+          The TwinWire RapidClad 2.0 achieves the highest deposition rates
+          in the weld overlay cladding market — with dynamic wire feed
+          maintaining optimal temperature and dilution control at every speed.
+        </p>
+        <div class="dep-metric reveal">
+          <span class="metric-value">4.8×</span>
+          <span class="metric-label">faster deposition than standard TIG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cl-deposition {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cl-dep-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Chart */
+  .cl-dep-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px 36px;
+  }
+
+  .dep-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .dep-label {
+    width: 110px;
+    min-width: 110px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    text-align: right;
+  }
+
+  .dep-row-highlight .dep-label {
+    color: var(--sapphire);
+    font-weight: 700;
+  }
+
+  .dep-bar-track {
+    flex: 1;
+    height: 32px;
+    background: var(--gray-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .dep-bar-fill {
+    height: 100%;
+    background: var(--sapphire-mid);
+    border-radius: 8px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dep-fill-highlight {
+    background: var(--sapphire);
+  }
+
+  .dep-value {
+    width: 56px;
+    min-width: 56px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gray-mid);
+  }
+
+  .dep-value-highlight {
+    color: var(--sapphire);
+    font-size: 1.05rem;
+  }
+
+  .dep-unit {
+    text-align: right;
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    opacity: 0.5;
+    margin-top: -4px;
+  }
+
+  /* Text */
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .dep-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .metric-value {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--sapphire);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    font-weight: 400;
+  }
+
+  @media (max-width: 960px) {
+    .cl-deposition { padding: 72px 24px; }
+    .cl-dep-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .dep-label {
+      width: 90px;
+      min-width: 90px;
+      font-size: 0.78rem;
+    }
+    .cl-dep-chart { padding: 28px 20px; }
+  }
+</style>

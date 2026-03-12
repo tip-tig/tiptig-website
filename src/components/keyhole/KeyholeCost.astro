@@ -1,0 +1,221 @@
+---
+const bars = [
+  { label: 'TIG Cold Wire', imp: 11.3, met: 37.07, highlight: false },
+  { label: 'TIG Hot Wire', imp: 9.4, met: 30.84, highlight: false },
+  { label: 'Plasma (PAW)', imp: 2.7, met: 8.86, highlight: false },
+  { label: 'TIP TIG focus', imp: 1.25, met: 4.10, highlight: true },
+];
+const maxImp = 12;
+const maxMet = 40;
+---
+
+<section class="kh-cost">
+  <div class="inner">
+    <div class="kh-cost-grid">
+      <div class="kh-cost-chart reveal">
+        {bars.map((bar) => (
+          <div class={`cost-row ${bar.highlight ? 'cost-row-highlight' : ''}`}>
+            <span class="cost-label">{bar.label}</span>
+            <div class="cost-bar-track">
+              <div
+                class={`cost-bar-fill ${bar.highlight ? 'cost-fill-highlight' : ''}`}
+                data-imp-width={`${(bar.imp / maxImp) * 100}%`}
+                data-met-width={`${(bar.met / maxMet) * 100}%`}
+                style={`width: ${(bar.imp / maxImp) * 100}%`}
+              >
+              </div>
+            </div>
+            <span class={`cost-value ${bar.highlight ? 'cost-value-highlight' : ''}`}>
+              <span class="u-imp">${bar.imp.toFixed(2)}</span>
+              <span class="u-met">${bar.met.toFixed(2)}</span>
+            </span>
+          </div>
+        ))}
+        <div class="cost-unit">
+          <span class="u-imp">$/ft — costs vary depending on application</span>
+          <span class="u-met">$/m — costs vary depending on application</span>
+        </div>
+      </div>
+
+      <div class="kh-cost-text">
+        <div class="section-eyebrow reveal">Cost Efficiency</div>
+        <h2 class="section-title reveal">Lowest Cost<br><span class="u-imp">Per Weld Foot</span><span class="u-met">Per Weld Meter</span></h2>
+        <p class="section-lead reveal">
+          <span class="u-imp">At just $1.25/ft, TIP TIG focus costs less than half of plasma welding</span>
+          <span class="u-met">At just $4.10/m, TIP TIG focus costs less than half of plasma welding</span>
+          and a fraction of conventional TIG methods — making it the most
+          economical keyhole welding solution available.
+        </p>
+        <div class="cost-savings reveal">
+          <span class="savings-value">89%</span>
+          <span class="savings-label">less expensive than TIG Cold Wire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kh-cost {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .kh-cost-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Chart */
+  .kh-cost-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px 36px;
+  }
+
+  .cost-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cost-label {
+    width: 110px;
+    min-width: 110px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    text-align: right;
+  }
+
+  .cost-row-highlight .cost-label {
+    color: var(--sapphire);
+    font-weight: 700;
+  }
+
+  .cost-bar-track {
+    flex: 1;
+    height: 32px;
+    background: var(--gray-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cost-bar-fill {
+    height: 100%;
+    background: var(--sapphire-mid);
+    border-radius: 8px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cost-fill-highlight {
+    background: var(--sapphire);
+  }
+
+  .cost-value {
+    width: 56px;
+    min-width: 56px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gray-mid);
+  }
+
+  .cost-value-highlight {
+    color: var(--sapphire);
+    font-size: 1.05rem;
+  }
+
+  .cost-unit {
+    text-align: right;
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    opacity: 0.5;
+    margin-top: -4px;
+  }
+
+  /* Text */
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .cost-savings {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .savings-value {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--sapphire);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .savings-label {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    font-weight: 400;
+  }
+
+  @media (max-width: 960px) {
+    .kh-cost { padding: 72px 24px; }
+    .kh-cost-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .cost-label {
+      width: 90px;
+      min-width: 90px;
+      font-size: 0.78rem;
+    }
+    .kh-cost-chart { padding: 28px 20px; }
+  }
+</style>

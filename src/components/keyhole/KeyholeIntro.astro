@@ -1,0 +1,157 @@
+---
+import { Target, Zap, DollarSign } from '@lucide/astro';
+---
+
+<section class="kh-intro">
+  <div class="inner">
+    <div class="kh-intro-grid">
+      <div class="kh-intro-text">
+        <div class="section-eyebrow reveal">What is TIP TIG focus?</div>
+        <h2 class="section-title reveal">Single-Pass Keyhole<br>Welding — Reinvented</h2>
+        <p class="section-lead reveal">
+          A full-penetration, single-pass keyhole TIG welding process that requires
+          almost no edge bevelling and produces highly repeatable, x-ray-quality welds
+          with superior root and cap aesthetics.
+        </p>
+      </div>
+      <div class="kh-intro-cards">
+        <div class="kh-card reveal">
+          <div class="kh-card-icon"><Target size={24} /></div>
+          <div>
+            <strong>No Joint Preparation</strong>
+            <span>Full penetration on materials up to <span class="u-imp">½ in</span><span class="u-met">12 mm</span> thickness with almost no edge bevelling required.</span>
+          </div>
+        </div>
+        <div class="kh-card reveal reveal-delay-1">
+          <div class="kh-card-icon"><Zap size={24} /></div>
+          <div>
+            <strong>8-Hour TIG Weld in 10 Minutes</strong>
+            <span>Up to 600% faster welding speeds compared to traditional TIG — with 88% less shielding gas.</span>
+          </div>
+        </div>
+        <div class="kh-card reveal reveal-delay-2">
+          <div class="kh-card-icon"><DollarSign size={24} /></div>
+          <div>
+            <strong>Average 80% Cost Savings</strong>
+            <span>Dramatic reductions in preparation, gas, energy, filler materials, grinding, and rework.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kh-intro {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .kh-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .kh-intro-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .kh-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+  }
+
+  .kh-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 24px rgba(27, 58, 140, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .kh-card-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: var(--sapphire-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+  }
+
+  .kh-card strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .kh-card span {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  @media (max-width: 960px) {
+    .kh-intro { padding: 72px 24px; }
+    .kh-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

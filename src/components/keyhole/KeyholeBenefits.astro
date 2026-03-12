@@ -1,0 +1,148 @@
+---
+import { Layers, Sparkles, Gauge, Thermometer, Timer, Settings, Wrench, CircleDollarSign } from '@lucide/astro';
+
+const benefits = [
+  { icon: 'Layers', title: 'Full Penetration', titleImp: 'up to ½ in', titleMet: 'up to 12 mm', desc: 'Single-pass keyhole welding without multi-pass requirements.' },
+  { icon: 'Sparkles', title: 'No Spatter', desc: 'Clean welds with very flat layer surfaces — minimal post-processing.' },
+  { icon: 'Gauge', title: '600% Faster', desc: 'Dramatically higher welding speeds compared to traditional TIG.' },
+  { icon: 'Thermometer', title: 'Minimal HAZ', desc: 'Low heat input zone preserves material properties and reduces distortion.' },
+  { icon: 'Settings', title: 'Almost No Joint Prep', desc: 'Requires almost no edge bevelling — saving significant preparation time.' },
+  { icon: 'Timer', title: 'Fast Setup', desc: 'Easy parameter selection and simple electrode/spare part changing.' },
+  { icon: 'Wrench', title: 'All-Position Welding', desc: 'Flexible welding position capability for thin and thick sheets.' },
+  { icon: 'CircleDollarSign', title: 'Reduced Consumable Costs', desc: 'Uses as little as 12% of the shielding gas customarily required.' },
+];
+
+const iconMap: Record<string, any> = { Layers, Sparkles, Gauge, Thermometer, Timer, Settings, Wrench, CircleDollarSign };
+---
+
+<section class="kh-benefits">
+  <div class="inner">
+    <div class="section-eyebrow reveal">Advantages</div>
+    <h2 class="section-title reveal">Why TIP TIG focus?</h2>
+    <p class="section-lead reveal">
+      Combining keyhole penetration with TIG-quality results — faster, cleaner,
+      and more cost-effective than any competing process.
+    </p>
+
+    <div class="benefits-grid">
+      {benefits.map((b, i) => {
+        const Icon = iconMap[b.icon];
+        return (
+          <div class={`benefit-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class="benefit-icon"><Icon size={22} /></div>
+            <h3>{b.title}{b.titleImp && <> <span class="u-imp">{b.titleImp}</span><span class="u-met">{b.titleMet}</span></>}</h3>
+            <p>{b.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .kh-benefits {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    max-width: 600px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .benefit-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 24px rgba(27, 58, 140, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .benefit-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--sapphire-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+
+  .benefit-card h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .benefit-card p {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  @media (max-width: 960px) {
+    .kh-benefits { padding: 72px 24px; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,206 @@
+---
+const bars = [
+  { label: 'TIG', imp: 0.7, met: 0.3, highlight: false },
+  { label: 'TIG Cold Wire', imp: 2.2, met: 1.0, highlight: false },
+  { label: 'TIG Hot Wire', imp: 3.3, met: 1.5, highlight: false },
+  { label: 'TIP TIG', imp: 8.8, met: 4.0, highlight: true },
+];
+const maxImp = 8.8;
+const maxMet = 4.0;
+---
+
+<section class="deposition">
+  <div class="inner">
+    <div class="deposition-grid">
+      <div class="deposition-text">
+        <div class="section-eyebrow reveal">Performance</div>
+        <h2 class="section-title reveal">Deposition Rate<br>Comparison</h2>
+        <p class="section-lead reveal">
+          On a 2-inch Schedule 80S stainless steel pipe (DN50, 60.3 mm OD, 5.54 mm wall)
+          in 5G position — TIP TIG delivers over 12x the deposition rate of conventional TIG.
+        </p>
+        <div class="deposition-note reveal">
+          <span class="u-imp">All values measured in lbs/hr under identical test conditions.</span>
+          <span class="u-met">All values measured in kg/hr under identical test conditions.</span>
+        </div>
+      </div>
+
+      <div class="deposition-chart reveal">
+        {bars.map((bar) => (
+          <div class={`chart-row ${bar.highlight ? 'chart-row-highlight' : ''}`}>
+            <span class="chart-label">{bar.label}</span>
+            <div class="chart-bar-track">
+              <div
+                class={`chart-bar-fill ${bar.highlight ? 'fill-highlight' : ''}`}
+                data-imp-width={`${(bar.imp / maxImp) * 100}%`}
+                data-met-width={`${(bar.met / maxMet) * 100}%`}
+                style={`width: ${(bar.imp / maxImp) * 100}%`}
+              >
+              </div>
+            </div>
+            <span class={`chart-value ${bar.highlight ? 'value-highlight' : ''}`}>
+              <span class="u-imp">{bar.imp}</span>
+              <span class="u-met">{bar.met}</span>
+            </span>
+          </div>
+        ))}
+        <div class="chart-unit">
+          <span class="u-imp">lbs/hr</span>
+          <span class="u-met">kg/hr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .deposition {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .deposition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .deposition-note {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  /* Chart */
+  .deposition-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px 36px;
+  }
+
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .chart-label {
+    width: 110px;
+    min-width: 110px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    text-align: right;
+  }
+
+  .chart-row-highlight .chart-label {
+    color: var(--sapphire);
+    font-weight: 700;
+  }
+
+  .chart-bar-track {
+    flex: 1;
+    height: 32px;
+    background: var(--gray-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .chart-bar-fill {
+    height: 100%;
+    background: var(--sapphire-mid);
+    border-radius: 8px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fill-highlight {
+    background: var(--sapphire);
+  }
+
+  .chart-value {
+    width: 40px;
+    min-width: 40px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-mid);
+  }
+
+  .value-highlight {
+    color: var(--sapphire);
+    font-size: 1.15rem;
+  }
+
+  .chart-unit {
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--gray-mid);
+    opacity: 0.5;
+    margin-top: -4px;
+  }
+
+  @media (max-width: 960px) {
+    .deposition { padding: 72px 24px; }
+    .deposition-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .chart-label {
+      width: 80px;
+      min-width: 80px;
+      font-size: 0.78rem;
+    }
+    .deposition-chart {
+      padding: 28px 20px;
+    }
+  }
+</style>

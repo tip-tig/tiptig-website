@@ -1,0 +1,148 @@
+---
+---
+
+<section class="tech-hero">
+  <div class="tech-hero-bg"></div>
+  <div class="inner">
+    <div class="tech-hero-eyebrow">Technology</div>
+    <h1>The TIP TIG<br><span class="blue">Welding Process</span></h1>
+    <p class="tech-hero-sub">Dynamic Wire Feeding</p>
+    <p class="tech-hero-desc">
+      TIP TIG is a unique hot wire TIG welding technique suitable for manual, automated,
+      bore cladding, and orbital welding applications — accommodating all metal types
+      similar to traditional TIG methods.
+    </p>
+
+    <div class="unit-toggle" id="unit-toggle">
+      <button class="unit-btn active" data-unit="imperial">Imperial</button>
+      <button class="unit-btn" data-unit="metric">Metric</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-hero {
+    padding: 160px 60px 72px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .tech-hero-bg {
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tech-hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tech-hero-eyebrow::before,
+  .tech-hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .blue { color: var(--sapphire); }
+
+  .tech-hero-sub {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+
+  .tech-hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .unit-toggle {
+    display: inline-flex;
+    margin-top: 28px;
+    background: var(--sapphire-light);
+    border: 1px solid var(--sapphire-mid);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .unit-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 18px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--gray-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .unit-btn.active {
+    background: var(--sapphire);
+    color: white;
+    box-shadow: 0 2px 8px rgba(27, 58, 140, 0.2);
+  }
+
+  .unit-btn:not(.active):hover {
+    color: var(--sapphire);
+  }
+
+  @media (max-width: 960px) {
+    .tech-hero {
+      padding: 120px 24px 72px;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CladdingHero from '../components/cladding/CladdingHero.astro';
+import CladdingIntro from '../components/cladding/CladdingIntro.astro';
+import CladdingVideo from '../components/cladding/CladdingVideo.astro';
+import CladdingBenefits from '../components/cladding/CladdingBenefits.astro';
+import CladdingApplications from '../components/cladding/CladdingApplications.astro';
+import CladdingDeposition from '../components/cladding/CladdingDeposition.astro';
+import CTA from '../components/home/CTA.astro';
+---
+
+<BaseLayout
+  title="TIP TIG TwinWire RapidClad 2.0 — Weld Overlay Cladding"
+  description="TIP TIG TwinWire RapidClad 2.0 delivers up to 20 lbs/hr deposition rate with 80% reduced dilution — the highest standard in weld overlay cladding."
+>
+  <div id="cl-page" data-units="imperial">
+    <CladdingHero />
+    <CladdingIntro />
+    <CladdingVideo />
+    <CladdingBenefits />
+    <CladdingApplications />
+    <CladdingDeposition />
+    <CTA />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  #cl-page[data-units="imperial"] .u-met { display: none !important; }
+  #cl-page[data-units="metric"] .u-imp { display: none !important; }
+</style>
+
+<script>
+  const page = document.getElementById('cl-page');
+  const toggle = document.getElementById('unit-toggle');
+
+  if (toggle && page) {
+    toggle.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.unit-btn') as HTMLElement;
+      if (!btn) return;
+      const unit = btn.dataset.unit;
+      if (!unit) return;
+
+      page.dataset.units = unit;
+      toggle.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update deposition chart bar widths
+      document.querySelectorAll('.dep-bar-fill[data-imp-width]').forEach(bar => {
+        const el = bar as HTMLElement;
+        el.style.width = unit === 'imperial' ? el.dataset.impWidth! : el.dataset.metWidth!;
+      });
+    });
+  }
+</script>
