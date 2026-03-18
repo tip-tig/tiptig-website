@@ -1,10 +1,28 @@
 ---
 const navLinks = [
   { label: 'Products', href: '/products' },
-  { label: 'Technology', href: '/technology' },
-  { label: 'Industries', href: '/industries' },
   { label: 'Resources', href: '/resources' },
   { label: 'Company', href: '/company' },
+];
+
+const technologyLinks = [
+  { label: 'The TIP TIG Process', href: '/technology' },
+  { label: 'Keyhole TIG Welding', href: '/keyhole-tig-welding' },
+  { label: 'Weld Overlay Cladding', href: '/weld-overlay-cladding' },
+];
+
+const industryLinks = [
+  { label: 'Aerospace', href: '/industries/aerospace' },
+  { label: 'Defense & Naval', href: '/industries/defense' },
+  { label: 'Food & Dairy', href: '/industries/food-dairy' },
+  { label: 'Heat Exchangers', href: '/industries/heat-exchangers' },
+  { label: 'Nuclear', href: '/industries/nuclear' },
+  { label: 'Oil & Gas', href: '/industries/oil-gas' },
+  { label: 'Petrochemical', href: '/industries/petrochemical' },
+  { label: 'Pharmaceutical', href: '/industries/pharma' },
+  { label: 'Pipelines', href: '/industries/pipelines' },
+  { label: 'Power Generation', href: '/industries/power-generation' },
+  { label: 'Shipbuilding', href: '/industries/shipbuilding' },
 ];
 ---
 
@@ -14,9 +32,25 @@ const navLinks = [
   </a>
 
   <ul class="nav-links">
-    {navLinks.map(link => (
-      <li><a href={link.href}>{link.label}</a></li>
-    ))}
+    <li><a href="/products">Products</a></li>
+    <li class="has-dropdown">
+      <a href="/technology">Technology <span class="dd-arrow">▾</span></a>
+      <ul class="dropdown">
+        {technologyLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="/industries">Industries <span class="dd-arrow">▾</span></a>
+      <ul class="dropdown">
+        {industryLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </li>
+    <li><a href="/resources">Resources</a></li>
+    <li><a href="/company">Company</a></li>
   </ul>
 
   <div class="nav-right">
@@ -33,9 +67,25 @@ const navLinks = [
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <ul>
-    {navLinks.map(link => (
-      <li><a href={link.href}>{link.label}</a></li>
-    ))}
+    <li><a href="/products">Products</a></li>
+    <li class="mobile-dropdown">
+      <button class="mobile-dropdown-toggle">Technology <span class="dd-arrow">▾</span></button>
+      <ul class="mobile-dropdown-list">
+        {technologyLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </li>
+    <li class="mobile-dropdown">
+      <button class="mobile-dropdown-toggle">Industries <span class="dd-arrow">▾</span></button>
+      <ul class="mobile-dropdown-list">
+        {industryLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </li>
+    <li><a href="/resources">Resources</a></li>
+    <li><a href="/company">Company</a></li>
     <li><a href="/support">Support</a></li>
     <li><a href="/contact" class="btn-nav-solid" style="display:block; text-align:center; margin-top:8px;">Get a Quote</a></li>
   </ul>
@@ -80,6 +130,39 @@ const navLinks = [
     letter-spacing: 0.01em;
   }
   .nav-links a:hover { color: var(--sapphire); }
+
+  /* Dropdown */
+  .has-dropdown { position: relative; }
+  .dd-arrow { font-size: 0.7em; margin-left: 2px; }
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 101;
+    list-style: none;
+  }
+  .has-dropdown:hover .dropdown { display: block; }
+  .dropdown li a {
+    display: block;
+    padding: 8px 20px;
+    font-size: 0.84rem;
+    font-weight: 400;
+    color: var(--gray-mid);
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .dropdown li a:hover {
+    background: var(--sapphire-light, #e8eeff);
+    color: var(--sapphire);
+  }
 
   .nav-right {
     display: flex;
@@ -157,6 +240,34 @@ const navLinks = [
   }
   .mobile-menu a:hover { background: var(--sapphire-light); color: var(--sapphire); }
 
+  /* Mobile dropdown */
+  .mobile-dropdown-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+  }
+  .mobile-dropdown-toggle:hover { background: var(--sapphire-light); color: var(--sapphire); }
+  .mobile-dropdown-list {
+    display: none;
+    padding-left: 16px;
+    list-style: none;
+  }
+  .mobile-dropdown-list.is-open { display: block; }
+  .mobile-dropdown-list a {
+    font-size: 0.84rem;
+    padding: 8px 14px;
+  }
+
   @media (max-width: 960px) {
     nav { padding: 0 24px; }
     .nav-links, .nav-right { display: none; }
@@ -179,5 +290,14 @@ const navLinks = [
       menu.classList.remove('is-open');
       toggle?.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  // Mobile industries dropdown
+  const mobileToggle = document.querySelector('.mobile-dropdown-toggle');
+  const mobileList = document.querySelector('.mobile-dropdown-list');
+  mobileToggle?.addEventListener('click', () => {
+    mobileList?.classList.toggle('is-open');
+    const arrow = mobileToggle.querySelector('.dd-arrow');
+    if (arrow) arrow.textContent = mobileList?.classList.contains('is-open') ? '▴' : '▾';
   });
 </script>

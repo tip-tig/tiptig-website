@@ -1,0 +1,256 @@
+---
+import { MapPin, Wrench, FlaskConical, Package } from '@lucide/astro';
+---
+
+<section class="ab-hq">
+  <div class="inner">
+    <div class="ab-hq-grid">
+      <!-- Left: Info -->
+      <div class="ab-hq-info reveal">
+        <div class="section-eyebrow">Headquarters</div>
+        <h2 class="section-title">Made in Austria.<br>Delivered Worldwide.</h2>
+        <p class="section-lead">
+          Everything — from initial design to final calibration — happens at our
+          facility in Krenglbach, Upper Austria. This vertical integration
+          ensures every TIP TIG system meets the standards our customers depend on.
+        </p>
+
+        <div class="ab-hq-features">
+          <div class="ab-hq-feature">
+            <div class="ab-hq-feat-icon"><FlaskConical size={16} /></div>
+            <span>In-house Research & Development</span>
+          </div>
+          <div class="ab-hq-feature">
+            <div class="ab-hq-feat-icon"><Wrench size={16} /></div>
+            <span>Precision Manufacturing & Assembly</span>
+          </div>
+          <div class="ab-hq-feature">
+            <div class="ab-hq-feat-icon"><Package size={16} /></div>
+            <span>Quality Control & Global Shipping</span>
+          </div>
+          <div class="ab-hq-feature">
+            <div class="ab-hq-feat-icon"><MapPin size={16} /></div>
+            <span>Baumayrweg 4, 4631 Krenglbach, Austria</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Visual card -->
+      <div class="ab-hq-visual reveal reveal-delay-2">
+        <div class="ab-hq-card">
+          <div class="ab-hq-flag">
+            <span class="flag-bar red"></span>
+            <span class="flag-bar white"></span>
+            <span class="flag-bar red"></span>
+          </div>
+          <div class="ab-hq-card-label">Austrian Quality</div>
+          <div class="ab-hq-card-big">100%</div>
+          <div class="ab-hq-card-sub">Designed, engineered &<br>manufactured in Austria</div>
+
+          <div class="ab-hq-card-divider"></div>
+
+          <div class="ab-hq-card-stats">
+            <div>
+              <div class="ab-hq-stat-val">25+</div>
+              <div class="ab-hq-stat-label">Years of<br>Innovation</div>
+            </div>
+            <div>
+              <div class="ab-hq-stat-val">6</div>
+              <div class="ab-hq-stat-label">Continents<br>Served</div>
+            </div>
+            <div>
+              <div class="ab-hq-stat-val">1</div>
+              <div class="ab-hq-stat-label">Production<br>Facility</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ab-hq {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ab-hq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+
+  .ab-hq-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ab-hq-feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .ab-hq-feature:hover { background: var(--white); }
+
+  .ab-hq-feat-icon {
+    width: 32px; height: 32px;
+    background: var(--sapphire-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--sapphire);
+    transition: all 0.2s;
+  }
+  .ab-hq-feature:hover .ab-hq-feat-icon {
+    background: var(--sapphire);
+    color: var(--white);
+  }
+
+  .ab-hq-feature span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  /* Visual Card */
+  .ab-hq-card {
+    background: var(--sapphire);
+    border-radius: 24px;
+    padding: 48px 44px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .ab-hq-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .ab-hq-flag {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 16px;
+  }
+  .flag-bar {
+    width: 28px; height: 6px;
+    border-radius: 3px;
+  }
+  .flag-bar.red { background: #E8180C; }
+  .flag-bar.white { background: white; }
+
+  .ab-hq-card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .ab-hq-card-big {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ab-hq-card-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .ab-hq-card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 32px 0;
+  }
+
+  .ab-hq-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .ab-hq-stat-val {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .ab-hq-stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 960px) {
+    .ab-hq { padding: 72px 24px; }
+    .ab-hq-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .ab-hq-card { padding: 36px 28px; }
+    .ab-hq-card-big { font-size: 3.5rem; }
+  }
+</style>

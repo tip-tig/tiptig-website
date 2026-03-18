@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ArrowLeft, Download, Github, AlertCircle, Monitor } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Software Updates — TIP TIG Control Panel"
+  description="Download the latest firmware updates for your TIP TIG control panel. Release notes and installation guide included."
+>
+  <section class="su-hero">
+    <div class="su-hero-bg"></div>
+    <div class="inner">
+      <a href="/support" class="su-back"><ArrowLeft size={16} /> All Support</a>
+      <div class="su-eyebrow">Downloads</div>
+      <h1>Software<br><span class="blue">Updates</span></h1>
+      <p class="su-desc">
+        Keep your TIP TIG control panel up to date with the latest firmware.
+        All updates are free and available on our GitHub repository.
+      </p>
+    </div>
+  </section>
+
+  <section class="su-content">
+    <div class="inner">
+      <!-- Download Card -->
+      <div class="su-download-card reveal">
+        <div class="su-download-icon"><Monitor size={32} /></div>
+        <div class="su-download-info">
+          <h2>TIP TIG Control Panel Firmware</h2>
+          <p>
+            Official firmware releases for the TIP TIG control panel. Each release includes
+            the update file, release notes, and step-by-step installation instructions.
+          </p>
+          <div class="su-download-meta">
+            <span><Github size={14} /> Hosted on GitHub</span>
+            <span>Free download</span>
+          </div>
+        </div>
+        <a href="https://github.com/tip-tig/Software-Updates-of-the-TIP-TIG-Control-Panel" target="_blank" rel="noopener" class="su-download-btn">
+          <Download size={16} /> View on GitHub
+        </a>
+      </div>
+
+      <!-- Instructions -->
+      <div class="su-instructions reveal">
+        <h3>How to Update</h3>
+        <div class="su-steps">
+          <div class="su-step">
+            <div class="su-step-num">1</div>
+            <div>
+              <strong>Download</strong>
+              <p>Go to the GitHub repository and download the latest release file (.bin) to a USB drive.</p>
+            </div>
+          </div>
+          <div class="su-step">
+            <div class="su-step-num">2</div>
+            <div>
+              <strong>Connect</strong>
+              <p>Insert the USB drive into the USB port on the TIP TIG control panel.</p>
+            </div>
+          </div>
+          <div class="su-step">
+            <div class="su-step-num">3</div>
+            <div>
+              <strong>Install</strong>
+              <p>Follow the on-screen prompts on the control panel to begin the update process.</p>
+            </div>
+          </div>
+          <div class="su-step">
+            <div class="su-step-num">4</div>
+            <div>
+              <strong>Verify</strong>
+              <p>After restart, check the firmware version in the system settings to confirm the update.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="su-warning reveal">
+        <AlertCircle size={20} />
+        <div>
+          <strong>Important</strong>
+          <p>
+            Do not power off the control panel during the update process.
+            If you experience issues, contact
+            <a href="mailto:office@tiptig.com">office@tiptig.com</a>
+            or your local Certified Partner.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .su-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .su-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .su-hero .inner {
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .su-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: gap 0.2s;
+  }
+  .su-back:hover { gap: 10px; }
+
+  .su-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .blue { color: var(--sapphire); }
+
+  .su-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* Content */
+  .su-content {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+
+  /* Download Card */
+  .su-download-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .su-download-icon {
+    width: 64px; height: 64px;
+    background: var(--sapphire-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+    flex-shrink: 0;
+  }
+  .su-download-info {
+    flex: 1;
+  }
+  .su-download-info h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .su-download-info p {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  .su-download-meta {
+    display: flex;
+    gap: 20px;
+  }
+  .su-download-meta span {
+    font-size: 0.78rem;
+    color: var(--gray-mid);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .su-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sapphire);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.25s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .su-download-btn:hover {
+    background: var(--sapphire-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(27, 58, 140, 0.2);
+  }
+
+  /* Instructions */
+  .su-instructions {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 28px;
+  }
+  .su-instructions h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+
+  .su-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .su-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .su-step-num {
+    width: 32px; height: 32px;
+    background: var(--sapphire);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+  .su-step strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .su-step p {
+    font-size: 0.84rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Warning */
+  .su-warning {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #FEF3CD;
+    border: 1px solid #F0D060;
+    border-radius: 12px;
+    padding: 20px 24px;
+    color: #856404;
+  }
+  .su-warning strong {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+  .su-warning p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .su-warning a {
+    color: #856404;
+    font-weight: 600;
+  }
+
+  @media (max-width: 960px) {
+    .su-hero { padding: 120px 24px 48px; }
+    .su-content { padding: 36px 24px 72px; }
+    .su-download-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 28px 24px;
+    }
+    .su-download-meta { justify-content: center; }
+    .su-steps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .su-steps { grid-template-columns: 1fr; }
+  }
+</style>

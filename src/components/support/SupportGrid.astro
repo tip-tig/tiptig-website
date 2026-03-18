@@ -1,0 +1,151 @@
+---
+import { Calculator, Download, Wrench, Shield, BookOpen, Mail, Monitor } from '@lucide/astro';
+---
+
+<section class="sp-grid-section">
+  <div class="inner">
+    <div class="sp-grid">
+
+      <a href="/support/wire-speed-calculator" class="sp-card reveal">
+        <div class="sp-card-icon"><Calculator size={24} /></div>
+        <h3>Wire Speed Calculator</h3>
+        <p>Convert wire feed speed between m/min and IPM. Interactive tool for both old and new control panels.</p>
+        <span class="sp-card-link">Open Calculator →</span>
+      </a>
+
+      <a href="/support/software-update" class="sp-card reveal reveal-delay-1">
+        <div class="sp-card-icon"><Download size={24} /></div>
+        <h3>Software Updates</h3>
+        <p>Download the latest firmware for your TIP TIG control panel. Release notes and installation instructions included.</p>
+        <span class="sp-card-link">View Updates →</span>
+      </a>
+
+      <a href="https://repair.tiptig.com" target="_blank" rel="noopener" class="sp-card reveal reveal-delay-2">
+        <div class="sp-card-icon"><Wrench size={24} /></div>
+        <h3>Service Instructions</h3>
+        <p>Step-by-step repair and maintenance guides for control boards, wire feeders, and portable devices.</p>
+        <span class="sp-card-link">Open Service Portal →</span>
+      </a>
+
+      <a href="/support/control-panel" class="sp-card reveal">
+        <div class="sp-card-icon"><Monitor size={24} /></div>
+        <h3>Control Panel Guide</h3>
+        <p>Detailed reference for the TIP TIG control panel — wire speed, frequency, and hot wire amps displays explained.</p>
+        <span class="sp-card-link">View Guide →</span>
+      </a>
+
+      <a href="/support/warranty" class="sp-card reveal">
+        <div class="sp-card-icon"><Shield size={24} /></div>
+        <h3>Warranty</h3>
+        <p>Coverage details for hot-wire modules, wire feeders, and torches. Learn how to submit a warranty claim.</p>
+        <span class="sp-card-link">View Warranty →</span>
+      </a>
+
+      <a href="/support/manuals" class="sp-card reveal reveal-delay-1">
+        <div class="sp-card-icon"><BookOpen size={24} /></div>
+        <h3>Owner's Manuals</h3>
+        <p>Request operating manuals and technical documentation for your specific TIP TIG system and serial number.</p>
+        <span class="sp-card-link">Request Manual →</span>
+      </a>
+
+      <a href="/contact" class="sp-card reveal reveal-delay-2">
+        <div class="sp-card-icon"><Mail size={24} /></div>
+        <h3>Contact Support</h3>
+        <p>Can't find what you need? Reach out to our engineering team directly for personalized technical assistance.</p>
+        <span class="sp-card-link">Get in Touch →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp-grid-section {
+    padding: 80px 60px 110px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .sp-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .sp-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 32px rgba(27, 58, 140, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .sp-card-icon {
+    width: 52px; height: 52px;
+    background: var(--sapphire-light);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+    margin-bottom: 24px;
+    transition: all 0.25s;
+  }
+  .sp-card:hover .sp-card-icon {
+    background: var(--sapphire);
+    color: var(--white);
+  }
+
+  h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .sp-card p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 20px;
+  }
+
+  .sp-card-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    transition: gap 0.2s;
+    display: inline-flex;
+    align-items: center;
+  }
+  .sp-card:hover .sp-card-link {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 960px) {
+    .sp-grid-section { padding: 48px 24px 72px; }
+    .sp-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .sp-grid { grid-template-columns: 1fr; }
+  }
+</style>

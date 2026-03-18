@@ -1,0 +1,97 @@
+---
+---
+
+<section class="sp-hero">
+  <div class="sp-hero-bg"></div>
+  <div class="inner">
+    <div class="sp-hero-eyebrow">Support</div>
+    <h1>We're Here<br><span class="blue">to Help.</span></h1>
+    <p class="sp-hero-desc">
+      Technical resources, software updates, warranty information, and direct
+      access to our engineering team — everything you need to keep your
+      TIP TIG system running at peak performance.
+    </p>
+  </div>
+</section>
+
+<style>
+  .sp-hero {
+    padding: 160px 60px 72px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .sp-hero-bg {
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .sp-hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sp-hero-eyebrow::before,
+  .sp-hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .blue { color: var(--sapphire); }
+
+  .sp-hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 960px) {
+    .sp-hero { padding: 120px 24px 72px; }
+  }
+</style>

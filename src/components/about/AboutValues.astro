@@ -1,0 +1,175 @@
+---
+import { Target, Lightbulb, Handshake, Leaf } from '@lucide/astro';
+---
+
+<section class="ab-values">
+  <div class="inner">
+    <div class="ab-values-header reveal">
+      <div class="section-eyebrow">What Drives Us</div>
+      <h2 class="section-title">Engineering Without<br>Compromise.</h2>
+      <p class="section-lead">
+        Every decision we make — from component design to partner selection —
+        is guided by a commitment to technical excellence and long-term value.
+      </p>
+    </div>
+
+    <div class="ab-values-grid">
+      <div class="ab-value-card reveal">
+        <div class="ab-value-icon"><Target size={22} /></div>
+        <h3>Precision First</h3>
+        <p>
+          Our wire oscillation technology is engineered to sub-millimeter accuracy.
+          Precision isn't a feature — it's the foundation of every weld we enable.
+        </p>
+      </div>
+
+      <div class="ab-value-card reveal reveal-delay-1">
+        <div class="ab-value-icon"><Lightbulb size={22} /></div>
+        <h3>In-House Innovation</h3>
+        <p>
+          Over 25 years of R&D, manufacturing, and assembly — all under one roof
+          in Austria. We control every step because quality demands it.
+        </p>
+      </div>
+
+      <div class="ab-value-card reveal reveal-delay-2">
+        <div class="ab-value-icon"><Handshake size={22} /></div>
+        <h3>Partnership, Not Sales</h3>
+        <p>
+          Our Certified Partners don't just sell equipment —
+          they provide training, support, and local expertise.
+          We grow together.
+        </p>
+      </div>
+
+      <div class="ab-value-card reveal reveal-delay-3">
+        <div class="ab-value-icon"><Leaf size={22} /></div>
+        <h3>Sustainable Welding</h3>
+        <p>
+          Lower heat input, fewer reworks, minimal fume emissions.
+          Better welding shouldn't come at the expense of people or the environment.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ab-values {
+    padding: 110px 60px;
+    background: var(--white);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ab-values-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ab-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .ab-value-card {
+    background: var(--bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: all 0.3s;
+  }
+  .ab-value-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 32px rgba(27, 58, 140, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .ab-value-icon {
+    width: 48px; height: 48px;
+    background: var(--sapphire-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+    transition: all 0.25s;
+  }
+  .ab-value-card:hover .ab-value-icon {
+    background: var(--sapphire);
+    color: var(--white);
+  }
+
+  h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .ab-value-card p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  @media (max-width: 960px) {
+    .ab-values { padding: 72px 24px; }
+    .ab-values-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ab-values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

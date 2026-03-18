@@ -1,0 +1,193 @@
+---
+import { Factory, FlaskConical, Globe, Calendar } from '@lucide/astro';
+---
+
+<section class="ab-story">
+  <div class="inner">
+    <div class="ab-story-grid">
+      <!-- Left: Narrative -->
+      <div class="ab-story-text reveal">
+        <div class="section-eyebrow">Our Story</div>
+        <h2 class="section-title">From Workshop to<br>World Standard.</h2>
+        <p class="section-lead">
+          In 1997, Siegfried Plasch set out to solve a fundamental problem in welding:
+          how to achieve the quality of TIG with the productivity of MIG.
+          His answer — a precisely controlled wire oscillation system —
+          became the foundation of TIP TIG.
+        </p>
+        <p class="ab-story-body">
+          What started as one engineer's conviction in Krenglbach, Upper Austria,
+          grew into a globally recognized welding technology.
+          Today, TIP TIG systems are used in power plants, refineries, shipyards, and
+          pharmaceutical facilities across six continents — wherever weld quality
+          and efficiency cannot be compromised.
+        </p>
+      </div>
+
+      <!-- Right: Timeline milestones -->
+      <div class="ab-milestones reveal reveal-delay-2">
+        <div class="ab-milestone">
+          <div class="ab-milestone-icon"><Calendar size={18} /></div>
+          <div class="ab-milestone-content">
+            <strong>1997</strong>
+            <span>Company founded by Siegfried Plasch in Krenglbach, Austria</span>
+          </div>
+        </div>
+        <div class="ab-milestone">
+          <div class="ab-milestone-icon"><FlaskConical size={18} /></div>
+          <div class="ab-milestone-content">
+            <strong>Patented Wire Dynamics</strong>
+            <span>Core oscillation technology developed and refined entirely in-house</span>
+          </div>
+        </div>
+        <div class="ab-milestone">
+          <div class="ab-milestone-icon"><Factory size={18} /></div>
+          <div class="ab-milestone-content">
+            <strong>Own Manufacturing</strong>
+            <span>R&D, assembly, and production under one roof in Austria</span>
+          </div>
+        </div>
+        <div class="ab-milestone">
+          <div class="ab-milestone-icon"><Globe size={18} /></div>
+          <div class="ab-milestone-content">
+            <strong>Global Network</strong>
+            <span>Certified Partners on every continent — from Singapore to New Jersey</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ab-story {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ab-story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--sapphire);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .ab-story-body {
+    font-size: 0.95rem;
+    color: var(--gray-mid);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* Milestones */
+  .ab-milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--sapphire-mid);
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  .ab-milestone {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 24px 24px 28px;
+    position: relative;
+    transition: background 0.2s;
+    border-radius: 0 12px 12px 0;
+  }
+  .ab-milestone:hover {
+    background: var(--white);
+  }
+
+  .ab-milestone::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--sapphire);
+    border: 2px solid var(--bg);
+  }
+
+  .ab-milestone-icon {
+    width: 36px; height: 36px;
+    background: var(--sapphire-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--sapphire);
+  }
+
+  .ab-milestone-content strong {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-bottom: 4px;
+    font-family: 'Manrope', sans-serif;
+  }
+  .ab-milestone-content span {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 960px) {
+    .ab-story { padding: 72px 24px; }
+    .ab-story-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .ab-milestones { margin-top: 0; }
+  }
+</style>

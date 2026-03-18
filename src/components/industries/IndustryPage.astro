@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../home/CTA.astro';
-import { ArrowLeft } from '@lucide/astro';
 
 interface Feature {
   title: string;
@@ -29,8 +28,6 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   <section class="ind-hero">
     <div class="ind-hero-bg"></div>
     <div class="ind-hero-inner">
-      <a href="/#industries" class="ind-back"><ArrowLeft size={16} /> All Industries</a>
-      <div class="ind-hero-eyebrow">Industry</div>
       <h1>{title}</h1>
       <p class="ind-hero-sub">{subtitle}</p>
     </div>
@@ -142,40 +139,6 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .ind-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--gray-mid);
-    text-decoration: none;
-    margin-bottom: 32px;
-    transition: color 0.2s;
-  }
-  .ind-back:hover { color: var(--sapphire); }
-
-  .ind-hero-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sapphire);
-    margin-bottom: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .ind-hero-eyebrow::before,
-  .ind-hero-eyebrow::after {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--sapphire);
-    border-radius: 2px;
-  }
-
   .ind-hero h1 {
     font-family: 'Manrope', sans-serif;
     font-weight: 800;
@@ -215,7 +178,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
 
   .ind-image-wrap img {
     width: 100%;
-    height: auto;
+    height: 500px;
+    object-fit: cover;
     display: block;
   }
 

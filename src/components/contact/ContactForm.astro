@@ -58,6 +58,11 @@ import { MapPin, Mail, Phone } from '@lucide/astro';
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
           </div>
+          {/* Honeypot – unsichtbar für Menschen, Bots füllen es aus */}
+          <div class="hp-wrap" aria-hidden="true" tabindex="-1">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" autocomplete="off" tabindex="-1" />
+          </div>
           <button type="submit" class="btn-submit">Send Message</button>
         </form>
       </div>
@@ -255,6 +260,18 @@ import { MapPin, Mail, Phone } from '@lucide/astro';
     box-shadow: 0 4px 12px rgba(27, 58, 140, 0.2);
   }
 
+  /* Honeypot – versteckt, aber nicht display:none (Bots erkennen das) */
+  .hp-wrap {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   @media (max-width: 960px) {
     .ct-form { padding: 72px 24px; }
     .ct-form-grid {
@@ -264,3 +281,20 @@ import { MapPin, Mail, Phone } from '@lucide/astro';
     .ct-form-card { padding: 28px 20px; }
   }
 </style>
+
+<script>
+  function initHoneypot() {
+    const form = document.querySelector('.ct-form-card form') as HTMLFormElement | null;
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (hp && hp.value.length > 0) {
+        e.preventDefault();
+        // Bot erkannt – leise blockieren, keine Fehlermeldung
+        return;
+      }
+    });
+  }
+  initHoneypot();
+  document.addEventListener('astro:page-load', initHoneypot);
+</script>

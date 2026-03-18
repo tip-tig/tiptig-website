@@ -1,0 +1,454 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ArrowLeft, AlertCircle } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Wire Speed Calculator — TIP TIG Support"
+  description="Convert your TIP TIG control panel display value to actual wire feed speed in m/min and IPM."
+>
+  <section class="wsc-hero">
+    <div class="wsc-hero-bg"></div>
+    <div class="inner">
+      <a href="/support" class="wsc-back"><ArrowLeft size={16} /> All Support</a>
+      <div class="wsc-eyebrow">Support Tool</div>
+      <h1>Wire Speed<br><span class="blue">Calculator</span></h1>
+      <p class="wsc-desc">
+        Enter the display value shown on your TIP TIG control panel to calculate
+        the actual wire feed speed in m/min and IPM.
+      </p>
+    </div>
+  </section>
+
+  <section class="wsc-calc">
+    <div class="inner">
+      <!-- Panel Selector Tabs -->
+      <div class="wsc-tabs">
+        <button class="wsc-tab active" data-panel="old">Old Control Panel</button>
+        <button class="wsc-tab" data-panel="new">New Control Panel</button>
+      </div>
+
+      <!-- Old Panel Calculator -->
+      <div class="wsc-calc-card" id="calc-old">
+        <div class="wsc-panel-layout">
+          <div class="wsc-panel-img">
+            <img src="/images/support/control-panel-old.jpg" alt="Old TIP TIG Control Panel" />
+          </div>
+          <div class="wsc-panel-calc">
+            <h3>Old Control Panel</h3>
+            <p class="wsc-calc-desc">
+              For the original TIP TIG control panel with analog dial display.
+            </p>
+
+            <div class="wsc-input-row">
+              <div class="wsc-field">
+                <label for="old-display">Display Value</label>
+                <input type="number" id="old-display" placeholder="Enter display value" step="1" min="0" />
+              </div>
+            </div>
+
+            <div class="wsc-results-row">
+              <div class="wsc-result">
+                <span class="wsc-result-label">m/min</span>
+                <span class="wsc-result-value" id="old-mmin">—</span>
+              </div>
+              <div class="wsc-result">
+                <span class="wsc-result-label">IPM</span>
+                <span class="wsc-result-value" id="old-ipm">—</span>
+              </div>
+            </div>
+
+            <div class="wsc-formula">
+              <p><strong>Formula:</strong> m/min = Display × 0.0635 &nbsp;|&nbsp; IPM = Display × 2.5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Panel Calculator -->
+      <div class="wsc-calc-card hidden" id="calc-new">
+        <div class="wsc-panel-layout">
+          <div class="wsc-panel-img">
+            <img src="/images/support/control-panel-new.png" alt="New TIP TIG Control Panel" />
+          </div>
+          <div class="wsc-panel-calc">
+            <h3>New Control Panel</h3>
+            <p class="wsc-calc-desc">
+              For the current TIP TIG control panel with digital display.
+            </p>
+
+            <div class="wsc-input-row">
+              <div class="wsc-field">
+                <label for="new-display">Display Value</label>
+                <input type="number" id="new-display" placeholder="Enter display value" step="1" min="0" />
+              </div>
+            </div>
+
+            <div class="wsc-results-row">
+              <div class="wsc-result">
+                <span class="wsc-result-label">m/min</span>
+                <span class="wsc-result-value" id="new-mmin">—</span>
+              </div>
+              <div class="wsc-result">
+                <span class="wsc-result-label">IPM</span>
+                <span class="wsc-result-value" id="new-ipm">—</span>
+              </div>
+            </div>
+
+            <div class="wsc-formula">
+              <p><strong>Formula:</strong> m/min = Display × 0.0657 + 0.17 &nbsp;|&nbsp; IPM = m/min × 39.3701</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="wsc-warning reveal">
+        <AlertCircle size={18} />
+        <p>
+          The wire feed speed may have a variation of <strong>± 5%</strong>.
+          It depends on the feed roll tensioner's settings and the wire's quality.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wsc-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .wsc-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .wsc-hero .inner {
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .wsc-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: gap 0.2s;
+  }
+  .wsc-back:hover { gap: 10px; }
+
+  .wsc-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .blue { color: var(--sapphire); }
+
+  .wsc-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Calculator Section */
+  .wsc-calc {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+
+  /* Tabs */
+  .wsc-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .wsc-tab {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 9px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .wsc-tab.active {
+    background: var(--sapphire);
+    color: white;
+    box-shadow: 0 2px 8px rgba(27, 58, 140, 0.2);
+  }
+  .wsc-tab:not(.active):hover {
+    color: var(--black);
+    background: var(--sapphire-light);
+  }
+
+  /* Calc Card */
+  .wsc-calc-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 44px;
+    margin-bottom: 24px;
+  }
+  .wsc-calc-card.hidden {
+    display: none;
+  }
+
+  /* Panel layout: image + calculator side by side */
+  .wsc-panel-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+  .wsc-panel-img {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .wsc-panel-img::after {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 4px var(--bg);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .wsc-panel-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .wsc-calc-card h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .wsc-calc-desc {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* Input */
+  .wsc-input-row {
+    margin-bottom: 24px;
+  }
+  .wsc-field label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    margin-bottom: 8px;
+  }
+  .wsc-field input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .wsc-field input:focus {
+    border-color: var(--sapphire);
+    box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.1);
+  }
+
+  /* Results */
+  .wsc-results-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .wsc-result {
+    padding: 24px 20px;
+    background: var(--sapphire-light);
+    border-radius: 14px;
+    text-align: center;
+  }
+  .wsc-result-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sapphire);
+    margin-bottom: 8px;
+  }
+  .wsc-result-value {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--sapphire);
+  }
+
+  .wsc-formula {
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-light);
+    text-align: center;
+  }
+  .wsc-formula p {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+  }
+  .wsc-formula strong {
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* Warning */
+  .wsc-warning {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #FEF3CD;
+    border: 1px solid #F0D060;
+    border-radius: 12px;
+    padding: 18px 22px;
+    color: #856404;
+  }
+  .wsc-warning p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .wsc-warning strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: 960px) {
+    .wsc-hero { padding: 120px 24px 48px; }
+    .wsc-calc { padding: 36px 24px 72px; }
+    .wsc-calc-card { padding: 28px 24px; }
+    .wsc-results-row { grid-template-columns: 1fr; }
+    .wsc-panel-layout {
+      grid-template-columns: 1fr;
+    }
+    .wsc-panel-img {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  function initCalc() {
+    // Tab switching
+    const tabs = document.querySelectorAll('.wsc-tab');
+    const calcOld = document.getElementById('calc-old');
+    const calcNew = document.getElementById('calc-new');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = tab.getAttribute('data-panel');
+        if (panel === 'old') {
+          calcOld?.classList.remove('hidden');
+          calcNew?.classList.add('hidden');
+        } else {
+          calcNew?.classList.remove('hidden');
+          calcOld?.classList.add('hidden');
+        }
+      });
+    });
+
+    // Old panel: m/min = display × 0.0635, IPM = display × 2.5
+    const oldInput = document.getElementById('old-display') as HTMLInputElement;
+    const oldMmin = document.getElementById('old-mmin');
+    const oldIpm = document.getElementById('old-ipm');
+
+    oldInput?.addEventListener('input', () => {
+      const val = parseFloat(oldInput.value);
+      if (isNaN(val)) {
+        if (oldMmin) oldMmin.textContent = '—';
+        if (oldIpm) oldIpm.textContent = '—';
+        return;
+      }
+      if (oldMmin) oldMmin.textContent = (val * 0.0635).toFixed(2);
+      if (oldIpm) oldIpm.textContent = (val * 2.5).toFixed(1);
+    });
+
+    // New panel: m/min = display × 0.0657 + 0.17, IPM = m/min × 39.3701
+    const newInput = document.getElementById('new-display') as HTMLInputElement;
+    const newMmin = document.getElementById('new-mmin');
+    const newIpm = document.getElementById('new-ipm');
+
+    newInput?.addEventListener('input', () => {
+      const val = parseFloat(newInput.value);
+      if (isNaN(val)) {
+        if (newMmin) newMmin.textContent = '—';
+        if (newIpm) newIpm.textContent = '—';
+        return;
+      }
+      const mmin = val * 0.0657 + 0.17;
+      if (newMmin) newMmin.textContent = mmin.toFixed(2);
+      if (newIpm) newIpm.textContent = (mmin * 39.3701).toFixed(1);
+    });
+  }
+
+  initCalc();
+  document.addEventListener('astro:page-load', initCalc);
+</script>

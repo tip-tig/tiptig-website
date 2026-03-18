@@ -1,7 +1,7 @@
 ---
 import { Building2, Globe, MapPin, Award } from '@lucide/astro';
 
-/* ── Haupthändler (Authorized Dealers) ────────── */
+/* ── Haupthändler (Certified Partners) ────────── */
 const mainDealers = [
   { company: 'TIP TIG International', region: 'Asia-Pacific / Global', city: 'Singapore & Wollerau, CH', phone: '+41 811 0383', email: 'info@tiptig-international.com', web: 'www.tiptig-international.com' },
   { company: 'TIP TIG Europe', region: 'Central Europe', city: 'Neuenhagen, Germany', phone: '+49 3342 1578370', email: 'info@tiptig-europe.eu', web: 'www.tiptig-europe.eu' },
@@ -59,14 +59,14 @@ const subRegions = [
 <section class="cl-locations">
   <div class="inner">
 
-    {/* ── Tier 1: Authorized Dealers ──────────── */}
-    <div class="section-eyebrow reveal"><span>Authorized Dealers</span></div>
+    {/* ── Tier 1: Certified Partners ──────────── */}
+    <div class="section-eyebrow reveal"><span>Certified Partners</span></div>
     <h2 class="section-title reveal">Our Main Partners</h2>
 
     <div class="main-grid">
       {mainDealers.map((d, i) => (
-        <div class={`main-card reveal ${i > 0 ? `reveal-delay-${Math.min(i % 3, 2)}` : ''}`}>
-          <div class="main-badge"><Award size={13} /> Authorized Dealer</div>
+        <div id={`dealer-${d.company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class={`main-card reveal ${i > 0 ? `reveal-delay-${Math.min(i % 3, 2)}` : ''}`}>
+          <div class="main-badge"><Award size={13} /> Certified Partner</div>
           <h3>{d.company}</h3>
           <p class="main-region">{d.region}</p>
           <p class="main-city">{d.city}</p>
@@ -94,7 +94,7 @@ const subRegions = [
         </div>
         <div class="sub-grid">
           {region.dealers.map((d, i) => (
-            <div class={`sub-card reveal ${i > 0 ? `reveal-delay-${Math.min(i % 3, 2)}` : ''}`}>
+            <div id={`dealer-${d.company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class={`sub-card reveal ${i > 0 ? `reveal-delay-${Math.min(i % 3, 2)}` : ''}`}>
               <div class="sub-country">
                 <MapPin size={12} />
                 <span>{d.country}</span>
@@ -348,5 +348,16 @@ const subRegions = [
   @media (max-width: 600px) {
     .main-grid { grid-template-columns: 1fr; }
     .sub-grid  { grid-template-columns: 1fr; }
+  }
+
+  /* ── Highlight animation (triggered from map click) ── */
+  :global(.dealer-highlight) {
+    border-color: var(--sapphire) !important;
+    box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.2), 0 8px 24px rgba(27, 58, 140, 0.12) !important;
+    animation: dealerPulse 2s ease-out;
+  }
+  @keyframes dealerPulse {
+    0%   { box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.4), 0 8px 24px rgba(27, 58, 140, 0.15); }
+    100% { box-shadow: 0 0 0 0px rgba(27, 58, 140, 0), 0 8px 24px rgba(27, 58, 140, 0); }
   }
 </style>
