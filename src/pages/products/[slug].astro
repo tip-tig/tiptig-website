@@ -1,0 +1,321 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products, getProductBySlug } from '../../data/products';
+
+export function getStaticPaths() {
+  return products
+    .filter(p => !p.comingSoon)
+    .map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug as string);
+
+if (!product) {
+  return Astro.redirect('/products');
+}
+---
+
+<BaseLayout
+  title={`${product.name} — Welding Equipment`}
+  description={product.tagline}
+>
+  <!-- Hero -->
+  <section class="pd-hero">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-inner">
+      <a href="/products" class="pd-back reveal">← All Products</a>
+      <span class="pd-badge reveal">{product.category}</span>
+      <h1 class="reveal">{product.name}</h1>
+      <p class="pd-tagline reveal">{product.tagline}</p>
+    </div>
+  </section>
+
+  <!-- Product Image -->
+  <section class="pd-image-section">
+    <div class="pd-inner">
+      <div class="pd-image-wrap reveal">
+        <img src={product.image} alt={product.name} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Description + Features -->
+  <section class="pd-content">
+    <div class="pd-inner">
+      <div class="pd-two-col">
+        <div class="pd-desc reveal">
+          <h2>Overview</h2>
+          <p>{product.description}</p>
+        </div>
+        <div class="pd-features reveal reveal-delay-1">
+          <h2>Key Features</h2>
+          <div class="pd-features-list">
+            {product.features.map((f, i) => (
+              <div class="pd-feature">
+                <span class="pd-feature-num">{i + 1}</span>
+                <div>
+                  <strong>{f.title}</strong>
+                  <p>{f.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs -->
+  {product.specs && product.specs.length > 0 && (
+    <section class="pd-specs">
+      <div class="pd-inner">
+        <h2 class="reveal">Technical Specifications</h2>
+        <div class="pd-specs-grid reveal reveal-delay-1">
+          {product.specs.map(s => (
+            <div class="pd-spec">
+              <span class="pd-spec-label">{s.label}</span>
+              <span class="pd-spec-value">{s.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Bottom Back Link -->
+  <section class="pd-bottom">
+    <div class="pd-inner">
+      <a href="/products" class="pd-back-btn reveal">← Back to All Products</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .pd-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .pd-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pd-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .pd-back {
+    display: inline-block;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: opacity 0.2s;
+  }
+  .pd-back:hover { opacity: 0.7; }
+  .pd-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .pd-hero h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .pd-tagline {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Image */
+  .pd-image-section {
+    padding: 0 60px 60px;
+    background: var(--white);
+  }
+  .pd-image-wrap {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pd-image-wrap img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  /* Content */
+  .pd-content {
+    padding: 60px;
+    background: var(--bg);
+  }
+  .pd-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .pd-desc h2,
+  .pd-features h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .pd-desc p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+
+  /* Features */
+  .pd-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pd-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pd-feature-num {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pd-feature strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .pd-feature p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.6;
+  }
+
+  /* Specs */
+  .pd-specs {
+    padding: 60px;
+    background: var(--white);
+  }
+  .pd-specs h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--black);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .pd-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pd-spec {
+    background: var(--bg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pd-spec-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pd-spec-value {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black);
+  }
+
+  /* Bottom */
+  .pd-bottom {
+    padding: 40px 60px 80px;
+    background: var(--white);
+    text-align: center;
+  }
+  .pd-back-btn {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-decoration: none;
+    padding: 12px 28px;
+    border: 1.5px solid var(--sapphire);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .pd-back-btn:hover {
+    background: var(--sapphire-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .pd-hero { padding: 120px 24px 48px; }
+    .pd-image-section { padding: 0 24px 40px; }
+    .pd-image-wrap { padding: 24px; }
+    .pd-content { padding: 40px 24px; }
+    .pd-two-col { grid-template-columns: 1fr; gap: 40px; }
+    .pd-specs { padding: 40px 24px; }
+    .pd-specs-grid { grid-template-columns: repeat(2, 1fr); }
+    .pd-bottom { padding: 32px 24px 60px; }
+  }
+  @media (max-width: 560px) {
+    .pd-specs-grid { grid-template-columns: 1fr; }
+  }
+</style>

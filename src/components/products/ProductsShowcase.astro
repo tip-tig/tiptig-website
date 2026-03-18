@@ -1,0 +1,168 @@
+---
+import { categories, products, getProductsByCategory } from '../../data/products';
+---
+
+<section class="ps-section">
+  <div class="inner">
+    {categories.map((cat, i) => (
+      <div class={`ps-category reveal ${i > 0 ? '' : ''}`} id={cat.slug}>
+        <div class="ps-cat-header">
+          <span class="ps-cat-badge">{cat.name}</span>
+          <p class="ps-cat-desc">{cat.description}</p>
+        </div>
+        <div class="ps-grid">
+          {getProductsByCategory(cat.slug).map((product, j) => (
+            <a href={product.comingSoon ? undefined : `/products/${product.slug}`}
+               class={`ps-card ${product.comingSoon ? 'ps-coming-soon' : ''} reveal ${j > 0 ? `reveal-delay-${Math.min(j, 2)}` : ''}`}>
+              <div class="ps-card-img">
+                <img src={product.image} alt={product.name} loading="lazy" />
+                {product.comingSoon && <span class="ps-soon-badge">Coming Soon</span>}
+              </div>
+              <div class="ps-card-body">
+                <h3>{product.name}</h3>
+                <p>{product.tagline}</p>
+                {!product.comingSoon && <span class="ps-card-link">View Details →</span>}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .ps-section {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Category */
+  .ps-category {
+    margin-bottom: 64px;
+  }
+  .ps-category:last-child {
+    margin-bottom: 0;
+  }
+  .ps-cat-header {
+    margin-bottom: 32px;
+  }
+  .ps-cat-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .ps-cat-desc {
+    font-size: 0.95rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  /* Grid */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Card */
+  .ps-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .ps-card:not(.ps-coming-soon):hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 32px rgba(27, 58, 140, 0.08);
+    transform: translateY(-3px);
+  }
+  .ps-card.ps-coming-soon {
+    cursor: default;
+    opacity: 0.7;
+  }
+
+  .ps-card-img {
+    background: var(--bg);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+  .ps-card-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .ps-soon-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--sapphire);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ps-card-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .ps-card-body h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .ps-card-body p {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .ps-card-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sapphire);
+  }
+  .ps-card:hover .ps-card-link {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 960px) {
+    .ps-section { padding: 48px 24px 72px; }
+    .ps-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+  @media (max-width: 560px) {
+    .ps-grid { grid-template-columns: 1fr; }
+  }
+</style>
