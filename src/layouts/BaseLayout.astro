@@ -40,6 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title} | TIP TIG</title>
+    <slot name="head" />
   </head>
   <body>
     <Nav />
