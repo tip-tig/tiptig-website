@@ -7,6 +7,17 @@ interface Feature {
   desc: string;
 }
 
+interface CaseStudyStat {
+  value: string;
+  label: string;
+}
+
+interface CaseStudy {
+  title: string;
+  text: string;
+  stats: CaseStudyStat[];
+}
+
 interface Props {
   title: string;
   subtitle: string;
@@ -17,9 +28,10 @@ interface Props {
   features: Feature[];
   applications?: string[];
   clients?: string[];
+  caseStudy?: CaseStudy;
 }
 
-const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applications, clients } = Astro.props;
+const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applications, clients, caseStudy } = Astro.props;
 ---
 
 <BaseLayout title={metaTitle} description={metaDesc}>
@@ -70,6 +82,25 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
       </div>
     </div>
   </section>
+
+  {/* ── Case Study (optional) ────────────────────── */}
+  {caseStudy && (
+    <section class="ind-case">
+      <div class="inner">
+        <div class="section-eyebrow reveal"><span>Proven in the Field</span></div>
+        <h2 class="section-title section-title--sm reveal">{caseStudy.title}</h2>
+        <p class="section-lead reveal">{caseStudy.text}</p>
+        <div class="case-stats">
+          {caseStudy.stats.map((s, i) => (
+            <div class={`case-stat reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}>
+              <span class="case-stat-value">{s.value}</span>
+              <span class="case-stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   {/* ── Applications (optional) ──────────────────── */}
   {applications && applications.length > 0 && (
@@ -289,6 +320,57 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     font-weight: 300;
   }
 
+  /* ── Case Study ─────────────────────────────────── */
+  .ind-case {
+    padding: 110px 60px;
+    background: var(--bg);
+  }
+
+  .ind-case .section-lead {
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  .case-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+  }
+
+  .case-stat {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 32px 28px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+
+  .case-stat:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 24px rgba(27, 58, 140, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .case-stat-value {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--sapphire);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .case-stat-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
   /* ── Applications ───────────────────────────────── */
   .ind-apps {
     padding: 110px 60px;
@@ -350,6 +432,7 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     .ind-intro { padding: 72px 24px; }
     .ind-features { padding: 72px 24px; }
     .features-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .ind-case { padding: 72px 24px; }
     .ind-apps { padding: 72px 24px; }
     .ind-clients { padding: 56px 24px; }
   }
