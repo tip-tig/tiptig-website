@@ -241,7 +241,7 @@ export const products: Product[] = [
     category: 'Pipeline Equipment',
     categorySlug: 'pipeline-equipment',
     tagline: 'Portable orbital pipe cutting machine for 6" – 48" pipes — built for hostile field conditions onshore and offshore.',
-    description: 'The TIP TIG SuperCut is a portable pipe and pipeline cutting machine covering 6" to 48" (DN 150 – 1200) pipe diameters. Engineered with high-grade aluminum components, atmospheric anti-corrosion finishes, and a semi-sealed, self-lubricating closed-loop drive system, it is purpose-built for the hostile conditions of pipeline maintenance and construction — dirt, sand, water, and extreme weather. From offshore drilling rigs to river and harbor construction, the SuperCut delivers precise, repeatable cuts where it matters most.',
+    description: 'The TIP TIG SuperCut is a portable pipe and pipeline cutting machine covering 6" to 48" (DN 150 – 1200) pipe diameters. Engineered with high-grade aluminum components, atmospheric anti-corrosion finishes, and a semi-sealed, self-lubricating closed-loop drive system, it is purpose-built for the rigors of pipeline maintenance and construction — dirt, sand, water, and extreme weather. From offshore drilling rigs to river and harbor construction, the SuperCut delivers precise, repeatable cuts where it matters most.',
     image: '/images/products/supercut.jpg',
     images: ['/images/products/supercut.jpg', '/images/products/supercut-system.jpg', '/images/products/supercut-field.jpg'],
     features: [

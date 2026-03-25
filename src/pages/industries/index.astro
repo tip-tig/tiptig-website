@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/home/CTA.astro';
+
+const industries = [
+  {
+    slug: 'aerospace',
+    title: 'Aerospace',
+    desc: 'Mission-critical welds with zero tolerance for defects on the most demanding high-performance alloys.',
+    image: '/images/industries/aerospace/hero.jpg',
+  },
+  {
+    slug: 'defense',
+    title: 'Defense & Naval',
+    desc: 'Mission-critical weld quality for the platforms that protect nations.',
+    image: '/images/industries/defense/hero-modern.jpg',
+  },
+  {
+    slug: 'food-dairy',
+    title: 'Food & Dairy',
+    desc: 'Consistently smooth, hygienic weld surfaces meeting the strictest sanitary standards.',
+    image: '/images/industries/food-dairy/hero.jpg',
+  },
+  {
+    slug: 'heat-exchangers',
+    title: 'Heat Exchangers',
+    desc: 'Precision tube-to-tubesheet welding at production-level speed — consistently slag-free.',
+    image: '/images/industries/heat-exchangers/hero.jpg',
+  },
+  {
+    slug: 'nuclear',
+    title: 'Nuclear',
+    desc: 'Meeting the world\'s most stringent welding codes in the most regulated industry on earth.',
+    image: '/images/industries/nuclear/hero.jpg',
+  },
+  {
+    slug: 'oil-gas',
+    title: 'Oil & Gas',
+    desc: 'Reliable performance in the most hostile and corrosive environments on earth.',
+    image: '/images/industries/oil-gas/hero.jpg',
+  },
+  {
+    slug: 'petrochemical',
+    title: 'Petrochemical',
+    desc: 'Precision welding for complex process piping and corrosion-resistant alloy equipment.',
+    image: '/images/industries/petrochemical/hero.jpg',
+  },
+  {
+    slug: 'pharma',
+    title: 'Pharmaceutical',
+    desc: 'Ultra-clean orbital welds meeting ASME BPE standards for demanding hygienic environments.',
+    image: '/images/industries/pharma/hero-steel.jpg',
+  },
+  {
+    slug: 'pipelines',
+    title: 'Pipeline Welding',
+    desc: 'Orbital and manual TIG solutions for cross-country, subsea, and process pipelines.',
+    image: '/images/industries/pipelines/pipeline_tiptig.JPG',
+  },
+  {
+    slug: 'power-generation',
+    title: 'Power Generation',
+    desc: 'Code-quality welds across the energy sector — fossil, nuclear, and renewable.',
+    image: '/images/industries/power-generation/hero.jpg',
+  },
+  {
+    slug: 'shipbuilding',
+    title: 'Shipbuilding',
+    desc: 'Higher productivity without compromising classification society standards.',
+    image: '/images/industries/shipbuilding/hero.jpg',
+  },
+];
+---
+
+<BaseLayout
+  title="Industries — TIP TIG"
+  description="TIP TIG welding technology serves the most demanding industries worldwide — from aerospace and nuclear to oil & gas and shipbuilding."
+>
+  <section class="ind-hero">
+    <div class="ind-hero-inner">
+      <div class="section-eyebrow reveal">Industries</div>
+      <h1 class="ind-hero-title reveal">Trusted Across the World's<br>Most Demanding Industries.</h1>
+      <p class="ind-hero-sub reveal">
+        From nuclear reactors to offshore platforms, TIP TIG technology is proven
+        wherever weld quality, code compliance, and productivity are non-negotiable.
+      </p>
+    </div>
+  </section>
+
+  <section class="ind-grid-section">
+    <div class="ind-grid">
+      {industries.map((ind) => (
+        <a href={`/industries/${ind.slug}`} class="ind-card reveal">
+          <div class="ind-card-img">
+            <img src={ind.image} alt={ind.title} loading="lazy" />
+            <div class="ind-card-overlay"></div>
+          </div>
+          <div class="ind-card-body">
+            <h2 class="ind-card-title">{ind.title}</h2>
+            <p class="ind-card-desc">{ind.desc}</p>
+            <span class="ind-card-link">Learn more &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  /* ── Hero ── */
+  .ind-hero {
+    padding: 140px 60px 80px;
+    background: var(--sapphire);
+    text-align: center;
+  }
+
+  .ind-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+  }
+
+  .ind-hero-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .ind-hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* ── Grid ── */
+  .ind-grid-section {
+    padding: 80px 60px;
+    background: var(--white);
+  }
+
+  .ind-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .ind-card {
+    background: var(--gray-light, #f7f8fa);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ind-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .ind-card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .ind-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .ind-card:hover .ind-card-img img {
+    transform: scale(1.04);
+  }
+
+  .ind-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.25) 100%);
+  }
+
+  .ind-card-body {
+    padding: 22px 24px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ind-card-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: var(--sapphire);
+    margin-bottom: 8px;
+  }
+
+  .ind-card-desc {
+    font-size: 0.88rem;
+    color: var(--gray-dark, #555);
+    line-height: 1.65;
+    font-weight: 400;
+    flex: 1;
+  }
+
+  .ind-card-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    margin-top: 14px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .ind-card:hover .ind-card-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .ind-hero { padding: 120px 24px 60px; }
+    .ind-grid-section { padding: 60px 24px; }
+    .ind-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+
+  @media (max-width: 600px) {
+    .ind-hero { padding: 110px 20px 48px; }
+    .ind-grid-section { padding: 40px 20px; }
+    .ind-grid { grid-template-columns: 1fr; gap: 18px; }
+  }
+</style>
