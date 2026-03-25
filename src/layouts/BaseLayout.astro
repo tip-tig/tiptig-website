@@ -7,17 +7,85 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
   title,
   description = 'TIP TIG — The original TIG welding innovation. Up to 300% faster, superior quality, proven ROI. Engineered in Austria.',
   ogImage = '/images/logo-red-blue_new.webp',
+  jsonLd,
 } = Astro.props;
 
 const siteURL = Astro.site ?? 'https://tiptig.com';
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const ogImageURL = new URL(ogImage, siteURL).href;
+
+// --- Organization Schema (every page) ---
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'TIP TIG',
+  legalName: 'Ing. Siegfried Plasch e.U.',
+  url: 'https://tiptig.com',
+  logo: 'https://tiptig.com/images/logo-red-blue_new.webp',
+  foundingDate: '1997',
+  founder: { '@type': 'Person', name: 'Siegfried Plasch' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Gewerbepark 16',
+    addressLocality: 'Krenglbach',
+    postalCode: '4631',
+    addressCountry: 'AT',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+43-7249-46795',
+    contactType: 'sales',
+    availableLanguage: ['English', 'German'],
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/tip-tig/',
+  ],
+};
+
+// --- BreadcrumbList Schema (nested pages) ---
+const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const breadcrumbItems = [
+  { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tiptig.com/' },
+];
+
+const labelMap: Record<string, string> = {
+  industries: 'Industries',
+  products: 'Products',
+  support: 'Support',
+  technology: 'Technology',
+  about: 'About',
+  contact: 'Contact',
+  legal: 'Legal',
+  privacy: 'Privacy',
+  gtc: 'GTC',
+  'roi-calculator': 'ROI Calculator',
+  'keyhole-tig-welding': 'Keyhole TIG Welding',
+  'weld-overlay-cladding': 'Weld Overlay Cladding',
+};
+
+let currentPath = '';
+pathSegments.forEach((seg, i) => {
+  currentPath += `/${seg}`;
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: i + 2,
+    name: labelMap[seg] || seg.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+    item: `https://tiptig.com${currentPath}`,
+  });
+});
+
+const breadcrumbSchema = pathSegments.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems,
+} : null;
 ---
 
 <!doctype html>
@@ -48,6 +116,12 @@ const ogImageURL = new URL(ogImage, siteURL).href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <title>{title} | TIP TIG</title>
+
+    {/* Structured Data */}
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
     <slot name="head" />
   </head>
   <body>
