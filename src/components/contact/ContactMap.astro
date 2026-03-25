@@ -9,6 +9,12 @@
 import { feature } from 'topojson-client';
 import { geoNaturalEarth1, geoPath } from 'd3-geo';
 import topology from 'world-atlas/countries-110m.json';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 
 /* ── Generate WORLD map at build time ─────────── */
 const countries = feature(topology, topology.objects.countries);
@@ -111,8 +117,8 @@ const insetH = 190;
 
 <section class="cm-map">
   <div class="inner">
-    <div class="section-eyebrow reveal"><span>Global Network</span></div>
-    <h2 class="section-title reveal">Worldwide Presence</h2>
+    <div class="section-eyebrow reveal"><span>{t('contact.map.eyebrow')}</span></div>
+    <h2 class="section-title reveal">{t('contact.map.title')}</h2>
 
     <div class="map-wrap reveal">
       <svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" class="world-svg" role="img" aria-label="World map showing TIP TIG distributor locations">
@@ -175,7 +181,7 @@ const insetH = 190;
           <rect class="inset-border" x="0" y="0" width={insetW} height={insetH} rx="7" />
 
           {/* Inset label */}
-          <text class="inset-label" x="12" y="16">Europe</text>
+          <text class="inset-label" x="12" y="16">{t('contact.map.europe')}</text>
 
           {/* Clipped Europe content */}
           <g clip-path="url(#europe-clip)">
@@ -226,15 +232,15 @@ const insetH = 190;
     <div class="legend reveal">
       <div class="legend-item">
         <span class="legend-dot legend-hq"></span>
-        <span>Headquarters</span>
+        <span>{t('contact.map.legend.hq')}</span>
       </div>
       <div class="legend-item">
         <span class="legend-dot legend-main"></span>
-        <span>Certified Partner</span>
+        <span>{t('contact.map.legend.partner')}</span>
       </div>
       <div class="legend-item">
         <span class="legend-dot legend-sub"></span>
-        <span>Regional Distributor</span>
+        <span>{t('contact.map.legend.distributor')}</span>
       </div>
     </div>
   </div>

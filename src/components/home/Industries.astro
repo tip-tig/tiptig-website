@@ -1,98 +1,102 @@
 ---
 import { Plane, Atom, Fuel, Zap, FlaskConical, Heater, UtensilsCrossed, Layers, Cable, Shield, Ship, Pill } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="section section-alt">
   <div class="inner">
-    <div class="section-eyebrow reveal">Markets We Serve</div>
-    <h2 class="section-title reveal">Where Quality<br>Is Non-Negotiable.</h2>
-    <p class="section-lead reveal">
-      TIP TIG is the trusted welding standard across the world's most demanding industries.
-    </p>
+    <div class="section-eyebrow reveal">{t('industries.eyebrow')}</div>
+    <h2 class="section-title reveal"><Fragment set:html={t('industries.title')} /></h2>
+    <p class="section-lead reveal">{t('industries.lead')}</p>
 
     <div class="industries-grid">
-      <a href="/industries/aerospace" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/aerospace')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><Plane size={24} /></span>
-        <div class="industry-name">Aerospace</div>
-        <p class="industry-desc">Mission-critical welds with zero tolerance for defects on high-performance alloys.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.aerospace')}</div>
+        <p class="industry-desc">{t('industries.card.aerospace.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/nuclear" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/industries/nuclear')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Atom size={24} /></span>
-        <div class="industry-name">Nuclear Industry</div>
-        <p class="industry-desc">Certified quality for the world's most regulated and critical environments.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.nuclear')}</div>
+        <p class="industry-desc">{t('industries.card.nuclear.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/oil-gas" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/oil-gas')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><Fuel size={24} /></span>
-        <div class="industry-name">Oil & Gas</div>
-        <p class="industry-desc">Offshore reliability under extreme pressure and temperature conditions.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.oil-gas')}</div>
+        <p class="industry-desc">{t('industries.card.oil-gas.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/power-generation" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/industries/power-generation')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Zap size={24} /></span>
-        <div class="industry-name">Power Generation</div>
-        <p class="industry-desc">High-pressure, high-temperature pipe welding for power plants worldwide.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.power')}</div>
+        <p class="industry-desc">{t('industries.card.power.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/petrochemical" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/petrochemical')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><FlaskConical size={24} /></span>
-        <div class="industry-name">Petrochemical</div>
-        <p class="industry-desc">Corrosion-resistant alloy welding done right — the first time.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.petrochem')}</div>
+        <p class="industry-desc">{t('industries.card.petrochem.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/heat-exchangers" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/industries/heat-exchangers')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Heater size={24} /></span>
-        <div class="industry-name">Heat Exchangers</div>
-        <p class="industry-desc">Consistent tube-to-tubesheet welds at production scale, slag-free.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.heat')}</div>
+        <p class="industry-desc">{t('industries.card.heat.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/food-dairy" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/food-dairy')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><UtensilsCrossed size={24} /></span>
-        <div class="industry-name">Food & Dairy</div>
-        <p class="industry-desc">Hygienic, smooth-surface welds meeting the strictest sanitary standards.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.food')}</div>
+        <p class="industry-desc">{t('industries.card.food.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/weld-overlay-cladding" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/weld-overlay-cladding')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Layers size={24} /></span>
-        <div class="industry-name">Weld Overlay Cladding</div>
-        <p class="industry-desc">Up to 80% reduced dilution rate for superior overlay and cladding quality.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.cladding')}</div>
+        <p class="industry-desc">{t('industries.card.cladding.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/pipelines" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/pipelines')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><Cable size={24} /></span>
-        <div class="industry-name">Pipelines</div>
-        <p class="industry-desc">Orbital and manual solutions for cross-country, subsea, and process pipelines.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.pipelines')}</div>
+        <p class="industry-desc">{t('industries.card.pipelines.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/defense" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/industries/defense')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Shield size={24} /></span>
-        <div class="industry-name">Defense & Naval</div>
-        <p class="industry-desc">Mission-critical weld quality for the platforms that protect nations.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.defense')}</div>
+        <p class="industry-desc">{t('industries.card.defense.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/shipbuilding" class="industry-card reveal reveal-delay-1">
+      <a href={lp('/industries/shipbuilding')} class="industry-card reveal reveal-delay-1">
         <span class="industry-icon"><Ship size={24} /></span>
-        <div class="industry-name">Shipbuilding</div>
-        <p class="industry-desc">Higher productivity without compromising classification society standards.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.shipbuilding')}</div>
+        <p class="industry-desc">{t('industries.card.shipbuilding.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
 
-      <a href="/industries/pharma" class="industry-card reveal reveal-delay-2">
+      <a href={lp('/industries/pharma')} class="industry-card reveal reveal-delay-2">
         <span class="industry-icon"><Pill size={24} /></span>
-        <div class="industry-name">Pharmaceutical</div>
-        <p class="industry-desc">Ultra-clean orbital welds meeting ASME BPE standards for hygienic environments.</p>
-        <span class="industry-arrow">Learn more →</span>
+        <div class="industry-name">{t('industries.card.pharma')}</div>
+        <p class="industry-desc">{t('industries.card.pharma.desc')}</p>
+        <span class="industry-arrow">{t('industries.cta')}</span>
       </a>
     </div>
   </div>

@@ -1,58 +1,63 @@
 ---
 import { Zap, Sparkles, Thermometer, Shield, GraduationCap, Wind } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="split-section">
   <!-- Left: Benefits list -->
   <div class="reveal">
-    <div class="section-eyebrow">Why TIP TIG</div>
-    <h2 class="section-title">Built for the Most<br>Demanding Environments.</h2>
+    <div class="section-eyebrow">{t('benefits.eyebrow')}</div>
+    <h2 class="section-title"><Fragment set:html={t('benefits.title')} /><br><Fragment set:html={t('benefits.title2')} /></h2>
     <p class="section-lead">
-      Developed and manufactured entirely in-house in Austria —
-      every component engineered for industrial-grade reliability.
+      {t('benefits.desc')}
     </p>
 
     <div class="benefits-list">
       <div class="benefit-item">
         <div class="benefit-icon"><Zap size={16} /></div>
         <div class="benefit-text">
-          <strong>Highest deposition rates of any TIG process</strong>
-          <span>Up to 400% more filler wire per hour than standard TIG welding</span>
+          <strong>{t('benefits.1.title')}</strong>
+          <span>{t('benefits.1.desc')}</span>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><Sparkles size={16} /></div>
         <div class="benefit-text">
-          <strong>No interpass cleaning required</strong>
-          <span>Slag-free process means maximum arc-on time and improved quality</span>
+          <strong>{t('benefits.2.title')}</strong>
+          <span>{t('benefits.2.desc')}</span>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><Thermometer size={16} /></div>
         <div class="benefit-text">
-          <strong>Lowest possible heat input</strong>
-          <span>Minimum distortion, stress, and Heat Affected Zone on all alloys</span>
+          <strong>{t('benefits.3.title')}</strong>
+          <span>{t('benefits.3.desc')}</span>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><Shield size={16} /></div>
         <div class="benefit-text">
-          <strong>Superior corrosion resistance</strong>
-          <span>Corrosion property retention on all corrosion-resistant alloys</span>
+          <strong>{t('benefits.4.title')}</strong>
+          <span>{t('benefits.4.desc')}</span>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><GraduationCap size={16} /></div>
         <div class="benefit-text">
-          <strong>Simple to learn and teach</strong>
-          <span>Minimal skill barrier — operators are productive in days, not months</span>
+          <strong>{t('benefits.5.title')}</strong>
+          <span>{t('benefits.5.desc')}</span>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><Wind size={16} /></div>
         <div class="benefit-text">
-          <strong>Lowest possible welding fumes</strong>
-          <span>Cleaner, safer working environment for your operators</span>
+          <strong>{t('benefits.6.title')}</strong>
+          <span>{t('benefits.6.desc')}</span>
         </div>
       </div>
     </div>
@@ -60,31 +65,31 @@ import { Zap, Sparkles, Thermometer, Shield, GraduationCap, Wind } from '@lucide
 
   <!-- Right: ROI panel -->
   <div class="roi-panel reveal reveal-delay-2">
-    <div class="roi-eyebrow">Return on Investment</div>
+    <div class="roi-eyebrow">{t('roi.eyebrow')}</div>
     <div class="roi-big">9.3</div>
-    <div class="roi-big-label">Weeks to full ROI (40h/week basis)</div>
+    <div class="roi-big-label">{t('roi.weeks')}</div>
 
     <div class="roi-grid">
       <div>
-        <div class="roi-stat-val">$200</div>
-        <div class="roi-stat-label">Saved per<br>6" pipe weld</div>
+        <div class="roi-stat-val">{t('roi.saved6')}</div>
+        <div class="roi-stat-label"><Fragment set:html={t('roi.pipe6')} /></div>
       </div>
       <div>
-        <div class="roi-stat-val">$1,500</div>
-        <div class="roi-stat-label">Saved per<br>12" pipe weld</div>
+        <div class="roi-stat-val">{t('roi.saved12')}</div>
+        <div class="roi-stat-label"><Fragment set:html={t('roi.pipe12')} /></div>
       </div>
       <div>
-        <div class="roi-stat-val">75 joints</div>
-        <div class="roi-stat-label">To break even<br>(6" Schedule 40)</div>
+        <div class="roi-stat-val">{t('roi.breakeven6')}</div>
+        <div class="roi-stat-label"><Fragment set:html={t('roi.schedule6')} /></div>
       </div>
       <div>
-        <div class="roi-stat-val">10 joints</div>
-        <div class="roi-stat-label">To break even<br>(12" Schedule 80)</div>
+        <div class="roi-stat-val">{t('roi.breakeven12')}</div>
+        <div class="roi-stat-label"><Fragment set:html={t('roi.schedule12')} /></div>
       </div>
     </div>
 
     <div class="roi-divider"></div>
-    <a href="/roi-calculator" class="btn-white">Calculate Your ROI →</a>
+    <a href={lp('/roi-calculator')} class="btn-white">{t('roi.cta')}</a>
   </div>
 </section>
 

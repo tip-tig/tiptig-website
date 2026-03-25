@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../home/CTA.astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
 
 interface Feature {
   title: string;
@@ -28,16 +29,19 @@ interface Props {
   metaDesc: string;
   heroImage: string;
   intro: string;
+  introTitle?: string;
   features: Feature[];
   applications?: string[];
   clients?: string[];
   caseStudy?: CaseStudy;
+  lang?: Locale;
 }
 
-const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applications, clients, caseStudy } = Astro.props;
+const { title, subtitle, metaTitle, metaDesc, heroImage, intro, introTitle, features, applications, clients, caseStudy, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<BaseLayout title={metaTitle} description={metaDesc}>
+<BaseLayout title={metaTitle} description={metaDesc} lang={lang}>
 
   {/* ── Hero ─────────────────────────────────────── */}
   <section class="ind-hero">
@@ -61,8 +65,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   <section class="ind-intro">
     <div class="inner">
       <div class="ind-intro-text">
-        <div class="section-eyebrow reveal"><span>Overview</span></div>
-        <h2 class="section-title reveal">TIP TIG in the<br><span class="blue">{title}</span></h2>
+        <div class="section-eyebrow reveal"><span>{t('indpage.overview')}</span></div>
+        <h2 class="section-title reveal" set:html={introTitle || `${t('indpage.tiptig.in')}<br><span class="blue">${title}</span>`} />
         <p class="section-lead reveal">{intro}</p>
       </div>
     </div>
@@ -71,8 +75,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   {/* ── Features ─────────────────────────────────── */}
   <section class="ind-features">
     <div class="inner">
-      <div class="section-eyebrow reveal"><span>Key Advantages</span></div>
-      <h2 class="section-title reveal">Why TIP TIG</h2>
+      <div class="section-eyebrow reveal"><span>{t('indpage.advantages')}</span></div>
+      <h2 class="section-title reveal">{t('indpage.why')}</h2>
 
       <div class="features-grid">
         {features.map((f, i) => (
@@ -90,7 +94,7 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   {caseStudy && (
     <section class="ind-case">
       <div class="inner">
-        <div class="section-eyebrow reveal"><span>Proven in the Field</span></div>
+        <div class="section-eyebrow reveal"><span>{t('indpage.proven')}</span></div>
         <h2 class="section-title section-title--sm reveal">{caseStudy.title}</h2>
         <p class="section-lead reveal case-text" data-metric={caseStudy.text} data-imperial={caseStudy.textImperial || caseStudy.text}>{caseStudy.text}</p>
 
@@ -106,8 +110,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
 
         {caseStudy.stats.some(s => s.imperial) && (
           <div class="case-unit-toggle reveal">
-            <button class="case-unit-btn is-active" data-unit="metric">Metric</button>
-            <button class="case-unit-btn" data-unit="imperial">Imperial</button>
+            <button class="case-unit-btn is-active" data-unit="metric">{t('indpage.metric')}</button>
+            <button class="case-unit-btn" data-unit="imperial">{t('indpage.imperial')}</button>
           </div>
         )}
 
@@ -127,8 +131,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   {applications && applications.length > 0 && (
     <section class="ind-apps">
       <div class="inner">
-        <div class="section-eyebrow reveal"><span>Applications</span></div>
-        <h2 class="section-title reveal">Typical Applications</h2>
+        <div class="section-eyebrow reveal"><span>{t('indpage.applications')}</span></div>
+        <h2 class="section-title reveal">{t('indpage.typical')}</h2>
         <div class="apps-grid">
           {applications.map((app, i) => (
             <div class={`app-tag reveal ${i > 0 ? `reveal-delay-${(i % 3)}` : ''}`}>{app}</div>
@@ -142,8 +146,8 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
   {clients && clients.length > 0 && (
     <section class="ind-clients">
       <div class="inner">
-        <div class="section-eyebrow reveal"><span>Trusted By</span></div>
-        <h2 class="section-title section-title--sm reveal">Industry Leaders Using TIP TIG</h2>
+        <div class="section-eyebrow reveal"><span>{t('indpage.trusted')}</span></div>
+        <h2 class="section-title section-title--sm reveal">{t('indpage.leaders')}</h2>
         <div class="clients-row">
           {clients.map((c, i) => (
             <span class={`client-name reveal ${i > 0 ? `reveal-delay-${(i % 3)}` : ''}`}>{c}</span>
@@ -153,7 +157,7 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     </section>
   )}
 
-  <CTA />
+  <CTA lang={lang} />
 </BaseLayout>
 
 <style>

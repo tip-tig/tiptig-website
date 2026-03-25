@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CheckCircle } from '@lucide/astro';
+---
+
+<BaseLayout
+  lang="de"
+  title="Nachricht gesendet — TIP TIG"
+  description="Vielen Dank für Ihre Nachricht an TIP TIG. Wir haben Ihre Anfrage erhalten und melden uns in Kürze."
+>
+  <section class="sc-hero">
+    <div class="sc-inner">
+      <div class="sc-icon"><CheckCircle size={56} strokeWidth={1.5} /></div>
+      <h1>Vielen Dank</h1>
+      <p class="sc-desc">
+        Ihre Nachricht ist bei uns eingegangen. Wir melden uns schnellstmöglich bei Ihnen.
+      </p>
+      <a href="/de" class="sc-btn">Zurück zur Startseite</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sc-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 160px 60px 96px;
+    background: linear-gradient(135deg, var(--bg) 0%, white 100%);
+  }
+  .sc-inner {
+    text-align: center;
+    max-width: 500px;
+  }
+  .sc-icon {
+    color: var(--sapphire);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--black);
+    margin-bottom: 14px;
+  }
+  .sc-desc {
+    font-size: 1.05rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+  .sc-btn {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    background: var(--sapphire);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .sc-btn:hover {
+    background: var(--sapphire-light);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 768px) {
+    .sc-hero { padding: 120px 24px 72px; }
+  }
+</style>

@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ArrowLeft, BookOpen } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Bedienungsanleitungen — TIP TIG Support"
+  description="Fordern Sie Bedienungsanleitungen und technische Dokumentation für Ihr TIP TIG Schweißsystem an."
+  lang="de"
+>
+  <section class="mn-hero">
+    <div class="mn-hero-bg"></div>
+    <div class="inner">
+      <a href="/de/support" class="mn-back"><ArrowLeft size={16} /> Alle Support-Themen</a>
+      <div class="mn-eyebrow">Dokumentation</div>
+      <h1>Bedienungs-<br><span class="blue">anleitungen</span></h1>
+      <p class="mn-desc">
+        Fordern Sie Bedienungsanleitungen und technische Dokumentation für Ihr
+        spezifisches TIP TIG System an. Bitte geben Sie Ihre Seriennummer an,
+        damit wir Ihnen die richtige Version zusenden können.
+      </p>
+    </div>
+  </section>
+
+  <section class="mn-form-section">
+    <div class="inner">
+      <div class="mn-form-card reveal">
+        <div class="mn-form-header">
+          <BookOpen size={24} />
+          <h2>Formular zur Anforderung</h2>
+        </div>
+
+        <form class="mn-form" name="manual-request-de" method="POST" data-netlify="true" netlify-honeypot="website" action="/de/success">
+          <div class="mn-form-grid">
+            <div class="mn-field">
+              <label for="mn-first">Vorname *</label>
+              <input type="text" id="mn-first" name="firstName" required placeholder="Max" />
+            </div>
+            <div class="mn-field">
+              <label for="mn-last">Nachname *</label>
+              <input type="text" id="mn-last" name="lastName" required placeholder="Mustermann" />
+            </div>
+          </div>
+
+          <div class="mn-form-grid">
+            <div class="mn-field">
+              <label for="mn-email">E-Mail *</label>
+              <input type="email" id="mn-email" name="email" required placeholder="max@firma.at" />
+            </div>
+            <div class="mn-field">
+              <label for="mn-company">Unternehmen</label>
+              <input type="text" id="mn-company" name="company" placeholder="Firmenname" />
+            </div>
+          </div>
+
+          <div class="mn-form-grid">
+            <div class="mn-field">
+              <label for="mn-country">Land *</label>
+              <input type="text" id="mn-country" name="country" required placeholder="z. B. Österreich" />
+            </div>
+            <div class="mn-field">
+              <label for="mn-city">Stadt</label>
+              <input type="text" id="mn-city" name="city" placeholder="z. B. Wien" />
+            </div>
+          </div>
+
+          <div class="mn-field">
+            <label for="mn-serial">Seriennummer *</label>
+            <input type="text" id="mn-serial" name="serialNumber" required placeholder="Auf dem Typenschild Ihres Geräts zu finden" />
+          </div>
+
+          <div class="mn-field">
+            <label for="mn-model">Produkt / Modell</label>
+            <input type="text" id="mn-model" name="model" placeholder="z. B. AllInOne" />
+          </div>
+
+          <div class="mn-field">
+            <label for="mn-notes">Zusätzliche Anmerkungen</label>
+            <textarea id="mn-notes" name="notes" rows="3" placeholder="Weitere Informationen (z. B. gewünschte Sprache)"></textarea>
+          </div>
+
+          {/* Honeypot */}
+          <div class="mn-hp" aria-hidden="true" tabindex="-1">
+            <label for="mn-website">Website</label>
+            <input type="text" id="mn-website" name="website" autocomplete="off" tabindex="-1" />
+          </div>
+
+          <button type="submit" class="mn-submit">Anleitung anfordern</button>
+        </form>
+      </div>
+
+      <div class="mn-note reveal">
+        <p>
+          Anleitungen werden in der Regel innerhalb von 1–2 Werktagen an Ihre E-Mail-Adresse gesendet.
+          Für dringende Anfragen kontaktieren Sie <a href="mailto:office@tiptig.com">office@tiptig.com</a> direkt.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .mn-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .mn-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .mn-hero .inner {
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .mn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: gap 0.2s;
+  }
+  .mn-back:hover { gap: 10px; }
+
+  .mn-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .blue { color: var(--sapphire); }
+  .mn-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* Form Section */
+  .mn-form-section {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+
+  .mn-form-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 44px;
+    margin-bottom: 28px;
+  }
+
+  .mn-form-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--sapphire);
+    margin-bottom: 32px;
+  }
+  .mn-form-header h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--black);
+  }
+
+  .mn-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .mn-field {
+    margin-bottom: 20px;
+  }
+  .mn-field label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-dark);
+    margin-bottom: 8px;
+  }
+  .mn-field input,
+  .mn-field select,
+  .mn-field textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .mn-field input:focus,
+  .mn-field select:focus,
+  .mn-field textarea:focus {
+    border-color: var(--sapphire);
+    box-shadow: 0 0 0 3px rgba(27, 58, 140, 0.1);
+  }
+  .mn-field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .mn-field select {
+    cursor: pointer;
+    appearance: auto;
+  }
+
+  /* Honeypot */
+  .mn-hp {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mn-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--sapphire);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 8px;
+  }
+  .mn-submit:hover {
+    background: var(--sapphire-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(27, 58, 140, 0.2);
+  }
+
+  .mn-note {
+    text-align: center;
+  }
+  .mn-note p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .mn-note a {
+    color: var(--sapphire);
+    font-weight: 500;
+  }
+
+  @media (max-width: 960px) {
+    .mn-hero { padding: 120px 24px 48px; }
+    .mn-form-section { padding: 36px 24px 72px; }
+    .mn-form-card { padding: 28px 24px; }
+    .mn-form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  function initManualForm() {
+    const form = document.querySelector('.mn-form') as HTMLFormElement | null;
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (hp && hp.value.length > 0) {
+        e.preventDefault();
+        return;
+      }
+    });
+  }
+  initManualForm();
+  document.addEventListener('astro:page-load', initManualForm);
+</script>

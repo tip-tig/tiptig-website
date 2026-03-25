@@ -1,91 +1,85 @@
 ---
 import { categories } from '../../data/products';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 
 const productLinks = categories.map(cat => ({
   label: cat.name,
-  href: `/products#${cat.slug}`,
+  href: lp(`/products#${cat.slug}`),
 }));
 
 const technologyLinks = [
-  { label: 'The TIP TIG Process', href: '/technology' },
-  { label: 'Keyhole TIG Welding', href: '/keyhole-tig-welding' },
-  { label: 'Weld Overlay Cladding', href: '/weld-overlay-cladding' },
+  { label: t('nav.tech.process'), href: lp('/technology') },
+  { label: t('nav.tech.keyhole'), href: lp('/keyhole-tig-welding') },
+  { label: t('nav.tech.cladding'), href: lp('/weld-overlay-cladding') },
 ];
 
 const industryLinks = [
-  { label: 'Aerospace', href: '/industries/aerospace' },
-  { label: 'Defense & Naval', href: '/industries/defense' },
-  { label: 'Food & Dairy', href: '/industries/food-dairy' },
-  { label: 'Heat Exchangers', href: '/industries/heat-exchangers' },
-  { label: 'Nuclear', href: '/industries/nuclear' },
-  { label: 'Oil & Gas', href: '/industries/oil-gas' },
-  { label: 'Petrochemical', href: '/industries/petrochemical' },
-  { label: 'Pharmaceutical', href: '/industries/pharma' },
-  { label: 'Pipelines', href: '/industries/pipelines' },
-  { label: 'Power Generation', href: '/industries/power-generation' },
-  { label: 'Shipbuilding', href: '/industries/shipbuilding' },
+  { label: t('nav.ind.aerospace'), href: lp('/industries/aerospace') },
+  { label: t('nav.ind.defense'), href: lp('/industries/defense') },
+  { label: t('nav.ind.food-dairy'), href: lp('/industries/food-dairy') },
+  { label: t('nav.ind.heat-exchangers'), href: lp('/industries/heat-exchangers') },
+  { label: t('nav.ind.nuclear'), href: lp('/industries/nuclear') },
+  { label: t('nav.ind.oil-gas'), href: lp('/industries/oil-gas') },
+  { label: t('nav.ind.petrochemical'), href: lp('/industries/petrochemical') },
+  { label: t('nav.ind.pharma'), href: lp('/industries/pharma') },
+  { label: t('nav.ind.pipelines'), href: lp('/industries/pipelines') },
+  { label: t('nav.ind.power-generation'), href: lp('/industries/power-generation') },
+  { label: t('nav.ind.shipbuilding'), href: lp('/industries/shipbuilding') },
 ];
 
 const supportLinks = [
-  { label: 'Wire Speed Calculator', href: '/support/wire-speed-calculator' },
-  { label: 'Software Updates', href: '/support/software-update' },
-  { label: 'Control Panel Guide', href: '/support/control-panel' },
-  { label: 'Warranty', href: '/support/warranty' },
-  { label: "Owner's Manuals", href: '/support/manuals' },
-  { label: 'Service Instructions', href: 'https://repair.tiptig.com', external: true },
+  { label: t('nav.sup.wire-speed'), href: lp('/support/wire-speed-calculator') },
+  { label: t('nav.sup.software'), href: lp('/support/software-update') },
+  { label: t('nav.sup.control-panel'), href: lp('/support/control-panel') },
+  { label: t('nav.sup.warranty'), href: lp('/support/warranty') },
+  { label: t('nav.sup.manuals'), href: lp('/support/manuals') },
+  { label: t('nav.sup.service'), href: 'https://repair.tiptig.com', external: true },
 ];
 
 const companyLinks = [
-  { label: 'About Us', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: t('nav.com.about'), href: lp('/about') },
+  { label: t('nav.com.contact'), href: lp('/contact') },
+];
+
+// Language switcher: link to same page in other language
+const currentPath = Astro.url.pathname;
+const switchLang = lang === 'de' ? 'en' : 'de';
+const switchPath = lang === 'de'
+  ? currentPath.replace(/^\/de/, '') || '/'
+  : `/de${currentPath === '/' ? '' : currentPath}`;
+
+const navSections = [
+  { label: t('nav.products'), href: lp('/products'), links: productLinks },
+  { label: t('nav.technology'), href: lp('/technology'), links: technologyLinks },
+  { label: t('nav.industries'), href: lp('/industries'), links: industryLinks },
+  { label: t('nav.support'), href: lp('/support'), links: supportLinks },
+  { label: t('nav.company'), href: lp('/about'), links: companyLinks },
 ];
 ---
 
 <nav>
-  <a href="/" class="logo">
+  <a href={lp('/')} class="logo">
     <img src="/images/Logo_fuer_Homepage_24r.svg" alt="TIP TIG" height="36" />
   </a>
 
   <ul class="nav-links">
-    <li class="has-dropdown">
-      <a href="/products">Products <span class="dd-arrow">▾</span></a>
-      <ul class="dropdown">
-        {productLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <a href="/technology">Technology <span class="dd-arrow">▾</span></a>
-      <ul class="dropdown">
-        {technologyLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <a href="/industries">Industries <span class="dd-arrow">▾</span></a>
-      <ul class="dropdown">
-        {industryLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <a href="/support">Support <span class="dd-arrow">▾</span></a>
-      <ul class="dropdown">
-        {supportLinks.map(link => (
-          <li><a href={link.href} {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <a href="/about">Company <span class="dd-arrow">▾</span></a>
-      <ul class="dropdown">
-        {companyLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
+    {navSections.map(section => (
+      <li class="has-dropdown">
+        <a href={section.href}>{section.label} <span class="dd-arrow">▾</span></a>
+        <ul class="dropdown">
+          {section.links.map(link => (
+            <li><a href={link.href} {...((link as any).external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+    <li class="lang-switch">
+      <a href={switchPath}>{t('lang.switch')}</a>
     </li>
   </ul>
 
@@ -98,45 +92,18 @@ const companyLinks = [
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <ul>
-    <li class="mobile-dropdown">
-      <button class="mobile-dropdown-toggle">Products <span class="dd-arrow">▾</span></button>
-      <ul class="mobile-dropdown-list">
-        {productLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="mobile-dropdown">
-      <button class="mobile-dropdown-toggle">Technology <span class="dd-arrow">▾</span></button>
-      <ul class="mobile-dropdown-list">
-        {technologyLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="mobile-dropdown">
-      <button class="mobile-dropdown-toggle">Industries <span class="dd-arrow">▾</span></button>
-      <ul class="mobile-dropdown-list">
-        {industryLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="mobile-dropdown">
-      <button class="mobile-dropdown-toggle">Support <span class="dd-arrow">▾</span></button>
-      <ul class="mobile-dropdown-list">
-        {supportLinks.map(link => (
-          <li><a href={link.href} {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a></li>
-        ))}
-      </ul>
-    </li>
-    <li class="mobile-dropdown">
-      <button class="mobile-dropdown-toggle">Company <span class="dd-arrow">▾</span></button>
-      <ul class="mobile-dropdown-list">
-        {companyLinks.map(link => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
+    {navSections.map(section => (
+      <li class="mobile-dropdown">
+        <button class="mobile-dropdown-toggle">{section.label} <span class="dd-arrow">▾</span></button>
+        <ul class="mobile-dropdown-list">
+          {section.links.map(link => (
+            <li><a href={link.href} {...((link as any).external ? { target: '_blank', rel: 'noopener' } : {})}>{link.label}</a></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+    <li class="mobile-lang">
+      <a href={switchPath}>{t('lang.switch')}</a>
     </li>
   </ul>
 </div>
@@ -170,6 +137,7 @@ const companyLinks = [
     display: flex;
     gap: 36px;
     list-style: none;
+    align-items: center;
   }
   .nav-links a {
     font-size: 0.875rem;
@@ -180,6 +148,23 @@ const companyLinks = [
     letter-spacing: 0.01em;
   }
   .nav-links a:hover { color: var(--sapphire); }
+
+  /* Language switcher */
+  .lang-switch a {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--sapphire-mid);
+    transition: all 0.2s;
+  }
+  .lang-switch a:hover {
+    background: var(--sapphire);
+    color: white;
+  }
 
   /* Dropdown */
   .has-dropdown { position: relative; }
@@ -316,6 +301,17 @@ const companyLinks = [
   .mobile-dropdown-list a {
     font-size: 0.84rem;
     padding: 8px 14px;
+  }
+
+  /* Mobile language switch */
+  .mobile-lang {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-light);
+  }
+  .mobile-lang a {
+    font-weight: 700;
+    color: var(--sapphire);
   }
 
   @media (max-width: 960px) {

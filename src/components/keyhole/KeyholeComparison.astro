@@ -1,23 +1,28 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const rows = [
-  { label: 'Penetration', plasmaImp: 'Up to 5/16 in', plasmaMet: 'Up to 8 mm', focusImp: 'Up to ½ in', focusMet: 'Up to 12 mm' },
-  { label: 'Max Speed', plasmaImp: '20 IPM', plasmaMet: '500 mm/min', focusImp: '47 IPM', focusMet: '1200 mm/min' },
-  { label: 'Complexity', plasma: 'Complex — many critical parameters', focus: 'Very simple setup' },
-  { label: 'Fit-Up Tolerance', plasma: 'Requires exact fit-up', focus: 'Tolerates joint imperfections' },
-  { label: 'Keyhole Close-Out', plasma: 'Difficulties — voids and defects', focus: 'Simple — no voids' },
-  { label: 'Consistency', plasma: 'Inconsistent — orifice erosion', focus: 'Very consistent — no process drift' },
-  { label: 'Maintenance Cost', plasma: 'High', focus: 'Low' },
-  { label: 'Consumable Cost', plasma: 'High', focus: 'Low' },
+  { labelKey: 'kh.comp.r1', plasmaImp: 'Up to 5/16 in', plasmaMet: 'Up to 8 mm', focusImp: 'Up to \u00bd in', focusMet: 'Up to 12 mm' },
+  { labelKey: 'kh.comp.r2', plasmaImp: '20 IPM', plasmaMet: '500 mm/min', focusImp: '47 IPM', focusMet: '1200 mm/min' },
+  { labelKey: 'kh.comp.r3', plasmaKey: 'kh.comp.r3.plasma', focusKey: 'kh.comp.r3.focus' },
+  { labelKey: 'kh.comp.r4', plasmaKey: 'kh.comp.r4.plasma', focusKey: 'kh.comp.r4.focus' },
+  { labelKey: 'kh.comp.r5', plasmaKey: 'kh.comp.r5.plasma', focusKey: 'kh.comp.r5.focus' },
+  { labelKey: 'kh.comp.r6', plasmaKey: 'kh.comp.r6.plasma', focusKey: 'kh.comp.r6.focus' },
+  { labelKey: 'kh.comp.r7', plasmaKey: 'kh.comp.r7.plasma', focusKey: 'kh.comp.r7.focus' },
+  { labelKey: 'kh.comp.r8', plasmaKey: 'kh.comp.r8.plasma', focusKey: 'kh.comp.r8.focus' },
 ];
 ---
 
 <section class="kh-comparison">
   <div class="inner">
-    <div class="section-eyebrow reveal">Head to Head</div>
-    <h2 class="section-title reveal">TIP TIG focus vs.<br>Plasma Welding (PAW)</h2>
+    <div class="section-eyebrow reveal">{t('kh.comp.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('kh.comp.title')}<br>{t('kh.comp.title2')}</h2>
     <p class="section-lead reveal">
-      Plasma keyhole welding has been the standard — but TIP TIG focus outperforms it
-      in every measurable category.
+      {t('kh.comp.desc')}
     </p>
 
     <div class="table-wrapper reveal">
@@ -25,19 +30,19 @@ const rows = [
         <thead>
           <tr>
             <th class="th-label"></th>
-            <th class="th-plasma">Plasma (PAW)</th>
-            <th class="th-focus">TIP TIG focus</th>
+            <th class="th-plasma">{t('kh.comp.th.plasma')}</th>
+            <th class="th-focus">{t('kh.comp.th.focus')}</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row) => (
             <tr>
-              <td class="td-label">{row.label}</td>
+              <td class="td-label">{t(row.labelKey)}</td>
               <td class="td-plasma">
-                {row.plasma ?? <><span class="u-imp">{row.plasmaImp}</span><span class="u-met">{row.plasmaMet}</span></>}
+                {row.plasmaKey ? t(row.plasmaKey) : <><span class="u-imp">{row.plasmaImp}</span><span class="u-met">{row.plasmaMet}</span></>}
               </td>
               <td class="td-focus">
-                {row.focus ?? <><span class="u-imp">{row.focusImp}</span><span class="u-met">{row.focusMet}</span></>}
+                {row.focusKey ? t(row.focusKey) : <><span class="u-imp">{row.focusImp}</span><span class="u-met">{row.focusMet}</span></>}
               </td>
             </tr>
           ))}

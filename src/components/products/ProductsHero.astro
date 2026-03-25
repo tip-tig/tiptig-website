@@ -1,15 +1,19 @@
 ---
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ph-hero">
   <div class="ph-hero-bg"></div>
   <div class="inner">
-    <div class="ph-eyebrow">Welding Equipment</div>
-    <h1>Engineered for<br><span class="blue">Precision</span></h1>
+    <div class="ph-eyebrow">{t('products.hero.eyebrow')}</div>
+    <h1><Fragment set:html={t('products.hero.title')} /></h1>
     <p class="ph-desc">
-      From compact wire feeders to automated cladding cells — every TIP TIG
-      product is designed and manufactured in Austria to deliver the highest
-      weld quality in the industry.
+      {t('products.hero.desc')}
     </p>
   </div>
 </section>
@@ -59,7 +63,7 @@
     color: var(--black);
     margin-bottom: 16px;
   }
-  .blue { color: var(--sapphire); }
+  h1 :global(.blue) { color: var(--sapphire); }
   .ph-desc {
     font-size: 1rem;
     font-weight: 300;

@@ -1,5 +1,11 @@
 ---
 import { Play } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="hero">
@@ -9,27 +15,26 @@ import { Play } from '@lucide/astro';
   <div class="hero-content">
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
-      Austrian Engineering
+      {t('hero.tag1')}
       <span class="hero-tag-dot"></span>
-      Since 1999
+      {t('hero.tag2')}
     </div>
 
     <h1>
-      The Future of<br>
-      <span class="blue">TIG Welding</span><br>
-      is Here.
+      <Fragment set:html={t('hero.title.line1')} /><br>
+      <span class="blue"><Fragment set:html={t('hero.title.line2')} /></span><br>
+      <Fragment set:html={t('hero.title.line3')} />
     </h1>
 
     <p class="hero-desc">
-      TIP TIG combines the precision of TIG welding with a dynamic wire feed mechanism —
-      delivering up to 300% faster speeds, superior weld quality, and a proven ROI in under 10 weeks.
+      {t('hero.desc')}
     </p>
 
     <div class="hero-actions">
-      <a href="/products" class="btn-primary">Discover TIP TIG →</a>
-      <a href="/technology#video" class="btn-ghost">
+      <a href={lp('/products')} class="btn-primary">{t('hero.cta.discover')}</a>
+      <a href={lp('/technology#video')} class="btn-ghost">
         <span class="play-icon"><Play size={10} color="white" fill="white" /></span>
-        Watch how it works
+        {t('hero.cta.watch')}
       </a>
     </div>
 
@@ -38,7 +43,7 @@ import { Play } from '@lucide/astro';
   <!-- Right: Product Image -->
   <div class="hero-visual">
     <div class="hero-image-wrapper">
-      <img src="/images/products/tiptig-allinone-torch.webp" alt="TIP TIG AllinOne welding system with torch" width="1200" height="1200" />
+      <img src="/images/products/tiptig-allinone-torch.webp" alt={t('hero.alt')} width="1200" height="1200" />
     </div>
   </div>
 </section>
@@ -46,22 +51,22 @@ import { Play } from '@lucide/astro';
 <div class="hero-highlights">
   <div class="highlight-item">
     <span class="highlight-value">300%</span>
-    <span class="highlight-label">Faster</span>
+    <span class="highlight-label">{t('highlight.faster')}</span>
   </div>
   <div class="highlight-divider"></div>
   <div class="highlight-item">
     <span class="highlight-value">400%</span>
-    <span class="highlight-label">Higher Deposition</span>
+    <span class="highlight-label">{t('highlight.deposition')}</span>
   </div>
   <div class="highlight-divider"></div>
   <div class="highlight-item">
     <span class="highlight-value">72%</span>
-    <span class="highlight-label">Cost Savings</span>
+    <span class="highlight-label">{t('highlight.savings')}</span>
   </div>
   <div class="highlight-divider"></div>
   <div class="highlight-item">
     <span class="highlight-value">80%</span>
-    <span class="highlight-label">Reduced Dilution in Cladding</span>
+    <span class="highlight-label">{t('highlight.dilution')}</span>
   </div>
 </div>
 

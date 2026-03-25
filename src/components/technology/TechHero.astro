@@ -1,21 +1,24 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="tech-hero">
   <div class="tech-hero-bg"></div>
   <div class="inner">
-    <div class="tech-hero-eyebrow">Technology</div>
-    <h1>The TIP TIG<br><span class="blue">Welding Process</span></h1>
-    <p class="tech-hero-sub">Dynamic Wire Feeding</p>
+    <div class="tech-hero-eyebrow">{t('tech.eyebrow')}</div>
+    <h1>{t('tech.hero.title')}<br><span class="blue">{t('tech.hero.title2')}</span></h1>
+    <p class="tech-hero-sub">{t('tech.hero.sub')}</p>
     <p class="tech-hero-desc">
-      TIP TIG is a unique hot wire TIG welding technique suitable for manual, automated,
-      bore cladding, and orbital welding applications — accommodating all metal types
-      similar to traditional TIG methods.
+      {t('tech.hero.desc')}
     </p>
 
     <div class="unit-toggle" id="unit-toggle">
-      <button class="unit-btn active" data-unit="imperial">Imperial</button>
-      <button class="unit-btn" data-unit="metric">Metric</button>
+      <button class="unit-btn active" data-unit="imperial">{t('tech.unit.imperial')}</button>
+      <button class="unit-btn" data-unit="metric">{t('tech.unit.metric')}</button>
     </div>
   </div>
 </section>

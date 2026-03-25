@@ -1,38 +1,41 @@
 ---
 import { Zap, Flame, ArrowUpRight } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="hotwire">
   <div class="inner">
     <div class="hotwire-grid">
       <div class="hotwire-text">
-        <div class="section-eyebrow reveal">How It Works</div>
-        <h2 class="section-title reveal">Hot Wire TIG —<br>Reinvented</h2>
+        <div class="section-eyebrow reveal">{t('tech.hw.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('tech.hw.title')}<br>{t('tech.hw.title2')}</h2>
         <p class="section-lead reveal">
-          The filler wire is electrically heated to its melting point using a deliberately
-          low open circuit voltage (OCV), integrating seamlessly into the molten pool to
-          dramatically augment deposition rates.
+          {t('tech.hw.desc')}
         </p>
         <div class="hotwire-points reveal">
           <div class="hotwire-point">
             <div class="point-icon"><Zap size={20} /></div>
             <div>
-              <strong>Enhanced Wetting</strong>
-              <span>The heated wire enhances weld pool wetting rather than cooling it — unlike conventional cold wire approaches.</span>
+              <strong>{t('tech.hw.point1.title')}</strong>
+              <span>{t('tech.hw.point1.desc')}</span>
             </div>
           </div>
           <div class="hotwire-point">
             <div class="point-icon"><Flame size={20} /></div>
             <div>
-              <strong>No Secondary Arc</strong>
-              <span>The low OCV prevents separate arcing between wire and base metal. The tungsten tip sustains the primary arc while a distinct power source energizes the wire.</span>
+              <strong>{t('tech.hw.point2.title')}</strong>
+              <span>{t('tech.hw.point2.desc')}</span>
             </div>
           </div>
           <div class="hotwire-point">
             <div class="point-icon"><ArrowUpRight size={20} /></div>
             <div>
-              <strong>Easy to Learn</strong>
-              <span>Operates manually in all positions with a straightforward learning curve, making it immediately economically viable.</span>
+              <strong>{t('tech.hw.point3.title')}</strong>
+              <span>{t('tech.hw.point3.desc')}</span>
             </div>
           </div>
         </div>
@@ -45,10 +48,10 @@ import { Zap, Flame, ArrowUpRight } from '@lucide/astro';
             <span class="stat-unit u-imp">lbs/hr</span>
             <span class="stat-unit u-met">kg/hr</span>
           </div>
-          <span class="stat-label">Peak Deposition Rate</span>
+          <span class="stat-label">{t('tech.hw.stat.label')}</span>
           <div class="stat-compare">
-            <span class="u-imp">vs. 0.7 lbs/hr conventional TIG</span>
-            <span class="u-met">vs. 0.3 kg/hr conventional TIG</span>
+            <span class="u-imp">{t('tech.hw.stat.compare.imp')}</span>
+            <span class="u-met">{t('tech.hw.stat.compare.met')}</span>
           </div>
           <div class="stat-bar-group">
             <div class="stat-bar-row">

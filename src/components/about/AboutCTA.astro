@@ -1,14 +1,20 @@
 ---
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ab-cta">
   <div class="inner reveal">
-    <div class="ab-cta-eyebrow">Ready to Learn More?</div>
-    <h2>Discover What TIP TIG<br>Can Do for You.</h2>
-    <p>Explore our technology in detail or connect with a Certified Partner in your region.</p>
+    <div class="ab-cta-eyebrow">{t('about.cta.eyebrow')}</div>
+    <h2><Fragment set:html={t('about.cta.title')} /></h2>
+    <p>{t('about.cta.desc')}</p>
     <div class="ab-cta-buttons">
-      <a href="/technology" class="btn-primary">Explore Our Technology</a>
-      <a href="/contact" class="btn-ghost">Find a Partner</a>
+      <a href={lp('/technology')} class="btn-primary">{t('about.cta.technology')}</a>
+      <a href={lp('/contact')} class="btn-ghost">{t('about.cta.partner')}</a>
     </div>
   </div>
 </section>

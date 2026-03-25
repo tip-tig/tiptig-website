@@ -1,37 +1,18 @@
 ---
 import { Waves, Shield, Gauge, Thermometer, Droplets, Wrench } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 
 const benefits = [
-  {
-    icon: 'Waves',
-    title: 'Weld Pool Agitation',
-    desc: 'Mechanical vibration transfers into the weld pool, agitating and disrupting surface tension for superior fusion.',
-  },
-  {
-    icon: 'Shield',
-    title: 'Stress Relief',
-    desc: 'Dynamic wire oscillation relieves residual stresses during welding, improving joint integrity.',
-  },
-  {
-    icon: 'Droplets',
-    title: 'Reduced Porosity',
-    desc: 'Weld pool agitation minimizes pore defects — particularly beneficial for sluggish alloys like stainless steel and duplex.',
-  },
-  {
-    icon: 'Gauge',
-    title: 'Higher Deposition Rates',
-    desc: 'Extended weld fluidity facilitates increased wire deposition and higher welding current.',
-  },
-  {
-    icon: 'Thermometer',
-    title: 'Lower Heat Input',
-    desc: 'Reduced heat input curbs metal distortion and preserves corrosion-resistant material properties.',
-  },
-  {
-    icon: 'Wrench',
-    title: 'All-Position Capability',
-    desc: 'Operates in all welding positions with consistent quality and straightforward technique.',
-  },
+  { icon: 'Waves', titleKey: 'tech.wd.b1.title', descKey: 'tech.wd.b1.desc' },
+  { icon: 'Shield', titleKey: 'tech.wd.b2.title', descKey: 'tech.wd.b2.desc' },
+  { icon: 'Droplets', titleKey: 'tech.wd.b3.title', descKey: 'tech.wd.b3.desc' },
+  { icon: 'Gauge', titleKey: 'tech.wd.b4.title', descKey: 'tech.wd.b4.desc' },
+  { icon: 'Thermometer', titleKey: 'tech.wd.b5.title', descKey: 'tech.wd.b5.desc' },
+  { icon: 'Wrench', titleKey: 'tech.wd.b6.title', descKey: 'tech.wd.b6.desc' },
 ];
 
 const iconMap: Record<string, any> = { Waves, Shield, Gauge, Thermometer, Droplets, Wrench };
@@ -39,12 +20,10 @@ const iconMap: Record<string, any> = { Waves, Shield, Gauge, Thermometer, Drople
 
 <section class="wire-dynamics">
   <div class="inner">
-    <div class="section-eyebrow reveal">Wire Dynamics</div>
-    <h2 class="section-title reveal">Four-Drive Roll<br>Oscillation System</h2>
+    <div class="section-eyebrow reveal">{t('tech.wd.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('tech.wd.title')}<br>{t('tech.wd.title2')}</h2>
     <p class="section-lead reveal">
-      An innovative four-drive roll mechanism continuously feeds and oscillates the filler
-      wire via a mechanized drive plate — synergizing hot wire feeding with mechanical
-      agitation for maximum welding energy with minimal heat input.
+      {t('tech.wd.desc')}
     </p>
 
     <div class="benefits-grid">
@@ -55,8 +34,8 @@ const iconMap: Record<string, any> = { Waves, Shield, Gauge, Thermometer, Drople
             <div class="benefit-icon">
               <Icon size={24} />
             </div>
-            <h3>{b.title}</h3>
-            <p>{b.desc}</p>
+            <h3>{t(b.titleKey)}</h3>
+            <p>{t(b.descKey)}</p>
           </div>
         );
       })}

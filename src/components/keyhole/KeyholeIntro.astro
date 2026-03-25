@@ -1,39 +1,42 @@
 ---
 import { Target, Zap, DollarSign } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="kh-intro">
   <div class="inner">
     <div class="kh-intro-grid">
       <div class="kh-intro-text">
-        <div class="section-eyebrow reveal">What is TIP TIG focus?</div>
-        <h2 class="section-title reveal">Single-Pass Keyhole<br>Welding — Reinvented</h2>
+        <div class="section-eyebrow reveal">{t('kh.intro.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('kh.intro.title')}<br>{t('kh.intro.title2')}</h2>
         <p class="section-lead reveal">
-          A full-penetration, single-pass keyhole TIG welding process that requires
-          almost no edge bevelling and produces highly repeatable, x-ray-quality welds
-          with superior root and cap aesthetics.
+          {t('kh.intro.desc')}
         </p>
       </div>
       <div class="kh-intro-cards">
         <div class="kh-card reveal">
           <div class="kh-card-icon"><Target size={24} /></div>
           <div>
-            <strong>No Joint Preparation</strong>
-            <span>Full penetration on materials up to <span class="u-imp">½ in</span><span class="u-met">12 mm</span> thickness with almost no edge bevelling required.</span>
+            <strong>{t('kh.intro.card1.title')}</strong>
+            <span><Fragment set:html={t('kh.intro.card1.desc')} /></span>
           </div>
         </div>
         <div class="kh-card reveal reveal-delay-1">
           <div class="kh-card-icon"><Zap size={24} /></div>
           <div>
-            <strong>8-Hour TIG Weld in 10 Minutes</strong>
-            <span>Up to 600% faster welding speeds compared to traditional TIG — with 88% less shielding gas.</span>
+            <strong>{t('kh.intro.card2.title')}</strong>
+            <span>{t('kh.intro.card2.desc')}</span>
           </div>
         </div>
         <div class="kh-card reveal reveal-delay-2">
           <div class="kh-card-icon"><DollarSign size={24} /></div>
           <div>
-            <strong>Average 80% Cost Savings</strong>
-            <span>Dramatic reductions in preparation, gas, energy, filler materials, grinding, and rework.</span>
+            <strong>{t('kh.intro.card3.title')}</strong>
+            <span>{t('kh.intro.card3.desc')}</span>
           </div>
         </div>
       </div>

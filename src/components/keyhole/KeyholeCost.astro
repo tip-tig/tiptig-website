@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const bars = [
   { label: 'TIG Cold Wire', imp: 11.3, met: 37.07, highlight: false },
   { label: 'TIG Hot Wire', imp: 9.4, met: 30.84, highlight: false },
@@ -32,23 +38,22 @@ const maxMet = 40;
           </div>
         ))}
         <div class="cost-unit">
-          <span class="u-imp">$/ft — costs vary depending on application</span>
-          <span class="u-met">$/m — costs vary depending on application</span>
+          <span class="u-imp">{t('kh.cost.unit.imp')}</span>
+          <span class="u-met">{t('kh.cost.unit.met')}</span>
         </div>
       </div>
 
       <div class="kh-cost-text">
-        <div class="section-eyebrow reveal">Cost Efficiency</div>
-        <h2 class="section-title reveal">Lowest Cost<br><span class="u-imp">Per Weld Foot</span><span class="u-met">Per Weld Meter</span></h2>
+        <div class="section-eyebrow reveal">{t('kh.cost.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('kh.cost.title')}<br><span class="u-imp">{t('kh.cost.title.imp')}</span><span class="u-met">{t('kh.cost.title.met')}</span></h2>
         <p class="section-lead reveal">
-          <span class="u-imp">At just $1.25/ft, TIP TIG focus costs less than half of plasma welding</span>
-          <span class="u-met">At just $4.10/m, TIP TIG focus costs less than half of plasma welding</span>
-          and a fraction of conventional TIG methods — making it the most
-          economical keyhole welding solution available.
+          <span class="u-imp">{t('kh.cost.desc.imp')}</span>
+          <span class="u-met">{t('kh.cost.desc.met')}</span>
+          {' '}{t('kh.cost.desc2')}
         </p>
         <div class="cost-savings reveal">
           <span class="savings-value">89%</span>
-          <span class="savings-label">less expensive than TIG Cold Wire</span>
+          <span class="savings-label">{t('kh.cost.savings.label')}</span>
         </div>
       </div>
     </div>

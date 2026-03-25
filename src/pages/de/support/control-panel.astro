@@ -1,0 +1,425 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ArrowLeft, AlertCircle } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Bedienpanel-Anleitung — TIP TIG Support"
+  description="Detaillierte Anleitung für das TIP TIG Bedienpanel: Drahtgeschwindigkeitsanzeige, Frequenzregelung und Heißdraht-Ampere-Einstellungen."
+  lang="de"
+>
+  <section class="cp-hero">
+    <div class="cp-hero-bg"></div>
+    <div class="inner">
+      <a href="/de/support" class="cp-back"><ArrowLeft size={16} /> Alle Support-Themen</a>
+      <div class="cp-eyebrow">Referenzhandbuch</div>
+      <h1>TIP TIG<br><span class="blue">Bedienpanel</span></h1>
+      <p class="cp-desc">
+        Eine vollständige Referenz für die Bedienoberfläche des TIP TIG Bedienpanels.
+        Erfahren Sie mehr über jede Anzeige, jeden Taster und jede Einstellung an Ihrem Gerät.
+      </p>
+    </div>
+  </section>
+
+  <section class="cp-content">
+    <div class="inner">
+
+      <!-- Wire Speed Display -->
+      <div class="cp-section reveal">
+        <div class="cp-section-grid">
+          <div class="cp-section-img">
+            <img src="/images/support/wire-speed.webp" alt="TIP TIG Bedienpanel — Drahtgeschwindigkeitsanzeige" loading="lazy" />
+          </div>
+          <div class="cp-section-info">
+            <div class="cp-section-badge">1 / 3</div>
+            <h2>Drahtgeschwindigkeitsanzeige</h2>
+            <p class="cp-section-lead">
+              Der Hauptbildschirm zum Einstellen und Überwachen der Drahtvorschubgeschwindigkeit.
+            </p>
+            <div class="cp-features">
+              <div class="cp-feature">
+                <span class="cp-num">(1)</span>
+                <div>
+                  <strong>USB-Anschluss</strong>
+                  <span>Für Firmware-Updates und Service-Diagnose</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(2)</span>
+                <div>
+                  <strong>Vorherige Seite</strong>
+                  <span>Zum vorherigen Bildschirm navigieren</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(3)</span>
+                <div>
+                  <strong>Nächste Seite</strong>
+                  <span>Zum nächsten Bildschirm navigieren</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(4)</span>
+                <div>
+                  <strong>Einstellrad</strong>
+                  <span>Drehen, um den gewünschten Wert auf dem Display einzustellen</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(5)</span>
+                <div>
+                  <strong>Drahtgeschwindigkeitsanzeige</strong>
+                  <span>Zeigt die aktuelle Drahtvorschubgeschwindigkeit an und ermöglicht die Anpassung</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(6)</span>
+                <div>
+                  <strong>Modus-Taste</strong>
+                  <span>Umschalten zwischen 2-Takt- und 4-Takt-Betriebsmodus</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(7)</span>
+                <div>
+                  <strong>Heißdraht-Taste</strong>
+                  <span>Heißdrahtstrom ein- oder ausschalten</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(8)</span>
+                <div>
+                  <strong>Draht-Einfädeltaste</strong>
+                  <span>Fördert den Draht zum Brenner ohne Heißdrahtspannung oder Oszillation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequency Control -->
+      <div class="cp-section reveal">
+        <div class="cp-section-grid reverse">
+          <div class="cp-section-info">
+            <div class="cp-section-badge">2 / 3</div>
+            <h2>Frequenzregelung</h2>
+            <p class="cp-section-lead">
+              Der Frequenzbildschirm steuert die Drahtoszillationsrate.
+              Höhere Frequenz erzeugt feinere Riffeln in der Schweißnaht;
+              niedrigere Frequenz erhöht die Einbrandtiefe.
+            </p>
+            <div class="cp-features">
+              <div class="cp-feature">
+                <span class="cp-num">(1)</span>
+                <div>
+                  <strong>Vorherige Seite</strong>
+                  <span>Zurück zum Drahtgeschwindigkeitsbildschirm</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(2)</span>
+                <div>
+                  <strong>Nächste Seite</strong>
+                  <span>Weiter zum Heißdraht-Ampere-Bildschirm</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(3)</span>
+                <div>
+                  <strong>Frequenzanzeige</strong>
+                  <span>Zeigt die Drahtoszillationsfrequenz an und ermöglicht die Anpassung</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cp-section-img">
+            <img src="/images/support/frequency.webp" alt="TIP TIG Bedienpanel — Frequenzanzeige" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Hot Wire Amps -->
+      <div class="cp-section reveal">
+        <div class="cp-section-grid">
+          <div class="cp-section-img">
+            <img src="/images/support/hot-wire-amps.webp" alt="TIP TIG Bedienpanel — Heißdraht-Ampere-Anzeige" loading="lazy" />
+          </div>
+          <div class="cp-section-info">
+            <div class="cp-section-badge">3 / 3</div>
+            <h2>Heißdraht-Ampere</h2>
+            <p class="cp-section-lead">
+              Der Heißdraht-Bildschirm steuert den Vorheizstrom, der auf den
+              Zusatzwerkstoff aufgebracht wird. Korrekte Heißdraht-Einstellungen verbessern die Benetzung
+              und reduzieren den Wärmeeintrag in das Grundmaterial.
+            </p>
+            <div class="cp-features">
+              <div class="cp-feature">
+                <span class="cp-num">(1)</span>
+                <div>
+                  <strong>Vorherige Seite</strong>
+                  <span>Zurück zum Frequenzbildschirm</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(2)</span>
+                <div>
+                  <strong>Nächste Seite</strong>
+                  <span>Zurück zum Drahtgeschwindigkeitsbildschirm</span>
+                </div>
+              </div>
+              <div class="cp-feature">
+                <span class="cp-num">(3)</span>
+                <div>
+                  <strong>Heißdrahtanzeige</strong>
+                  <span>Zeigt den Heißdrahtstrom in Ampere an und ermöglicht die Anpassung</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <div class="cp-note reveal">
+        <AlertCircle size={18} />
+        <p>
+          Firmware-Updates können Gerätefunktionen ändern. Das tatsächliche Erscheinungsbild und
+          die Bedienung des Panels können geringfügig von den hier gezeigten Abbildungen abweichen.
+          Konsultieren Sie immer Ihre Bedienungsanleitung für die aktuellsten Informationen.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cp-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .cp-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .cp-hero .inner {
+    max-width: 800px;
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cp-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: gap 0.2s;
+  }
+  .cp-back:hover { gap: 10px; }
+
+  .cp-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .blue { color: var(--sapphire); }
+  .cp-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* Content */
+  .cp-content {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+
+  /* Sections */
+  .cp-section {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 44px;
+    margin-bottom: 32px;
+  }
+
+  .cp-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .cp-section-grid.reverse {
+    direction: rtl;
+  }
+  .cp-section-grid.reverse > * {
+    direction: ltr;
+  }
+
+  .cp-section-img {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .cp-section-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    clip-path: inset(1.5% round 6px);
+  }
+
+  .cp-section-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .cp-section h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--black);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .cp-section-lead {
+    font-size: 0.92rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  /* Features */
+  .cp-features {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cp-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .cp-feature:hover {
+    background: var(--sapphire-light);
+  }
+  .cp-num {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+  }
+  .cp-feature:hover .cp-num {
+    background: var(--sapphire);
+    color: var(--white);
+  }
+  .cp-feature strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--black);
+    margin-bottom: 2px;
+  }
+  .cp-feature span {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  /* Note */
+  .cp-note {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #FEF3CD;
+    border: 1px solid #F0D060;
+    border-radius: 12px;
+    padding: 18px 22px;
+    color: #856404;
+  }
+  .cp-note p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 960px) {
+    .cp-hero { padding: 120px 24px 48px; }
+    .cp-content { padding: 36px 24px 72px; }
+    .cp-section { padding: 28px 24px; }
+    .cp-section-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .cp-section-grid.reverse {
+      direction: ltr;
+    }
+    .cp-section-img {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>

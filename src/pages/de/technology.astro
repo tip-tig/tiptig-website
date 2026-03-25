@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TechHero from '../../components/technology/TechHero.astro';
+import HotWire from '../../components/technology/HotWire.astro';
+import WireDynamics from '../../components/technology/WireDynamics.astro';
+import DepositionChart from '../../components/technology/DepositionChart.astro';
+import ProcessComparison from '../../components/technology/ProcessComparison.astro';
+import HeatInput from '../../components/technology/HeatInput.astro';
+import TechVideo from '../../components/technology/TechVideo.astro';
+import CTA from '../../components/home/CTA.astro';
+---
+
+<BaseLayout
+  title="TIP TIG Schweißverfahren — Dynamische Drahtvorschub-Technologie"
+  description="Erfahren Sie, wie das TIP TIG Heißdraht-WIG-Schweißverfahren mit dynamischem Drahtvorschub 12x höhere Abschmelzleistung, geringstmöglichen Wärmeeintrag und überlegene Fusionsqualität liefert."
+  lang="de"
+>
+  <div id="tech-page" data-units="imperial">
+    <TechHero lang="de" />
+    <TechVideo lang="de" />
+    <HotWire lang="de" />
+    <WireDynamics lang="de" />
+    <DepositionChart lang="de" />
+    <ProcessComparison lang="de" />
+    <HeatInput lang="de" />
+    <CTA lang="de" />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  #tech-page[data-units="imperial"] .u-met { display: none !important; }
+  #tech-page[data-units="metric"] .u-imp { display: none !important; }
+</style>
+
+<script>
+  const page = document.getElementById('tech-page');
+  const toggle = document.getElementById('unit-toggle');
+
+  if (toggle && page) {
+    toggle.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.unit-btn') as HTMLElement;
+      if (!btn) return;
+      const unit = btn.dataset.unit;
+      if (!unit) return;
+
+      page.dataset.units = unit;
+      toggle.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update deposition chart bar widths
+      document.querySelectorAll('.chart-bar-fill[data-imp-width]').forEach(bar => {
+        const el = bar as HTMLElement;
+        el.style.width = unit === 'imperial' ? el.dataset.impWidth! : el.dataset.metWidth!;
+      });
+
+      // Update heat input bar heights
+      document.querySelectorAll('.heat-bar-fill[data-imp-height]').forEach(bar => {
+        const el = bar as HTMLElement;
+        el.style.height = unit === 'imperial' ? el.dataset.impHeight! : el.dataset.metHeight!;
+      });
+    });
+  }
+</script>

@@ -1,14 +1,19 @@
 ---
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ct-hero">
   <div class="ct-hero-bg"></div>
   <div class="inner">
-    <div class="ct-hero-eyebrow">Contact</div>
-    <h1>Get in<br><span class="blue">Touch</span></h1>
+    <div class="ct-hero-eyebrow">{t('contact.hero.eyebrow')}</div>
+    <h1><Fragment set:html={t('contact.hero.title')} /></h1>
     <p class="ct-hero-desc">
-      Have a question about our welding systems or need technical support?
-      Our team is ready to help.
+      {t('contact.hero.desc')}
     </p>
   </div>
 </section>
@@ -79,7 +84,7 @@
     margin-bottom: 16px;
   }
 
-  .blue { color: var(--sapphire); }
+  h1 :global(.blue) { color: var(--sapphire); }
 
   .ct-hero-desc {
     font-size: 1.05rem;

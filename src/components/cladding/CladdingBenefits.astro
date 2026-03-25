@@ -1,15 +1,20 @@
 ---
 import { Sparkles, Thermometer, Gauge, TrendingUp, ShieldCheck, Wind, Settings, Timer } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 
 const benefits = [
-  { icon: 'Sparkles', title: 'Slag-Free Welds', desc: 'No interpass cleaning required — significantly reducing cycle time and rework.' },
-  { icon: 'Thermometer', title: 'Lowest Heat Input', desc: 'Minimal thermal distortion preserving substrate material properties.' },
-  { icon: 'Gauge', title: 'Lowest Dilution', desc: 'Maintains overlay chemistry with minimal base metal mixing.' },
-  { icon: 'TrendingUp', title: 'Highest Deposition', titleImp: 'up to 20 lbs/hr', titleMet: 'up to 9.1 kg/hr', desc: 'Outperforming all comparable overlay cladding processes.' },
-  { icon: 'ShieldCheck', title: 'Enhanced Corrosion Resistance', desc: 'Superior alloy integrity through controlled heat and dilution.' },
-  { icon: 'Wind', title: 'Minimal Fumes & Defects', desc: 'Cleaner process environment with significantly reduced weld defects.' },
-  { icon: 'Settings', title: 'Simple to Operate', desc: 'Intuitive setup and parameter selection for consistent results.' },
-  { icon: 'Timer', title: 'Increased Arc-On Time', desc: 'Higher productivity with less downtime between passes.' },
+  { icon: 'Sparkles', titleKey: 'cl.ben.b1.title', descKey: 'cl.ben.b1.desc' },
+  { icon: 'Thermometer', titleKey: 'cl.ben.b2.title', descKey: 'cl.ben.b2.desc' },
+  { icon: 'Gauge', titleKey: 'cl.ben.b3.title', descKey: 'cl.ben.b3.desc' },
+  { icon: 'TrendingUp', titleKey: 'cl.ben.b4.title', subImpKey: 'cl.ben.b4.sub.imp', subMetKey: 'cl.ben.b4.sub.met', descKey: 'cl.ben.b4.desc' },
+  { icon: 'ShieldCheck', titleKey: 'cl.ben.b5.title', descKey: 'cl.ben.b5.desc' },
+  { icon: 'Wind', titleKey: 'cl.ben.b6.title', descKey: 'cl.ben.b6.desc' },
+  { icon: 'Settings', titleKey: 'cl.ben.b7.title', descKey: 'cl.ben.b7.desc' },
+  { icon: 'Timer', titleKey: 'cl.ben.b8.title', descKey: 'cl.ben.b8.desc' },
 ];
 
 const iconMap: Record<string, any> = { Sparkles, Thermometer, Gauge, TrendingUp, ShieldCheck, Wind, Settings, Timer };
@@ -17,11 +22,10 @@ const iconMap: Record<string, any> = { Sparkles, Thermometer, Gauge, TrendingUp,
 
 <section class="cl-benefits">
   <div class="inner">
-    <div class="section-eyebrow reveal">Advantages</div>
-    <h2 class="section-title reveal">Why TIP TIG RapidClad?</h2>
+    <div class="section-eyebrow reveal">{t('cl.ben.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('cl.ben.title')}</h2>
     <p class="section-lead reveal">
-      Combining maximum deposition rates with minimal dilution — delivering
-      overlay cladding quality and productivity that no other process can match.
+      {t('cl.ben.desc')}
     </p>
 
     <div class="benefits-grid">
@@ -30,8 +34,8 @@ const iconMap: Record<string, any> = { Sparkles, Thermometer, Gauge, TrendingUp,
         return (
           <div class={`benefit-card reveal reveal-delay-${(i % 3) + 1}`}>
             <div class="benefit-icon"><Icon size={22} /></div>
-            <h3>{b.title}{b.titleImp && <> <span class="u-imp">{b.titleImp}</span><span class="u-met">{b.titleMet}</span></>}</h3>
-            <p>{b.desc}</p>
+            <h3>{t(b.titleKey)}{b.subImpKey && <> <span class="u-imp">{t(b.subImpKey)}</span><span class="u-met">{t(b.subMetKey!)}</span></>}</h3>
+            <p>{t(b.descKey)}</p>
           </div>
         );
       })}

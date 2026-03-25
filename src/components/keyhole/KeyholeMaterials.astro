@@ -1,28 +1,23 @@
 ---
 import { Factory, Cylinder, Wind, Pipette, Cog, Snowflake } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
 
-const materials = [
-  'Low Alloy Steel',
-  'Medium Alloy Steel',
-  'High Alloy Steel',
-  'Duplex',
-  'Super Duplex',
-  'Copper',
-  'Titanium',
-  'Aluminum',
-  '9% Nickel Steel',
-  'Heat-Resistant Alloys',
-  'Galvanized Materials',
-  'Coated Materials',
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
+const materialKeys = [
+  'kh.mat.m1', 'kh.mat.m2', 'kh.mat.m3', 'kh.mat.m4', 'kh.mat.m5', 'kh.mat.m6',
+  'kh.mat.m7', 'kh.mat.m8', 'kh.mat.m9', 'kh.mat.m10', 'kh.mat.m11', 'kh.mat.m12',
 ];
 
 const applications = [
-  { icon: 'Cylinder', title: 'Vessel & Tank Construction' },
-  { icon: 'Pipette', title: 'Continuous Pipe Production' },
-  { icon: 'Wind', title: 'Turbine Production' },
-  { icon: 'Factory', title: 'Pipeline Construction' },
-  { icon: 'Cog', title: 'Special Machine Construction' },
-  { icon: 'Snowflake', title: 'LNG & Cryogenic' },
+  { icon: 'Cylinder', titleKey: 'kh.mat.app1' },
+  { icon: 'Pipette', titleKey: 'kh.mat.app2' },
+  { icon: 'Wind', titleKey: 'kh.mat.app3' },
+  { icon: 'Factory', titleKey: 'kh.mat.app4' },
+  { icon: 'Cog', titleKey: 'kh.mat.app5' },
+  { icon: 'Snowflake', titleKey: 'kh.mat.app6' },
 ];
 
 const appIconMap: Record<string, any> = { Factory, Cylinder, Wind, Pipette, Cog, Snowflake };
@@ -32,25 +27,25 @@ const appIconMap: Record<string, any> = { Factory, Cylinder, Wind, Pipette, Cog,
   <div class="inner">
     <div class="kh-mat-grid">
       <div class="kh-mat-left">
-        <div class="section-eyebrow reveal">Compatibility</div>
-        <h2 class="section-title reveal">Works With All<br>Major Alloys</h2>
+        <div class="section-eyebrow reveal">{t('kh.mat.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('kh.mat.title')}<br>{t('kh.mat.title2')}</h2>
         <div class="mat-tags reveal">
-          {materials.map((m) => (
-            <span class="mat-tag">{m}</span>
+          {materialKeys.map((key) => (
+            <span class="mat-tag">{t(key)}</span>
           ))}
         </div>
       </div>
 
       <div class="kh-mat-right">
-        <div class="section-eyebrow reveal">Applications</div>
-        <h2 class="section-title reveal">Built for<br>Demanding Industries</h2>
+        <div class="section-eyebrow reveal">{t('kh.mat.app.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('kh.mat.app.title')}<br>{t('kh.mat.app.title2')}</h2>
         <div class="app-list reveal">
           {applications.map((app) => {
             const Icon = appIconMap[app.icon];
             return (
               <div class="app-item">
                 <div class="app-icon"><Icon size={20} /></div>
-                <span>{app.title}</span>
+                <span>{t(app.titleKey)}</span>
               </div>
             );
           })}

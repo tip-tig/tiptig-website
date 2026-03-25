@@ -1,13 +1,17 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="cl-video">
   <div class="inner">
-    <div class="section-eyebrow reveal">See It in Action</div>
-    <h2 class="section-title reveal">The RapidClad Cladding Process</h2>
+    <div class="section-eyebrow reveal">{t('cl.video.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('cl.video.title')}</h2>
     <p class="section-lead reveal">
-      Watch TIP TIG TwinWire RapidClad 2.0 apply Inconel 625 overlay cladding —
-      with the highest deposition rates and lowest dilution on the market.
+      {t('cl.video.desc')}
     </p>
 
     <div class="video-wrapper reveal">

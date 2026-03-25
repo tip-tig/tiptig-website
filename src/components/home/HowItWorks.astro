@@ -1,36 +1,40 @@
 ---
 import { Zap, Thermometer, Sparkles } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="section section-alt">
   <div class="inner">
-    <div class="section-eyebrow reveal">The Process</div>
-    <h2 class="section-title reveal">How TIP TIG Works</h2>
+    <div class="section-eyebrow reveal">{t('how.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('how.title')}</h2>
     <p class="section-lead reveal">
-      A unique combination of precision TIG arc and vibrating wire feed that fundamentally
-      changes welding economics and quality.
+      {t('how.desc')}
     </p>
 
     <div class="steps-grid">
       <div class="step-card reveal reveal-delay-1">
         <span class="step-num">Step 01</span>
         <span class="step-icon"><Zap size={28} color="var(--sapphire)" /></span>
-        <div class="step-title">Dynamic Wire Feed</div>
-        <p class="step-desc">A controlled oscillating mechanism introduces filler wire with a vibrating motion directly into the arc — dramatically increasing deposition rates compared to standard cold wire TIG.</p>
+        <div class="step-title">{t('how.step1.title')}</div>
+        <p class="step-desc">{t('how.step1.desc')}</p>
       </div>
 
       <div class="step-card reveal reveal-delay-2">
         <span class="step-num">Step 02</span>
         <span class="step-icon"><Thermometer size={28} color="var(--sapphire)" /></span>
-        <div class="step-title">Minimum Heat Input</div>
-        <p class="step-desc">Electrode negative polarity disperses heat into the base metal, acting as a natural heat sink. The result: minimum HAZ, less distortion, and superior mechanical properties on every alloy.</p>
+        <div class="step-title">{t('how.step2.title')}</div>
+        <p class="step-desc">{t('how.step2.desc')}</p>
       </div>
 
       <div class="step-card reveal reveal-delay-3">
         <span class="step-num">Step 03</span>
         <span class="step-icon"><Sparkles size={28} color="var(--sapphire)" /></span>
-        <div class="step-title">Zero Slag, Zero Rework</div>
-        <p class="step-desc">No interpass cleaning required. Maximum arc-on time. Consistent, repeatable weld quality from aerospace-grade alloys to heavy industrial steel — first time, every time.</p>
+        <div class="step-title">{t('how.step3.title')}</div>
+        <p class="step-desc">{t('how.step3.desc')}</p>
       </div>
     </div>
   </div>

@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const bars = [
   { label: 'Standard TIG', imp: 4.2, met: 1.9, highlight: false },
   { label: 'TIG Hot Wire', imp: 7.7, met: 3.5, highlight: false },
@@ -37,16 +43,14 @@ const maxMet = 10;
       </div>
 
       <div class="cl-dep-text">
-        <div class="section-eyebrow reveal">Performance</div>
-        <h2 class="section-title reveal">Unmatched<br>Deposition Rate</h2>
+        <div class="section-eyebrow reveal">{t('cl.dep.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('cl.dep.title')}<br>{t('cl.dep.title2')}</h2>
         <p class="section-lead reveal">
-          The TwinWire RapidClad 2.0 achieves the highest deposition rates
-          in the weld overlay cladding market — with dynamic wire feed
-          maintaining optimal temperature and dilution control at every speed.
+          {t('cl.dep.desc')}
         </p>
         <div class="dep-metric reveal">
-          <span class="metric-value">4.8×</span>
-          <span class="metric-label">faster deposition than standard TIG</span>
+          <span class="metric-value">4.8&times;</span>
+          <span class="metric-label">{t('cl.dep.metric.label')}</span>
         </div>
       </div>
     </div>

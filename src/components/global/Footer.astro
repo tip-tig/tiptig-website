@@ -1,29 +1,36 @@
 ---
 import { Youtube, Linkedin, Instagram, Facebook } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
+
 const currentYear = new Date().getFullYear();
 
 const cols = [
   {
-    title: 'Products',
+    title: t('footer.products'),
     links: [
-      { label: 'TIP TIG Systems', href: '/products' },
-      { label: 'Where to Buy', href: '/contact' },
+      { label: t('footer.products.systems'), href: lp('/products') },
+      { label: t('footer.products.buy'), href: lp('/contact') },
     ],
   },
   {
-    title: 'Technology',
+    title: t('footer.technology'),
     links: [
-      { label: 'How TIP TIG Works', href: '/technology' },
-      { label: 'Benefits & Results', href: '/technology#benefits' },
-      { label: 'Industries', href: '/industries' },
+      { label: t('footer.tech.how'), href: lp('/technology') },
+      { label: t('footer.tech.benefits'), href: lp('/technology#benefits') },
+      { label: t('footer.tech.industries'), href: lp('/industries') },
     ],
   },
   {
-    title: 'Company',
+    title: t('footer.company'),
     links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Support', href: '/support' },
-      { label: 'Contact', href: '/contact' },
+      { label: t('footer.com.about'), href: lp('/about') },
+      { label: t('footer.com.support'), href: lp('/support') },
+      { label: t('footer.com.contact'), href: lp('/contact') },
     ],
   },
 ];
@@ -32,7 +39,7 @@ const cols = [
 <footer>
   <!-- Brand col -->
   <div class="footer-brand">
-    <a href="/" class="footer-logo">
+    <a href={lp('/')} class="footer-logo">
       <img src="/images/logo-red-blue_new.webp" alt="TIP TIG" />
     </a>
 <div class="footer-social">
@@ -61,13 +68,13 @@ const cols = [
   <!-- Contact info -->
   <div class="footer-contact">
     <div class="footer-address">
-      <div class="footer-col-title">Global Headquarters</div>
+      <div class="footer-col-title">{t('footer.hq')}</div>
       <p>Baumayrweg 4<br>4631 Krenglbach<br>Austria</p>
       <a href="mailto:office@tiptig.com">office@tiptig.com</a>
     </div>
     <div class="footer-address">
-      <div class="footer-col-title">North America / USA</div>
-      <p>Looking for support in the US?</p>
+      <div class="footer-col-title">{t('footer.usa')}</div>
+      <p>{t('footer.usa.text')}</p>
       <a href="https://tiptigusa.com" target="_blank" rel="noopener" class="footer-usa-btn">tiptigusa.com</a>
     </div>
   </div>
@@ -75,13 +82,13 @@ const cols = [
   <!-- Bottom bar -->
   <div class="footer-bottom">
     <span class="footer-bottom-text">
-      © {currentYear} Ing. Siegfried Plasch — Krenglbach, Austria. All rights reserved.
+      © {currentYear} Ing. Siegfried Plasch — Krenglbach, Austria. {t('footer.rights')}
     </span>
     <div class="footer-bottom-links">
-      <a href="/legal">Legal Notice</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/gtc">GTC</a>
-      <a href="/support/warranty">Warranty</a>
+      <a href={lp('/legal')}>{t('footer.legal')}</a>
+      <a href={lp('/privacy')}>{t('footer.privacy')}</a>
+      <a href={lp('/gtc')}>{t('footer.gtc')}</a>
+      <a href={lp('/support/warranty')}>{t('footer.warranty')}</a>
     </div>
   </div>
 </footer>

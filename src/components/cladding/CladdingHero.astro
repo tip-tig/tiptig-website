@@ -1,38 +1,41 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="cl-hero">
   <div class="cl-hero-bg"></div>
   <div class="inner">
-    <div class="cl-hero-eyebrow">TIP TIG RapidClad</div>
+    <div class="cl-hero-eyebrow">{t('cl.hero.eyebrow')}</div>
     <h1>TwinWire<br><span class="blue">RapidClad 2.0</span></h1>
-    <p class="cl-hero-sub">Weld Overlay Cladding</p>
+    <p class="cl-hero-sub">{t('cl.hero.sub')}</p>
     <p class="cl-hero-desc">
-      The highest standard in weld overlay cladding — maintaining the lowest
-      temperature and dilution rates with the highest deposition rates
-      and welding speeds on the market.
+      {t('cl.hero.desc')}
     </p>
     <div class="cl-hero-controls">
       <div class="unit-toggle" id="unit-toggle">
-        <button class="unit-btn active" data-unit="imperial">Imperial</button>
-        <button class="unit-btn" data-unit="metric">Metric</button>
+        <button class="unit-btn active" data-unit="imperial">{t('tech.unit.imperial')}</button>
+        <button class="unit-btn" data-unit="metric">{t('tech.unit.metric')}</button>
       </div>
 
       <div class="cl-hero-stats">
       <div class="cl-stat">
         <span class="cl-stat-value u-imp">20 lbs/hr</span>
-        <span class="cl-stat-value u-met">9.1 kg/hr</span>
-        <span class="cl-stat-label">Deposition Rate</span>
+        <span class="cl-stat-value u-met">9,1 kg/hr</span>
+        <span class="cl-stat-label">{t('cl.hero.stat1.label')}</span>
       </div>
       <div class="cl-stat-divider"></div>
       <div class="cl-stat">
         <span class="cl-stat-value">80%</span>
-        <span class="cl-stat-label">Reduced Dilution</span>
+        <span class="cl-stat-label">{t('cl.hero.stat2.label')}</span>
       </div>
       <div class="cl-stat-divider"></div>
       <div class="cl-stat">
         <span class="cl-stat-value">300%</span>
-        <span class="cl-stat-label">Faster than TIG</span>
+        <span class="cl-stat-label">{t('cl.hero.stat3.label')}</span>
       </div>
       </div>
     </div>

@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const bars = [
   { label: 'MIG', imp: 23.4, met: 0.92, color: 'gray' },
   { label: 'TIG', imp: 19.3, met: 0.76, color: 'gray' },
@@ -41,16 +47,15 @@ const maxMet = 1.0;
       </div>
 
       <div class="heat-text">
-        <div class="section-eyebrow reveal">Heat Input</div>
-        <h2 class="section-title reveal">Lowest Heat Input<br>of Any Process</h2>
+        <div class="section-eyebrow reveal">{t('tech.hi.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('tech.hi.title')}<br>{t('tech.hi.title2')}</h2>
         <p class="section-lead reveal">
-          <span class="u-imp">At just 11.9 kJ/in, TIP TIG delivers nearly half the heat input of MIG welding</span>
-          <span class="u-met">At just 0.47 kJ/mm, TIP TIG delivers nearly half the heat input of MIG welding</span>
-          and significantly less than conventional TIG — reducing distortion, preserving
-          material properties, and improving overall weld quality.
+          <span class="u-imp">{t('tech.hi.desc.imp')}</span>
+          <span class="u-met">{t('tech.hi.desc.met')}</span>
+          {' '}{t('tech.hi.desc2')}
         </p>
         <div class="heat-formula reveal">
-          <span class="formula-label">Calculated per ASME IX 2017</span>
+          <span class="formula-label">{t('tech.hi.formula')}</span>
           <div class="formula-math">
             <span class="formula-var">H</span>
             <span class="formula-eq">=</span>

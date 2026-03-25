@@ -1,14 +1,19 @@
 ---
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ab-hero">
   <div class="ab-hero-bg"></div>
   <div class="inner">
-    <div class="ab-hero-eyebrow">About TIP TIG</div>
-    <h1>Austrian Engineering.<br><span class="blue">Global Impact.</span></h1>
+    <div class="ab-hero-eyebrow">{t('about.hero.eyebrow')}</div>
+    <h1><Fragment set:html={t('about.hero.title')} /></h1>
     <p class="ab-hero-desc">
-      Since 1997, TIP TIG has been redefining what's possible in TIG welding —
-      from a single vision in Upper Austria to installations on every continent.
+      {t('about.hero.desc')}
     </p>
   </div>
 </section>
@@ -79,7 +84,7 @@
     margin-bottom: 16px;
   }
 
-  .blue { color: var(--sapphire); }
+  h1 :global(.blue) { color: var(--sapphire); }
 
   .ab-hero-desc {
     font-size: 1.05rem;

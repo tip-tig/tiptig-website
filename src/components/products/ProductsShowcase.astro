@@ -1,5 +1,11 @@
 ---
 import { categories, products, getProductsByCategory } from '../../data/products';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ps-section">
@@ -12,16 +18,16 @@ import { categories, products, getProductsByCategory } from '../../data/products
         </div>
         <div class="ps-grid">
           {getProductsByCategory(cat.slug).map((product, j) => (
-            <a href={product.comingSoon ? undefined : `/products/${product.slug}`}
+            <a href={product.comingSoon ? undefined : lp(`/products/${product.slug}`)}
                class={`ps-card ${product.comingSoon ? 'ps-coming-soon' : ''} reveal ${j > 0 ? `reveal-delay-${Math.min(j, 2)}` : ''}`}>
               <div class="ps-card-img">
                 <img src={product.image} alt={product.name} loading="lazy" />
-                {product.comingSoon && <span class="ps-soon-badge">Coming Soon</span>}
+                {product.comingSoon && <span class="ps-soon-badge">{t('products.showcase.comingSoon')}</span>}
               </div>
               <div class="ps-card-body">
                 <h3>{product.name}</h3>
                 <p>{product.tagline}</p>
-                {!product.comingSoon && <span class="ps-card-link">View Details →</span>}
+                {!product.comingSoon && <span class="ps-card-link">{t('products.showcase.viewDetails')}</span>}
               </div>
             </a>
           ))}

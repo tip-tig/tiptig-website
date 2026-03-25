@@ -1,53 +1,53 @@
 ---
 import { Target, Lightbulb, Handshake, Leaf } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ab-values">
   <div class="inner">
     <div class="ab-values-header reveal">
-      <div class="section-eyebrow">What Drives Us</div>
-      <h2 class="section-title">Engineering Without<br>Compromise.</h2>
+      <div class="section-eyebrow">{t('about.values.eyebrow')}</div>
+      <h2 class="section-title"><Fragment set:html={t('about.values.title')} /></h2>
       <p class="section-lead">
-        Every decision we make — from component design to partner selection —
-        is guided by a commitment to technical excellence and long-term value.
+        {t('about.values.lead')}
       </p>
     </div>
 
     <div class="ab-values-grid">
       <div class="ab-value-card reveal">
         <div class="ab-value-icon"><Target size={22} /></div>
-        <h3>Precision First</h3>
+        <h3>{t('about.values.precision')}</h3>
         <p>
-          Our wire oscillation technology is engineered to sub-millimeter accuracy.
-          Precision isn't a feature — it's the foundation of every weld we enable.
+          {t('about.values.precision.desc')}
         </p>
       </div>
 
       <div class="ab-value-card reveal reveal-delay-1">
         <div class="ab-value-icon"><Lightbulb size={22} /></div>
-        <h3>In-House Innovation</h3>
+        <h3>{t('about.values.innovation')}</h3>
         <p>
-          Over 25 years of R&D, manufacturing, and assembly — all under one roof
-          in Austria. We control every step because quality demands it.
+          {t('about.values.innovation.desc')}
         </p>
       </div>
 
       <div class="ab-value-card reveal reveal-delay-2">
         <div class="ab-value-icon"><Handshake size={22} /></div>
-        <h3>Partnership, Not Sales</h3>
+        <h3>{t('about.values.partnership')}</h3>
         <p>
-          Our Certified Partners don't just sell equipment —
-          they provide training, support, and local expertise.
-          We grow together.
+          {t('about.values.partnership.desc')}
         </p>
       </div>
 
       <div class="ab-value-card reveal reveal-delay-3">
         <div class="ab-value-icon"><Leaf size={22} /></div>
-        <h3>Sustainable Welding</h3>
+        <h3>{t('about.values.sustainable')}</h3>
         <p>
-          Lower heat input, fewer reworks, minimal fume emissions.
-          Better welding shouldn't come at the expense of people or the environment.
+          {t('about.values.sustainable.desc')}
         </p>
       </div>
     </div>

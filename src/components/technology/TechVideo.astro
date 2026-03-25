@@ -1,13 +1,17 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="tv-video" id="video">
   <div class="inner">
-    <div class="section-eyebrow reveal">See It in Action</div>
-    <h2 class="section-title reveal">Watch How TIP TIG Works</h2>
+    <div class="section-eyebrow reveal">{t('tech.tv.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('tech.tv.title')}</h2>
     <p class="section-lead reveal">
-      The dynamic wire feed in motion — oscillating at up to 4 meters per second,
-      agitating the weld puddle for porosity-free, X-ray quality results.
+      {t('tech.tv.desc')}
     </p>
 
     <div class="video-wrapper reveal">

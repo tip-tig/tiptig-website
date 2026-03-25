@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { products, getProductBySlug } from '../../data/products';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 
 export function getStaticPaths() {
   return products
@@ -65,13 +70,13 @@ const jsonLd = {
             </div>
           ))}
           <div class="pd-gallery-nav">
-            <button class="pd-gallery-arrow pd-gallery-prev" aria-label="Previous image">‹</button>
+            <button class="pd-gallery-arrow pd-gallery-prev" aria-label={t('product.gallery.prev')}>&#8249;</button>
             <div class="pd-gallery-dots">
               {product.images.map((_, i) => (
                 <button class={`pd-gallery-dot ${i === 0 ? 'is-active' : ''}`} data-index={i} aria-label={`Image ${i + 1}`} />
               ))}
             </div>
-            <button class="pd-gallery-arrow pd-gallery-next" aria-label="Next image">›</button>
+            <button class="pd-gallery-arrow pd-gallery-next" aria-label={t('product.gallery.next')}>&#8250;</button>
           </div>
         </div>
       ) : (
@@ -87,11 +92,11 @@ const jsonLd = {
     <div class="pd-inner">
       <div class="pd-two-col">
         <div class="pd-desc reveal">
-          <h2>Overview</h2>
+          <h2>{t('product.overview')}</h2>
           <p>{product.description}</p>
         </div>
         <div class="pd-features reveal reveal-delay-1">
-          <h2>Key Features</h2>
+          <h2>{t('product.features')}</h2>
           <div class="pd-features-list">
             {product.features.map((f, i) => (
               <div class="pd-feature">
@@ -126,11 +131,11 @@ const jsonLd = {
     <section class="pd-specs">
       <div class="pd-inner pd-specs-inner">
         <div class="pd-specs-header reveal">
-          <h2>Technical Specifications</h2>
+          <h2>{t('product.specs')}</h2>
           {product.specs.some(s => s.imperial) && (
             <div class="pd-unit-toggle" id="unitToggle">
-              <button class="pd-unit-btn is-active" data-unit="metric">Metric</button>
-              <button class="pd-unit-btn" data-unit="imperial">Imperial</button>
+              <button class="pd-unit-btn is-active" data-unit="metric">{t('product.metric')}</button>
+              <button class="pd-unit-btn" data-unit="imperial">{t('product.imperial')}</button>
             </div>
           )}
         </div>
@@ -149,8 +154,8 @@ const jsonLd = {
   <!-- CTA -->
   <section class="pd-cta">
     <div class="pd-inner pd-cta-inner reveal">
-      <p class="pd-cta-text">Questions about the {product.name}?</p>
-      <a href="/contact" class="pd-cta-link">Get in touch →</a>
+      <p class="pd-cta-text">{t('product.cta.question')} {product.name}?</p>
+      <a href={lp('/contact')} class="pd-cta-link">{t('product.cta.contact')}</a>
     </div>
   </section>
 

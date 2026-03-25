@@ -1,30 +1,25 @@
 ---
 import { Waves, Circle, Wind, Cog, Pipette, Hammer } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 
 const applications = [
-  { icon: 'Waves', title: 'Subsea Components' },
-  { icon: 'Circle', title: 'Bearing Seal Surfaces' },
-  { icon: 'Wind', title: 'Turbine Blades' },
-  { icon: 'Cog', title: 'Valve & Pump Components' },
-  { icon: 'Pipette', title: 'CRA Pipes & Elbows' },
-  { icon: 'Hammer', title: 'Forging Dies & Mining Bits' },
+  { icon: 'Waves', titleKey: 'cl.app.a1' },
+  { icon: 'Circle', titleKey: 'cl.app.a2' },
+  { icon: 'Wind', titleKey: 'cl.app.a3' },
+  { icon: 'Cog', titleKey: 'cl.app.a4' },
+  { icon: 'Pipette', titleKey: 'cl.app.a5' },
+  { icon: 'Hammer', titleKey: 'cl.app.a6' },
 ];
 
 const appIconMap: Record<string, any> = { Waves, Circle, Wind, Cog, Pipette, Hammer };
 
-const industries = [
-  'Oil & Gas',
-  'Aerospace',
-  'Petrochemical',
-  'Power Generation',
-  'Nuclear',
-  'Mining',
-  'Shipbuilding',
-  'Food & Dairy',
-  'Heat Exchanger Mfg.',
-  'Chemical Processing',
-  'Desalination',
-  'Pulp & Paper',
+const industryKeys = [
+  'cl.app.ind1', 'cl.app.ind2', 'cl.app.ind3', 'cl.app.ind4', 'cl.app.ind5', 'cl.app.ind6',
+  'cl.app.ind7', 'cl.app.ind8', 'cl.app.ind9', 'cl.app.ind10', 'cl.app.ind11', 'cl.app.ind12',
 ];
 ---
 
@@ -32,15 +27,15 @@ const industries = [
   <div class="inner">
     <div class="cl-app-grid">
       <div class="cl-app-left">
-        <div class="section-eyebrow reveal">Applications</div>
-        <h2 class="section-title reveal">Built for Critical<br>Components</h2>
+        <div class="section-eyebrow reveal">{t('cl.app.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('cl.app.title')}<br>{t('cl.app.title2')}</h2>
         <div class="app-list reveal">
           {applications.map((app) => {
             const Icon = appIconMap[app.icon];
             return (
               <div class="app-item">
                 <div class="app-icon"><Icon size={20} /></div>
-                <span>{app.title}</span>
+                <span>{t(app.titleKey)}</span>
               </div>
             );
           })}
@@ -48,11 +43,11 @@ const industries = [
       </div>
 
       <div class="cl-app-right">
-        <div class="section-eyebrow reveal">Industries</div>
-        <h2 class="section-title reveal">Trusted Across<br>Demanding Sectors</h2>
+        <div class="section-eyebrow reveal">{t('cl.app.ind.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('cl.app.ind.title')}<br>{t('cl.app.ind.title2')}</h2>
         <div class="ind-tags reveal">
-          {industries.map((ind) => (
-            <span class="ind-tag">{ind}</span>
+          {industryKeys.map((key) => (
+            <span class="ind-tag">{t(key)}</span>
           ))}
         </div>
       </div>

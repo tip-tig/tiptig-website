@@ -1,15 +1,20 @@
 ---
 import { Layers, Sparkles, Gauge, Thermometer, Timer, Settings, Wrench, CircleDollarSign } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 
 const benefits = [
-  { icon: 'Layers', title: 'Full Penetration', titleImp: 'up to ½ in', titleMet: 'up to 12 mm', desc: 'Single-pass keyhole welding without multi-pass requirements.' },
-  { icon: 'Sparkles', title: 'No Spatter', desc: 'Clean welds with very flat layer surfaces — minimal post-processing.' },
-  { icon: 'Gauge', title: '600% Faster', desc: 'Dramatically higher welding speeds compared to traditional TIG.' },
-  { icon: 'Thermometer', title: 'Minimal HAZ', desc: 'Low heat input zone preserves material properties and reduces distortion.' },
-  { icon: 'Settings', title: 'Almost No Joint Prep', desc: 'Requires almost no edge bevelling — saving significant preparation time.' },
-  { icon: 'Timer', title: 'Fast Setup', desc: 'Easy parameter selection and simple electrode/spare part changing.' },
-  { icon: 'Wrench', title: 'All-Position Welding', desc: 'Flexible welding position capability for thin and thick sheets.' },
-  { icon: 'CircleDollarSign', title: 'Reduced Consumable Costs', desc: 'Uses as little as 12% of the shielding gas customarily required.' },
+  { icon: 'Layers', titleKey: 'kh.ben.b1.title', subImpKey: 'kh.ben.b1.sub.imp', subMetKey: 'kh.ben.b1.sub.met', descKey: 'kh.ben.b1.desc' },
+  { icon: 'Sparkles', titleKey: 'kh.ben.b2.title', descKey: 'kh.ben.b2.desc' },
+  { icon: 'Gauge', titleKey: 'kh.ben.b3.title', descKey: 'kh.ben.b3.desc' },
+  { icon: 'Thermometer', titleKey: 'kh.ben.b4.title', descKey: 'kh.ben.b4.desc' },
+  { icon: 'Settings', titleKey: 'kh.ben.b5.title', descKey: 'kh.ben.b5.desc' },
+  { icon: 'Timer', titleKey: 'kh.ben.b6.title', descKey: 'kh.ben.b6.desc' },
+  { icon: 'Wrench', titleKey: 'kh.ben.b7.title', descKey: 'kh.ben.b7.desc' },
+  { icon: 'CircleDollarSign', titleKey: 'kh.ben.b8.title', descKey: 'kh.ben.b8.desc' },
 ];
 
 const iconMap: Record<string, any> = { Layers, Sparkles, Gauge, Thermometer, Timer, Settings, Wrench, CircleDollarSign };
@@ -17,11 +22,10 @@ const iconMap: Record<string, any> = { Layers, Sparkles, Gauge, Thermometer, Tim
 
 <section class="kh-benefits">
   <div class="inner">
-    <div class="section-eyebrow reveal">Advantages</div>
-    <h2 class="section-title reveal">Why TIP TIG focus?</h2>
+    <div class="section-eyebrow reveal">{t('kh.ben.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('kh.ben.title')}</h2>
     <p class="section-lead reveal">
-      Combining keyhole penetration with TIG-quality results — faster, cleaner,
-      and more cost-effective than any competing process.
+      {t('kh.ben.desc')}
     </p>
 
     <div class="benefits-grid">
@@ -30,8 +34,8 @@ const iconMap: Record<string, any> = { Layers, Sparkles, Gauge, Thermometer, Tim
         return (
           <div class={`benefit-card reveal reveal-delay-${(i % 3) + 1}`}>
             <div class="benefit-icon"><Icon size={22} /></div>
-            <h3>{b.title}{b.titleImp && <> <span class="u-imp">{b.titleImp}</span><span class="u-met">{b.titleMet}</span></>}</h3>
-            <p>{b.desc}</p>
+            <h3>{t(b.titleKey)}{b.subImpKey && <> <span class="u-imp">{t(b.subImpKey)}</span><span class="u-met">{t(b.subMetKey!)}</span></>}</h3>
+            <p>{t(b.descKey)}</p>
           </div>
         );
       })}

@@ -1,58 +1,67 @@
 ---
 import { Calculator, Download, Wrench, Shield, BookOpen, Mail, Monitor } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="sp-grid-section">
   <div class="inner">
     <div class="sp-grid">
 
-      <a href="/support/wire-speed-calculator" class="sp-card reveal">
+      <a href={lp('/support/wire-speed-calculator')} class="sp-card reveal">
         <div class="sp-card-icon"><Calculator size={24} /></div>
-        <h3>Wire Speed Calculator</h3>
-        <p>Convert wire feed speed between m/min and IPM. Interactive tool for both old and new control panels.</p>
-        <span class="sp-card-link">Open Calculator →</span>
+        <h3>{t('support.card.wirespeed')}</h3>
+        <p>{t('support.card.wirespeed.desc')}</p>
+        <span class="sp-card-link">{t('support.card.wirespeed.link')}</span>
       </a>
 
-      <a href="/support/software-update" class="sp-card reveal reveal-delay-1">
+      <a href={lp('/support/software-update')} class="sp-card reveal reveal-delay-1">
         <div class="sp-card-icon"><Download size={24} /></div>
-        <h3>Software Updates</h3>
-        <p>Download the latest firmware for your TIP TIG control panel. Release notes and installation instructions included.</p>
-        <span class="sp-card-link">View Updates →</span>
+        <h3>{t('support.card.software')}</h3>
+        <p>{t('support.card.software.desc')}</p>
+        <span class="sp-card-link">{t('support.card.software.link')}</span>
       </a>
 
       <a href="https://repair.tiptig.com" target="_blank" rel="noopener" class="sp-card reveal reveal-delay-2">
         <div class="sp-card-icon"><Wrench size={24} /></div>
-        <h3>Service Instructions</h3>
-        <p>Step-by-step repair and maintenance guides for control boards, wire feeders, and portable devices.</p>
-        <span class="sp-card-link">Open Service Portal →</span>
+        <h3>{t('support.card.service')}</h3>
+        <p>{t('support.card.service.desc')}</p>
+        <span class="sp-card-link">{t('support.card.service.link')}</span>
       </a>
 
-      <a href="/support/control-panel" class="sp-card reveal">
+      <a href={lp('/support/control-panel')} class="sp-card reveal">
         <div class="sp-card-icon"><Monitor size={24} /></div>
-        <h3>Control Panel Guide</h3>
-        <p>Detailed reference for the TIP TIG control panel — wire speed, frequency, and hot wire amps displays explained.</p>
-        <span class="sp-card-link">View Guide →</span>
+        <h3>{t('support.card.controlpanel')}</h3>
+        <p>{t('support.card.controlpanel.desc')}</p>
+        <span class="sp-card-link">{t('support.card.controlpanel.link')}</span>
       </a>
 
-      <a href="/support/warranty" class="sp-card reveal">
+      <a href={lp('/support/warranty')} class="sp-card reveal">
         <div class="sp-card-icon"><Shield size={24} /></div>
-        <h3>Warranty</h3>
-        <p>Coverage details for hot-wire modules, wire feeders, and torches. Learn how to submit a warranty claim.</p>
-        <span class="sp-card-link">View Warranty →</span>
+        <h3>{t('support.card.warranty')}</h3>
+        <p>{t('support.card.warranty.desc')}</p>
+        <span class="sp-card-link">{t('support.card.warranty.link')}</span>
       </a>
 
-      <a href="/support/manuals" class="sp-card reveal reveal-delay-1">
+      <a href={lp('/support/manuals')} class="sp-card reveal reveal-delay-1">
         <div class="sp-card-icon"><BookOpen size={24} /></div>
-        <h3>Owner's Manuals</h3>
-        <p>Request operating manuals and technical documentation for your specific TIP TIG system and serial number.</p>
-        <span class="sp-card-link">Request Manual →</span>
+        <h3>{t('support.card.manuals')}</h3>
+        <p>{t('support.card.manuals.desc')}</p>
+        <span class="sp-card-link">{t('support.card.manuals.link')}</span>
       </a>
 
-      <a href="/contact" class="sp-card reveal reveal-delay-2">
+      <a href={lp('/contact')} class="sp-card reveal reveal-delay-2">
         <div class="sp-card-icon"><Mail size={24} /></div>
-        <h3>Contact Support</h3>
-        <p>Can't find what you need? Reach out to our engineering team directly for personalized technical assistance.</p>
-        <span class="sp-card-link">Get in Touch →</span>
+        <h3>{t('support.card.contact')}</h3>
+        <p>{t('support.card.contact.desc')}</p>
+        <span class="sp-card-link">{t('support.card.contact.link')}</span>
       </a>
 
     </div>

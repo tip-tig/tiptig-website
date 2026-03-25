@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const logos = [
   { src: '/images/logoslider/NASA_fertig.png', alt: 'NASA' },
   { src: '/images/logoslider/Boeing_fertig.png', alt: 'Boeing' },
@@ -11,7 +17,7 @@ const logos = [
 ---
 
 <div class="logo-bar">
-  <span class="logo-bar-label">Engineered for those who won't compromise</span>
+  <span class="logo-bar-label">{t('logobar.label')}</span>
   <div class="logo-bar-logos">
     {logos.map((logo) => (
       <img src={logo.src} alt={logo.alt} class="logo-bar-img" loading="lazy" />

@@ -1,33 +1,39 @@
 ---
 import { MapPin, Mail, Phone } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ct-form">
   <div class="inner">
     <div class="ct-form-grid">
       <div class="ct-info">
-        <div class="section-eyebrow reveal">Reach Us</div>
-        <h2 class="section-title reveal">Head Office</h2>
+        <div class="section-eyebrow reveal">{t('contact.form.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('contact.form.title')}</h2>
 
         <div class="info-cards">
           <div class="info-card reveal">
             <div class="info-icon"><MapPin size={20} /></div>
             <div>
-              <strong>Address</strong>
+              <strong>{t('contact.form.address')}</strong>
               <span>Baumayrweg 4<br>4631 Krenglbach, Austria</span>
             </div>
           </div>
           <div class="info-card reveal reveal-delay-1">
             <div class="info-icon"><Mail size={20} /></div>
             <div>
-              <strong>Email</strong>
+              <strong>{t('contact.form.email')}</strong>
               <a href="mailto:office@tiptig.com">office@tiptig.com</a>
             </div>
           </div>
           <div class="info-card reveal reveal-delay-2">
             <div class="info-icon"><Phone size={20} /></div>
             <div>
-              <strong>Phone</strong>
+              <strong>{t('contact.form.phone')}</strong>
               <a href="tel:+43720303500">+43 720 303500</a>
             </div>
           </div>
@@ -35,35 +41,35 @@ import { MapPin, Mail, Phone } from '@lucide/astro';
       </div>
 
       <div class="ct-form-card reveal">
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/success">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" action={lp('/success')}>
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Your name" />
+            <label for="name">{t('contact.form.name.label')}</label>
+            <input type="text" id="name" name="name" required placeholder={t('contact.form.name.placeholder')} />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+            <label for="email">{t('contact.form.email.label')}</label>
+            <input type="email" id="email" name="email" required placeholder={t('contact.form.email.placeholder')} />
           </div>
           <div class="form-group">
-            <label for="subject">Subject</label>
+            <label for="subject">{t('contact.form.subject.label')}</label>
             <select id="subject" name="subject">
-              <option value="">Select a topic</option>
-              <option value="sales">Sales Inquiry</option>
-              <option value="support">Technical Support</option>
-              <option value="reseller">Become a Reseller</option>
-              <option value="other">Other</option>
+              <option value="">{t('contact.form.subject.placeholder')}</option>
+              <option value="sales">{t('contact.form.subject.sales')}</option>
+              <option value="support">{t('contact.form.subject.support')}</option>
+              <option value="reseller">{t('contact.form.subject.reseller')}</option>
+              <option value="other">{t('contact.form.subject.other')}</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+            <label for="message">{t('contact.form.message.label')}</label>
+            <textarea id="message" name="message" rows="5" required placeholder={t('contact.form.message.placeholder')}></textarea>
           </div>
           {/* Honeypot – unsichtbar für Menschen, Bots füllen es aus */}
           <div class="hp-wrap" aria-hidden="true" tabindex="-1">
             <label for="website">Website</label>
             <input type="text" id="website" name="website" autocomplete="off" tabindex="-1" />
           </div>
-          <button type="submit" class="btn-submit">Send Message</button>
+          <button type="submit" class="btn-submit">{t('contact.form.submit')}</button>
         </form>
       </div>
     </div>

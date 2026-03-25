@@ -1,5 +1,11 @@
 ---
 import { Building2, Globe, MapPin, Award } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 
 /* ── Haupthändler (Certified Partners) ────────── */
 const mainDealers = [
@@ -60,13 +66,13 @@ const subRegions = [
   <div class="inner">
 
     {/* ── Tier 1: Certified Partners ──────────── */}
-    <div class="section-eyebrow reveal"><span>Certified Partners</span></div>
-    <h2 class="section-title reveal">Our Main Partners</h2>
+    <div class="section-eyebrow reveal"><span>{t('contact.locations.partners.eyebrow')}</span></div>
+    <h2 class="section-title reveal">{t('contact.locations.partners.title')}</h2>
 
     <div class="main-grid">
       {mainDealers.map((d, i) => (
         <div id={`dealer-${d.company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`} class={`main-card reveal ${i > 0 ? `reveal-delay-${Math.min(i % 3, 2)}` : ''}`}>
-          <div class="main-badge"><Award size={13} /> Certified Partner</div>
+          <div class="main-badge"><Award size={13} /> {t('contact.locations.partners.badge')}</div>
           <h3>{d.company}</h3>
           <p class="main-region">{d.region}</p>
           <p class="main-city">{d.city}</p>
@@ -81,8 +87,8 @@ const subRegions = [
 
     {/* ── Tier 2: Regional Distributors ───────── */}
     <div class="sub-header">
-      <div class="section-eyebrow reveal"><span>Regional Distributors</span></div>
-      <h2 class="section-title section-title--sm reveal">Local Support Network</h2>
+      <div class="section-eyebrow reveal"><span>{t('contact.locations.distributors.eyebrow')}</span></div>
+      <h2 class="section-title section-title--sm reveal">{t('contact.locations.distributors.title')}</h2>
     </div>
 
     {subRegions.map((region) => (

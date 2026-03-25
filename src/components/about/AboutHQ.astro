@@ -1,5 +1,11 @@
 ---
 import { MapPin, Wrench, FlaskConical, Package } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ab-hq">
@@ -7,30 +13,28 @@ import { MapPin, Wrench, FlaskConical, Package } from '@lucide/astro';
     <div class="ab-hq-grid">
       <!-- Left: Info -->
       <div class="ab-hq-info reveal">
-        <div class="section-eyebrow">Headquarters</div>
-        <h2 class="section-title">Made in Austria.<br>Delivered Worldwide.</h2>
+        <div class="section-eyebrow">{t('about.hq.eyebrow')}</div>
+        <h2 class="section-title"><Fragment set:html={t('about.hq.title')} /></h2>
         <p class="section-lead">
-          Everything — from initial design to final calibration — happens at our
-          facility in Krenglbach, Upper Austria. This vertical integration
-          ensures every TIP TIG system meets the standards our customers depend on.
+          {t('about.hq.lead')}
         </p>
 
         <div class="ab-hq-features">
           <div class="ab-hq-feature">
             <div class="ab-hq-feat-icon"><FlaskConical size={16} /></div>
-            <span>In-house Research & Development</span>
+            <span>{t('about.hq.rd')}</span>
           </div>
           <div class="ab-hq-feature">
             <div class="ab-hq-feat-icon"><Wrench size={16} /></div>
-            <span>Precision Manufacturing & Assembly</span>
+            <span>{t('about.hq.mfg')}</span>
           </div>
           <div class="ab-hq-feature">
             <div class="ab-hq-feat-icon"><Package size={16} /></div>
-            <span>Quality Control & Global Shipping</span>
+            <span>{t('about.hq.qc')}</span>
           </div>
           <div class="ab-hq-feature">
             <div class="ab-hq-feat-icon"><MapPin size={16} /></div>
-            <span>Baumayrweg 4, 4631 Krenglbach, Austria</span>
+            <span>{t('about.hq.address')}</span>
           </div>
         </div>
       </div>
@@ -43,24 +47,24 @@ import { MapPin, Wrench, FlaskConical, Package } from '@lucide/astro';
             <span class="flag-bar white"></span>
             <span class="flag-bar red"></span>
           </div>
-          <div class="ab-hq-card-label">Austrian Quality</div>
+          <div class="ab-hq-card-label">{t('about.hq.card.label')}</div>
           <div class="ab-hq-card-big">100%</div>
-          <div class="ab-hq-card-sub">Designed, engineered &<br>manufactured in Austria</div>
+          <div class="ab-hq-card-sub"><Fragment set:html={t('about.hq.card.sub')} /></div>
 
           <div class="ab-hq-card-divider"></div>
 
           <div class="ab-hq-card-stats">
             <div>
               <div class="ab-hq-stat-val">25+</div>
-              <div class="ab-hq-stat-label">Years of<br>Innovation</div>
+              <div class="ab-hq-stat-label"><Fragment set:html={t('about.hq.stat.years')} /></div>
             </div>
             <div>
               <div class="ab-hq-stat-val">6</div>
-              <div class="ab-hq-stat-label">Continents<br>Served</div>
+              <div class="ab-hq-stat-label"><Fragment set:html={t('about.hq.stat.continents')} /></div>
             </div>
             <div>
               <div class="ab-hq-stat-val">1</div>
-              <div class="ab-hq-stat-label">Production<br>Facility</div>
+              <div class="ab-hq-stat-label"><Fragment set:html={t('about.hq.stat.facility')} /></div>
             </div>
           </div>
         </div>

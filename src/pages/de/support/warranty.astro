@@ -1,0 +1,547 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ArrowLeft, Shield, Clock, AlertTriangle, Mail } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Garantie — TIP TIG Produktabdeckung"
+  description="TIP TIG Garantieabdeckung: 24 Monate für Heißdraht-Module, 12 Monate für Drahtvorschubgeräte, 6 Monate für Brenner. Erfahren Sie, wie Sie einen Anspruch einreichen."
+  lang="de"
+>
+  <section class="wr-hero">
+    <div class="wr-hero-bg"></div>
+    <div class="inner">
+      <a href="/de/support" class="wr-back"><ArrowLeft size={16} /> Alle Support-Themen</a>
+      <div class="wr-eyebrow">Produktabdeckung</div>
+      <h1>Garantie-<br><span class="blue">informationen</span></h1>
+      <p class="wr-desc">
+        Jedes TIP TIG System ist für industrielle Zuverlässigkeit gebaut. Unsere Garantie
+        spiegelt unser Vertrauen in die Qualität österreichischer Ingenieurskunst wider.
+      </p>
+    </div>
+  </section>
+
+  <section class="wr-content">
+    <div class="inner">
+      <!-- Coverage Cards -->
+      <div class="wr-coverage-grid">
+        <div class="wr-cover-card reveal">
+          <div class="wr-cover-months">24</div>
+          <div class="wr-cover-label">Monate</div>
+          <h3>Heißdraht-Module</h3>
+          <p>Volle Abdeckung für das TIP TIG Heißdraht-Modul einschließlich Oszillationsmotor und Steuerelektronik.</p>
+        </div>
+
+        <div class="wr-cover-card reveal reveal-delay-1">
+          <div class="wr-cover-months">12</div>
+          <div class="wr-cover-label">Monate</div>
+          <h3>Drahtvorschubgeräte</h3>
+          <p>Abdeckung für Drahtvorschubmechanismen, Antriebsrollen und zugehörige Motorkomponenten.</p>
+        </div>
+
+        <div class="wr-cover-card reveal reveal-delay-2">
+          <div class="wr-cover-months">6</div>
+          <div class="wr-cover-label">Monate</div>
+          <h3>Brenner & Zubehör</h3>
+          <p>Abdeckung für WIG-Brenner und Verbindungskabel unter normalen Betriebsbedingungen.</p>
+        </div>
+      </div>
+
+      <!-- What's Covered / Not Covered -->
+      <div class="wr-details-grid">
+        <div class="wr-detail-card reveal">
+          <div class="wr-detail-icon covered"><Shield size={20} /></div>
+          <h3>Abgedeckt</h3>
+          <ul>
+            <li>Herstellungsfehler bei Material und Verarbeitung</li>
+            <li>Ausfall elektronischer Komponenten bei normalem Gebrauch</li>
+            <li>Mechanische Defekte an Motoren und Antriebssystemen</li>
+            <li>Bedienpanel-Hardware und Firmware-Probleme</li>
+            <li>Kostenlose Reparatur oder Austausch nach unserem Ermessen</li>
+          </ul>
+        </div>
+
+        <div class="wr-detail-card reveal reveal-delay-1">
+          <div class="wr-detail-icon excluded"><AlertTriangle size={20} /></div>
+          <h3>Ausschlüsse</h3>
+          <ul>
+            <li>Verschleißteile (Kontaktspitzen, Gasdüsen, Spannhülsen)</li>
+            <li>Normaler Verschleiß von Komponenten</li>
+            <li>Schäden durch unsachgemäße Verwendung, Modifikation oder Vernachlässigung</li>
+            <li>Schäden durch falsche Spannung oder Stromversorgung</li>
+            <li>Nicht autorisierte Reparaturen oder Modifikationen durch Dritte</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Claims Process -->
+      <div class="wr-claims reveal">
+        <h3>So reichen Sie einen Anspruch ein</h3>
+        <div class="wr-claims-steps">
+          <div class="wr-claim-step">
+            <div class="wr-claim-num">1</div>
+            <div>
+              <strong>Informationen zusammenstellen</strong>
+              <p>Halten Sie Ihre Seriennummer, den Kaufbeleg und eine Beschreibung des Problems bereit.</p>
+            </div>
+          </div>
+          <div class="wr-claim-step">
+            <div class="wr-claim-num">2</div>
+            <div>
+              <strong>Kontakt aufnehmen</strong>
+              <p>Senden Sie eine E-Mail an <a href="mailto:office@tiptig.com">office@tiptig.com</a> oder wenden Sie sich an Ihren lokalen zertifizierten Partner.</p>
+            </div>
+          </div>
+          <div class="wr-claim-step">
+            <div class="wr-claim-num">3</div>
+            <div>
+              <strong>Prüfung</strong>
+              <p>Unser technisches Team prüft Ihren Anspruch und antwortet innerhalb von 3 Werktagen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Legal Warranty Terms -->
+  <section class="wr-legal">
+    <div class="inner-legal">
+      <h2 class="wr-legal-title reveal">Vollständige Garantiebedingungen</h2>
+      <p class="wr-legal-intro reveal">
+        Hersteller: Ing. Siegfried Plasch, Baumayrweg 4, 4631 Krenglbach, Österreich<br>
+        Kontakt / RMA: <a href="mailto:office@tiptig.com">office@tiptig.com</a><br>
+        Räumlicher Geltungsbereich: EU / EWR / CH / UK (Verfahren außerhalb der EU können abweichen)
+      </p>
+
+      <div class="wr-legal-sections reveal">
+        <div class="wr-legal-section">
+          <h3>1. Umfang dieser Garantie</h3>
+          <p>
+            Diese freiwillige Herstellergarantie deckt Material- und Verarbeitungsfehler ab,
+            die bei normalem Gebrauch innerhalb des Garantiezeitraums auftreten. Der Anbieter wird
+            betroffene Komponenten nach eigenem Ermessen reparieren oder ersetzen, um die vertragliche
+            Funktionsfähigkeit wiederherzustellen. Ersetzte Teile gehen in das Eigentum des Anbieters über.
+            Reparatur oder Austausch verlängern oder erneuern den Garantiezeitraum nicht.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>2. Beginn, Nachweis & Übertragbarkeit</h3>
+          <p>
+            Der Garantiezeitraum beginnt am Kaufdatum, das auf der Originalrechnung des Erstkäufers
+            ausgewiesen ist. Rechnung und Seriennummer sind als Nachweis ausreichend — ein separates
+            Garantiezertifikat ist nicht erforderlich. Die Garantie ist an das Produkt über die
+            Seriennummer gebunden und auf nachfolgende Eigentümer übertragbar.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>3. Garantiezeiten je Produktfamilie</h3>
+          <ul>
+            <li>Heißdraht-Modul / Leistungselektronik / Steuergeräte: <strong>24 Monate</strong></li>
+            <li>Drahtvorschubgeräte / Antriebe / Regler: <strong>12 Monate</strong></li>
+            <li>WIG-/Automationsbrenner, Schlauchpakete, Kabelbäume: <strong>6 Monate</strong></li>
+            <li>Software/Firmware: keine Leistungsgarantie; Fehlerbehebung über Updates, sofern verfügbar</li>
+            <li>Verschleiß- & Verbrauchsteile: ausgenommen</li>
+          </ul>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>4. Was nicht abgedeckt ist</h3>
+          <ul>
+            <li>Verschleiß-/Verbrauchsteile (z. B. Kontaktspitzen, Gasdüsen, Keramiken, Stromdüsen, Diffusoren, Dichtungen/O-Ringe, Schlauchpaket-Innenleben, Liner, Rollen, Sicherungen, Filter, Schmiermittel)</li>
+            <li>Unsachgemäße Verwendung oder Nichtbeachtung der Bedienungsanleitung (falsche Parameter, unzureichende Kühlung, falsche Schutzgasversorgung)</li>
+            <li>Mechanische/chemische Einflüsse: Sturz, Verbiegen, Korrosion, Flüssigkeitseintritt, Verunreinigung</li>
+            <li>Elektrische Einflüsse: Über-/Unterspannung, Blitzschlag, EMV-Störungen außerhalb der Spezifikation, falsche Netzfrequenz, fehlende/fehlerhafte Schutzerdung</li>
+            <li>Eingriffe/Modifikationen durch nicht autorisierte Personen, nicht zugelassenes Zubehör/Fremdteile, manipulierte Seriennummern</li>
+            <li>Transport-/Lagerschäden nach Gefahrübergang; Softwarekonflikte durch Fremdsysteme</li>
+          </ul>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>5. Reklamation (RMA-Verfahren)</h3>
+          <ol>
+            <li>Melden Sie das Problem an <a href="mailto:office@tiptig.com">office@tiptig.com</a>, einschließlich: Seriennummer, Kaufbeleg (Kopie), kurze Fehlerbeschreibung, aussagekräftige Fotos/Videos.</li>
+            <li>Erhalten Sie eine RMA-Nummer & Rücksendeadresse (keine Annahme ohne RMA).</li>
+            <li>Die Verpackung muss transportsicher, sauber und frei von Betriebsmedien (z. B. Kühlmittel) sein.</li>
+            <li>Der Anbieter prüft den Defekt und repariert oder ersetzt bei Garantiefall; andernfalls erhalten Sie einen Kostenvoranschlag.</li>
+          </ol>
+          <p>
+            Sofern nicht ausdrücklich anders vereinbart, übernehmen wir keine Kosten für Transport, Anfahrt,
+            Demontage/Remontage oder Diagnose. Zwingende gesetzliche Gewährleistungskosten bleiben unberührt.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>6. Verhältnis zu gesetzlichen Rechten</h3>
+          <p>
+            Diese Herstellergarantie gilt zusätzlich zu Ihren gesetzlichen Gewährleistungsrechten
+            nach österreichischem/EU-Recht (VGG/ABGB) und berührt diese nicht. Für Verbraucher sind
+            Reparatur oder Ersatz kostenlos, einschließlich der notwendigen Nebenkosten und Versandkosten.
+            Vertragliche oder gesetzliche Rechtsbehelfe (Preisminderung, Rücktritt, Schadenersatz) bestehen
+            unabhängig, soweit die gesetzlichen Voraussetzungen erfüllt sind.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>7. Haftung</h3>
+          <p>
+            Unsere Haftung im Rahmen dieser Garantie ist auf die Wiederherstellung der Funktionsfähigkeit
+            (Reparatur/Austausch) beschränkt. Weitergehende Ansprüche (z. B. Produktionsausfall, entgangener
+            Gewinn, Datenverlust) sind ausgeschlossen — außer bei Vorsatz, grober Fahrlässigkeit oder
+            Personenschäden. Zwingende gesetzliche Rechte bleiben unberührt.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>8. Software / Firmware</h3>
+          <p>
+            Firmware-Updates können bestimmte Funktionen ändern; Abbildungen/Handbücher können geringfügig
+            vom aktuellen Stand abweichen. Benutzer sollten die Bedienungsanleitung und Release Notes beachten.
+          </p>
+        </div>
+
+        <div class="wr-legal-section">
+          <h3>9. Anwendbares Recht, Sprache, dauerhafter Datenträger</h3>
+          <p>
+            Diese Garantie unterliegt österreichischem Recht unter Ausschluss der Kollisionsnormen
+            und des CISG; zwingende Verbraucherschutzbestimmungen am Wohnsitz des Verbrauchers
+            bleiben unberührt. Diese Bedingungen werden auf einem dauerhaften Datenträger (PDF) bereitgestellt
+            und können dem Produkt beigelegt werden. Bei Abweichungen ist die deutsche Fassung maßgeblich.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wr-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .wr-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .wr-hero .inner {
+    animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .wr-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: gap 0.2s;
+  }
+  .wr-back:hover { gap: 10px; }
+
+  .wr-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sapphire);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .blue { color: var(--sapphire); }
+  .wr-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* Content */
+  .wr-content {
+    padding: 60px 60px 110px;
+    background: var(--bg);
+  }
+
+  /* Coverage Cards */
+  .wr-coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .wr-cover-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 36px 32px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .wr-cover-card:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 32px rgba(27, 58, 140, 0.08);
+    transform: translateY(-3px);
+  }
+  .wr-cover-months {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    color: var(--sapphire);
+    line-height: 1;
+  }
+  .wr-cover-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sapphire);
+    margin-bottom: 20px;
+  }
+  .wr-cover-card h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  .wr-cover-card p {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Detail Cards */
+  .wr-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .wr-detail-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 36px 32px;
+  }
+  .wr-detail-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .wr-detail-icon.covered {
+    background: #E8F5E9;
+    color: #2E7D32;
+  }
+  .wr-detail-icon.excluded {
+    background: #FFF3E0;
+    color: #E65100;
+  }
+  .wr-detail-card h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .wr-detail-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wr-detail-card li {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+    font-weight: 300;
+    padding-left: 20px;
+    position: relative;
+  }
+  .wr-detail-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sapphire-mid);
+  }
+
+  /* Claims */
+  .wr-claims {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .wr-claims h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+  .wr-claims-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .wr-claim-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .wr-claim-num {
+    width: 32px; height: 32px;
+    background: var(--sapphire);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+  .wr-claim-step strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .wr-claim-step p {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .wr-claim-step a {
+    color: var(--sapphire);
+    font-weight: 500;
+  }
+
+  /* Legal Terms */
+  .wr-legal {
+    padding: 80px 60px 110px;
+    background: var(--white);
+  }
+  .inner-legal {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .wr-legal-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--black);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .wr-legal-intro {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .wr-legal-intro a {
+    color: var(--sapphire);
+    font-weight: 500;
+  }
+  .wr-legal-section {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .wr-legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .wr-legal-section h3 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .wr-legal-section p {
+    font-size: 0.88rem;
+    color: var(--gray-dark);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .wr-legal-section ul,
+  .wr-legal-section ol {
+    padding-left: 20px;
+    margin: 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .wr-legal-section li {
+    font-size: 0.88rem;
+    color: var(--gray-dark);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .wr-legal-section li strong {
+    font-weight: 600;
+    color: var(--black);
+  }
+  .wr-legal-section a {
+    color: var(--sapphire);
+    font-weight: 500;
+  }
+
+  @media (max-width: 960px) {
+    .wr-hero { padding: 120px 24px 48px; }
+    .wr-content { padding: 36px 24px 72px; }
+    .wr-coverage-grid { grid-template-columns: 1fr; }
+    .wr-details-grid { grid-template-columns: 1fr; }
+    .wr-claims-steps { grid-template-columns: 1fr; }
+    .wr-claims { padding: 28px 24px; }
+    .wr-legal { padding: 48px 24px 72px; }
+  }
+</style>

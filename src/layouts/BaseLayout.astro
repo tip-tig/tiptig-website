@@ -2,12 +2,14 @@
 import Nav from '../components/global/Nav.astro';
 import Footer from '../components/global/Footer.astro';
 import '../styles/global.css';
+import { getLangFromUrl, getAlternatePath, type Locale } from '../i18n/utils';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   jsonLd?: Record<string, unknown>;
+  lang?: Locale;
 }
 
 const {
@@ -15,11 +17,15 @@ const {
   description = 'TIP TIG — The original TIG welding innovation. Up to 300% faster, superior quality, proven ROI. Engineered in Austria.',
   ogImage = '/images/og-default.jpg',
   jsonLd,
+  lang = getLangFromUrl(Astro.url),
 } = Astro.props;
 
 const siteURL = Astro.site ?? 'https://tiptig.com';
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const ogImageURL = new URL(ogImage, siteURL).href;
+
+// --- hreflang alternates ---
+const alternates = getAlternatePath(Astro.url.pathname);
 
 // --- Organization Schema (every page) ---
 const orgSchema = {
@@ -50,33 +56,47 @@ const orgSchema = {
 };
 
 // --- BreadcrumbList Schema (nested pages) ---
-const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const pathSegments = Astro.url.pathname.replace(/\/$/, '').split('/').filter(Boolean).filter(s => s !== 'de');
 const breadcrumbItems = [
-  { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tiptig.com/' },
+  { '@type': 'ListItem', position: 1, name: 'Home', item: `https://tiptig.com${lang === 'de' ? '/de' : '/'}` },
 ];
 
-const labelMap: Record<string, string> = {
-  industries: 'Industries',
-  products: 'Products',
-  support: 'Support',
-  technology: 'Technology',
-  about: 'About',
-  contact: 'Contact',
-  legal: 'Legal',
-  privacy: 'Privacy',
-  gtc: 'GTC',
-  'roi-calculator': 'ROI Calculator',
-  'keyhole-tig-welding': 'Keyhole TIG Welding',
-  'weld-overlay-cladding': 'Weld Overlay Cladding',
+const labelMap: Record<string, Record<string, string>> = {
+  en: {
+    industries: 'Industries', products: 'Products', support: 'Support',
+    technology: 'Technology', about: 'About', contact: 'Contact',
+    legal: 'Legal', privacy: 'Privacy', gtc: 'GTC',
+    'roi-calculator': 'ROI Calculator',
+    'keyhole-tig-welding': 'Keyhole TIG Welding',
+    'weld-overlay-cladding': 'Weld Overlay Cladding',
+    'control-panel': 'Control Panel Guide',
+    'manuals': "Owner's Manuals",
+    'software-update': 'Software Updates',
+    'warranty': 'Warranty',
+    'wire-speed-calculator': 'Wire Speed Calculator',
+  },
+  de: {
+    industries: 'Branchen', products: 'Produkte', support: 'Support',
+    technology: 'Technologie', about: 'Über uns', contact: 'Kontakt',
+    legal: 'Impressum', privacy: 'Datenschutz', gtc: 'AGB',
+    'roi-calculator': 'ROI-Rechner',
+    'keyhole-tig-welding': 'Keyhole-WIG-Schweißen',
+    'weld-overlay-cladding': 'Auftragschweißen',
+    'control-panel': 'Bedienpanel-Anleitung',
+    'manuals': 'Bedienungsanleitungen',
+    'software-update': 'Software-Updates',
+    'warranty': 'Garantie',
+    'wire-speed-calculator': 'Drahtgeschwindigkeits-Rechner',
+  },
 };
 
-let currentPath = '';
+let currentPath = lang === 'de' ? '/de' : '';
 pathSegments.forEach((seg, i) => {
   currentPath += `/${seg}`;
   breadcrumbItems.push({
     '@type': 'ListItem',
     position: i + 2,
-    name: labelMap[seg] || seg.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+    name: (labelMap[lang] || labelMap.en)[seg] || seg.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
     item: `https://tiptig.com${currentPath}`,
   });
 });
@@ -89,7 +109,7 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -116,6 +136,12 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- hreflang alternates -->
+    {alternates.map(alt => (
+      <link rel="alternate" hreflang={alt.lang} href={new URL(alt.path, siteURL).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates[0].path, siteURL).href} />
+
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -134,11 +160,11 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
     <slot name="head" />
   </head>
   <body>
-    <Nav />
+    <Nav lang={lang} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
 
     <script>
       // Scroll Reveal

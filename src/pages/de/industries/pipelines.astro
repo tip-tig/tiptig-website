@@ -1,0 +1,41 @@
+---
+import IndustryPage from '../../../components/industries/IndustryPage.astro';
+---
+
+<IndustryPage
+  lang="de"
+  title="Rohrleitungsschweißen"
+  subtitle="Orbitale und manuelle WIG-Lösungen für Überlandleitungen, Unterwasserleitungen und Prozessrohrleitungen — für den Feldeinsatz gebaut."
+  metaTitle="Rohrleitungsschweißen — TIP TIG"
+  metaDesc="TIP TIG liefert normkonforme Rohrleitungsschweißnähte an CRA-ausgekleidetem Rohr, Duplex und Kohlenstoffstahl — mit orbitalen und manuellen Systemen, bewährt unter härtesten Feldbedingungen."
+  heroImage="/images/industries/pipelines/pipeline_tiptig.JPG"
+  introTitle="TIP TIG im <br><span class='blue'>Rohrleitungsbau</span>"
+
+  intro="Der Rohrleitungsbau erfordert Schweißlösungen, die unter abgelegenen, rauen Feldbedingungen zuverlässig funktionieren und gleichzeitig strengste Normanforderungen erfüllen. Ob Überlandfernleitungen, Unterwasseranbindungen oder CRA-ausgekleidete Prozessrohrleitungen — TIP TIG liefert konstante, normkonforme Ergebnisse mit orbitalen und portablen manuellen Systemen. Das Verfahren ist bewährt an Kohlenstoffstahl, Duplex, Super-Duplex und plattierten Rohrmaterialien der globalen Rohrleitungsindustrie."
+  features={[
+    { title: 'Orbitale Rohrleitungssysteme', desc: 'Automatisierte Orbitalschweißköpfe gepaart mit TIP TIG Drahtvorschubtechnologie für gleichmäßige, hochwertige Umfangs-Rohrleitungsschweißnähte.' },
+    { title: 'CRA- & Plattierungsrohr-Expertise', desc: 'Bewährt an CRA-ausgekleideten und plattierten Rohrmaterialien — Erhalt der Overlay-Integrität bei minimaler Aufmischung.' },
+    { title: 'Feldtaugliche Portabilität', desc: 'Kompakte, robuste Systeme für abgelegene Rohrleitungsbaustellen — von der arktischen Tundra bis zur Wüstenumgebung.' },
+    { title: 'Allpositions-Fähigkeit', desc: 'Volle 5G- und 6G-Positionsschweißfähigkeit für ortsfeste Rohleitungsverbindungen und Reparaturschweißungen.' },
+    { title: 'Reduzierte Reparaturraten', desc: 'Höhere Erstdurchlauf-Abnahmeraten bedeuten weniger Ausschnitte und Reparaturen — entscheidend bei Projekten, wo Nacharbeitskosten pro Verbindung gemessen werden.' },
+    { title: 'API- & ASME-Konformität', desc: 'Erfüllt API 1104, ASME B31.3 und weitere Rohrleitungsschweißnormen, die von Betreibern und Ingenieurbüros weltweit gefordert werden.' },
+  ]}
+  caseStudy={{
+    title: 'Xinjiang-Pipeline-Projekt — 33 km Duplex 2205',
+    text: 'TIP TIG wurde für ein 33 Kilometer langes Pipeline-Projekt in Xinjiang, China, ausgewählt. Verwendung von Duplex 2205 (UNS S32305) Edelstahl — DN300-Rohr mit 10 mm Wandstärke. Sowohl manuelle TIP TIG AllinOne-Systeme als auch TIP TIG Orbital-Schweißsysteme wurden eingesetzt, um die geforderte Schweißqualität und Produktionsraten über die gesamte Projektlänge zu erreichen.',
+    textImperial: 'TIP TIG wurde für ein 20,5 Meilen langes Pipeline-Projekt in Xinjiang, China, ausgewählt. Verwendung von Duplex 2205 (UNS S32305) Edelstahl — 12"-Rohr mit 0,394" Wandstärke. Sowohl manuelle TIP TIG AllinOne-Systeme als auch TIP TIG Orbital-Schweißsysteme wurden eingesetzt, um die geforderte Schweißqualität und Produktionsraten über die gesamte Projektlänge zu erreichen.',
+    images: [
+      { src: '/images/case-studies/xinjiang-pipeline-02.jpg', alt: 'Duplex 2205 Pipeline-Schweißnaht mit TIP TIG' },
+      { src: '/images/case-studies/xinjiang-pipeline-01.jpg', alt: 'TIP TIG Orbitalschweißen an Xinjiang Duplex-Pipeline' },
+      { src: '/images/case-studies/xinjiang-pipeline-03.jpg', alt: 'Xinjiang 33 km Pipeline-Projekt Feldschweißung' },
+    ],
+    stats: [
+      { value: '33 km', imperial: '20,5 mi', label: 'Pipelinelänge' },
+      { value: 'DN300', imperial: '12"', label: 'Rohrdurchmesser' },
+      { value: '10 mm', imperial: '0,394"', label: 'Wandstärke' },
+      { value: 'Duplex 2205', label: 'Werkstoffgüte' },
+    ],
+  }}
+  applications={['Fernleitungen', 'Unterwasserleitungen', 'Prozessrohrleitungen', 'CRA-ausgekleidetes Rohr', 'Verbindungsschweißungen', 'Rohrleitungsreparaturen']}
+  clients={['Technip', 'Chevron', 'Exxon Mobil']}
+/>

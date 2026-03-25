@@ -1,0 +1,605 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { products, getProductBySlug } from '../../../data/products';
+import { useTranslations, localizedPath } from '../../../i18n/utils';
+
+const lang = 'de';
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
+
+export function getStaticPaths() {
+  return products
+    .filter(p => !p.comingSoon)
+    .map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug as string);
+
+if (!product) {
+  return Astro.redirect('/de/products');
+}
+
+const metaDescription = `${product.name} — ${product.tagline} Technische Daten, Hauptmerkmale und Produktdetails.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.description,
+  image: `https://tiptig.com${product.image}`,
+  brand: {
+    '@type': 'Brand',
+    name: 'TIP TIG',
+  },
+  manufacturer: {
+    '@type': 'Organization',
+    name: 'TIP TIG',
+    url: 'https://tiptig.com',
+  },
+  category: product.category,
+};
+---
+
+<BaseLayout
+  lang="de"
+  title={`${product.name} — Schweißausrüstung`}
+  description={metaDescription}
+  ogImage={product.image}
+>
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <!-- Hero -->
+  <section class="pd-hero">
+    <div class="pd-hero-bg"></div>
+    <div class="pd-inner">
+      <span class="pd-badge reveal">{product.category}</span>
+      <h1 class="reveal">{product.name}</h1>
+      <p class="pd-tagline reveal">{product.tagline}</p>
+    </div>
+  </section>
+
+  <!-- Product Image -->
+  <section class="pd-image-section">
+    <div class="pd-inner">
+      {product.images && product.images.length > 1 ? (
+        <div class="pd-gallery reveal" id="pdGallery">
+          {product.images.map((img, i) => (
+            <div class="pd-gallery-slide" data-index={i} style={i !== 0 ? 'display:none' : 'display:flex'}>
+              <img src={img} alt={`${product.name} — Bild ${i + 1}`} loading="lazy" />
+            </div>
+          ))}
+          <div class="pd-gallery-nav">
+            <button class="pd-gallery-arrow pd-gallery-prev" aria-label={t('product.gallery.prev')}>&#8249;</button>
+            <div class="pd-gallery-dots">
+              {product.images.map((_, i) => (
+                <button class={`pd-gallery-dot ${i === 0 ? 'is-active' : ''}`} data-index={i} aria-label={`Bild ${i + 1}`} />
+              ))}
+            </div>
+            <button class="pd-gallery-arrow pd-gallery-next" aria-label={t('product.gallery.next')}>&#8250;</button>
+          </div>
+        </div>
+      ) : (
+        <div class="pd-image-wrap reveal">
+          <img src={product.image} alt={product.name} loading="lazy" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Description + Features -->
+  <section class="pd-content">
+    <div class="pd-inner">
+      <div class="pd-two-col">
+        <div class="pd-desc reveal">
+          <h2>{t('product.overview')}</h2>
+          <p>{product.description}</p>
+        </div>
+        <div class="pd-features reveal reveal-delay-1">
+          <h2>{t('product.features')}</h2>
+          <div class="pd-features-list">
+            {product.features.map((f, i) => (
+              <div class="pd-feature">
+                <span class="pd-feature-num">{i + 1}</span>
+                <div>
+                  <strong>{f.title}</strong>
+                  <p>{f.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  {product.video && (
+    <section class="pd-video">
+      <div class="pd-inner">
+        <div class="pd-video-wrap reveal">
+          <video controls preload="metadata" poster="">
+            <source src={product.video} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Specs -->
+  {product.specs && product.specs.length > 0 && (
+    <section class="pd-specs">
+      <div class="pd-inner pd-specs-inner">
+        <div class="pd-specs-header reveal">
+          <h2>{t('product.specs')}</h2>
+          {product.specs.some(s => s.imperial) && (
+            <div class="pd-unit-toggle" id="unitToggle">
+              <button class="pd-unit-btn is-active" data-unit="metric">{t('product.metric')}</button>
+              <button class="pd-unit-btn" data-unit="imperial">{t('product.imperial')}</button>
+            </div>
+          )}
+        </div>
+        <div class="pd-specs-list reveal reveal-delay-1">
+          {product.specs.map(s => (
+            <div class="pd-spec">
+              <span class="pd-spec-label">{s.label}</span>
+              <span class="pd-spec-value" data-metric={s.value} data-imperial={s.imperial || s.value}>{s.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="pd-cta">
+    <div class="pd-inner pd-cta-inner reveal">
+      <p class="pd-cta-text">{t('product.cta.question')} {product.name}?</p>
+      <a href={lp('/contact')} class="pd-cta-link">{t('product.cta.contact')}</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style is:global>
+  /* Gallery */
+  .pd-gallery {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pd-gallery-slide {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .pd-gallery-slide img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+  }
+  .pd-gallery-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .pd-gallery-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-light);
+    background: #fff;
+    color: var(--black);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .pd-gallery-arrow:hover {
+    border-color: var(--sapphire);
+    color: var(--sapphire);
+  }
+  .pd-gallery-dots {
+    display: flex;
+    gap: 8px;
+  }
+  .pd-gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gray-light);
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  .pd-gallery-dot.is-active {
+    background: var(--sapphire);
+  }
+</style>
+
+<style>
+  /* Hero */
+  .pd-hero {
+    padding: 140px 60px 60px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .pd-hero-bg {
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sapphire-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pd-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .pd-back {
+    display: inline-block;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--sapphire);
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: opacity 0.2s;
+  }
+  .pd-back:hover { opacity: 0.7; }
+  .pd-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .pd-hero h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .pd-tagline {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Image */
+  .pd-image-section {
+    padding: 0 60px 60px;
+    background: var(--white);
+  }
+  .pd-image-wrap {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pd-image-wrap img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  /* Video */
+  .pd-video {
+    padding: 60px 60px 0;
+    background: var(--white);
+  }
+  .pd-video-wrap {
+    background: var(--bg);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .pd-video-wrap video {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+  }
+
+  /* Content */
+  .pd-content {
+    padding: 60px;
+    background: var(--bg);
+  }
+  .pd-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .pd-desc h2,
+  .pd-features h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .pd-desc p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+
+  /* Features */
+  .pd-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pd-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pd-feature-num {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--sapphire);
+    background: var(--sapphire-light);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pd-feature strong {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .pd-feature p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--gray-mid);
+    line-height: 1.6;
+  }
+
+  /* Specs */
+  .pd-specs {
+    padding: 60px;
+    background: var(--white);
+  }
+  .pd-specs-inner {
+    max-width: 620px;
+  }
+  .pd-specs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .pd-specs h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--black);
+    margin: 0;
+  }
+  .pd-unit-toggle {
+    display: flex;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .pd-unit-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gray-mid);
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .pd-unit-btn.is-active {
+    background: var(--sapphire);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .pd-unit-btn:not(.is-active):hover {
+    color: var(--black);
+  }
+  .pd-specs-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .pd-spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-light);
+    gap: 24px;
+  }
+  .pd-spec:first-child {
+    border-top: 1px solid var(--gray-light);
+  }
+  .pd-spec-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .pd-spec-value {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    text-align: right;
+  }
+
+  /* CTA */
+  .pd-cta {
+    padding: 60px 60px 80px;
+    background: var(--white);
+  }
+  .pd-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    background: var(--bg);
+    border-radius: 12px;
+  }
+  .pd-cta-text {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--black);
+    margin: 0;
+  }
+  .pd-cta-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1.5px solid var(--sapphire);
+    border-radius: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .pd-cta-link:hover {
+    background: var(--sapphire);
+    color: #fff;
+  }
+
+  /* Bottom */
+  .pd-bottom {
+    padding: 40px 60px 80px;
+    background: var(--white);
+    text-align: center;
+  }
+  .pd-back-btn {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sapphire);
+    text-decoration: none;
+    padding: 12px 28px;
+    border: 1.5px solid var(--sapphire);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .pd-back-btn:hover {
+    background: var(--sapphire-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .pd-hero { padding: 120px 24px 48px; }
+    .pd-image-section { padding: 0 24px 40px; }
+    .pd-image-wrap { padding: 24px; }
+    .pd-gallery { padding: 24px; }
+    .pd-content { padding: 40px 24px; }
+    .pd-two-col { grid-template-columns: 1fr; gap: 40px; }
+    .pd-video { padding: 40px 24px 0; }
+    .pd-specs { padding: 40px 24px; }
+    .pd-cta { padding: 0 24px; }
+    .pd-cta-inner { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+    .pd-bottom { padding: 32px 24px 60px; }
+  }
+  @media (max-width: 560px) {
+    .pd-spec {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pd-spec-value {
+      text-align: left;
+    }
+  }
+</style>
+
+<script>
+  // Gallery
+  const gallery = document.getElementById('pdGallery');
+  if (gallery) {
+    const slides = gallery.querySelectorAll('.pd-gallery-slide');
+    const dots = gallery.querySelectorAll('.pd-gallery-dot');
+    const prev = gallery.querySelector('.pd-gallery-prev');
+    const next = gallery.querySelector('.pd-gallery-next');
+    let current = 0;
+
+    function goTo(index: number) {
+      slides.forEach(s => (s as HTMLElement).style.display = 'none');
+      dots.forEach(d => d.classList.remove('is-active'));
+      current = (index + slides.length) % slides.length;
+      (slides[current] as HTMLElement).style.display = 'flex';
+      dots[current].classList.add('is-active');
+    }
+
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goTo(Number((dot as HTMLElement).dataset.index)));
+    });
+  }
+
+  // Unit Toggle
+  const toggle = document.getElementById('unitToggle');
+  if (toggle) {
+    const btns = toggle.querySelectorAll('.pd-unit-btn');
+    const values = document.querySelectorAll('.pd-spec-value');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const unit = btn.getAttribute('data-unit') as string;
+        btns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        values.forEach(val => {
+          const el = val as HTMLElement;
+          el.textContent = el.dataset[unit] || el.dataset.metric || '';
+        });
+      });
+    });
+  }
+</script>

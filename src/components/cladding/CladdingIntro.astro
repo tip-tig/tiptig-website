@@ -1,40 +1,42 @@
 ---
 import { Shield, Zap, Thermometer } from '@lucide/astro';
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="cl-intro">
   <div class="inner">
     <div class="cl-intro-grid">
       <div class="cl-intro-text">
-        <div class="section-eyebrow reveal">What is Weld Overlay Cladding?</div>
-        <h2 class="section-title reveal">Corrosion Protection<br>at Production Speed</h2>
+        <div class="section-eyebrow reveal">{t('cl.intro.eyebrow')}</div>
+        <h2 class="section-title reveal">{t('cl.intro.title')}<br>{t('cl.intro.title2')}</h2>
         <p class="section-lead reveal">
-          Weld overlay cladding applies ERNiCrMo-3 (Alloy 625) to component surfaces
-          for corrosion protection, hard-facing, and surface repair. The TwinWire RapidClad 2.0
-          delivers this at unprecedented deposition rates while maintaining the lowest
-          dilution in the industry.
+          {t('cl.intro.desc')}
         </p>
       </div>
       <div class="cl-intro-cards">
         <div class="cl-card reveal">
           <div class="cl-card-icon"><Shield size={24} /></div>
           <div>
-            <strong>Corrosion Resistant Overlay</strong>
-            <span>Alloy 625 layers provide long-term protection for pipelines, valves, flanges, and other critical containment components.</span>
+            <strong>{t('cl.intro.card1.title')}</strong>
+            <span>{t('cl.intro.card1.desc')}</span>
           </div>
         </div>
         <div class="cl-card reveal reveal-delay-1">
           <div class="cl-card-icon"><Zap size={24} /></div>
           <div>
-            <strong>Highest Deposition Rate</strong>
-            <span>Up to <span class="u-imp">20 lbs/hr</span><span class="u-met">9.1 kg/hr</span> — dramatically outperforming standard TIG and hot wire methods.</span>
+            <strong>{t('cl.intro.card2.title')}</strong>
+            <span><span class="u-imp">{t('cl.intro.card2.desc.imp')}</span><span class="u-met">{t('cl.intro.card2.desc.met')}</span>{t('cl.intro.card2.desc2')}</span>
           </div>
         </div>
         <div class="cl-card reveal reveal-delay-2">
           <div class="cl-card-icon"><Thermometer size={24} /></div>
           <div>
-            <strong>Lowest Dilution</strong>
-            <span>80% reduced dilution rates maintain overlay chemistry with minimal base metal mixing.</span>
+            <strong>{t('cl.intro.card3.title')}</strong>
+            <span>{t('cl.intro.card3.desc')}</span>
           </div>
         </div>
       </div>

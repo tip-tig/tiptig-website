@@ -1,13 +1,17 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="kh-video">
   <div class="inner">
-    <div class="section-eyebrow reveal">See It in Action</div>
-    <h2 class="section-title reveal">The Keyhole Welding Process</h2>
+    <div class="section-eyebrow reveal">{t('kh.video.eyebrow')}</div>
+    <h2 class="section-title reveal">{t('kh.video.title')}</h2>
     <p class="section-lead reveal">
-      Watch how TIP TIG focus creates full-penetration keyhole welds
-      in a single pass — with no edge preparation required.
+      {t('kh.video.desc')}
     </p>
 
     <div class="video-wrapper reveal">

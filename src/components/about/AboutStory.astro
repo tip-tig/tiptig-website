@@ -1,5 +1,11 @@
 ---
 import { Factory, FlaskConical, Globe, Calendar } from '@lucide/astro';
+import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const lp = (path: string) => localizedPath(path, lang);
 ---
 
 <section class="ab-story">
@@ -7,20 +13,13 @@ import { Factory, FlaskConical, Globe, Calendar } from '@lucide/astro';
     <div class="ab-story-grid">
       <!-- Left: Narrative -->
       <div class="ab-story-text reveal">
-        <div class="section-eyebrow">Our Story</div>
-        <h2 class="section-title">From Workshop to<br>World Standard.</h2>
+        <div class="section-eyebrow">{t('about.story.eyebrow')}</div>
+        <h2 class="section-title"><Fragment set:html={t('about.story.title')} /></h2>
         <p class="section-lead">
-          In 1997, Siegfried Plasch set out to solve a fundamental problem in welding:
-          how to achieve the quality of TIG with the productivity of MIG.
-          His answer — a precisely controlled wire oscillation system —
-          became the foundation of TIP TIG.
+          {t('about.story.lead')}
         </p>
         <p class="ab-story-body">
-          What started as one engineer's conviction in Krenglbach, Upper Austria,
-          grew into a globally recognized welding technology.
-          Today, TIP TIG systems are used in power plants, refineries, shipyards, and
-          pharmaceutical facilities across six continents — wherever weld quality
-          and efficiency cannot be compromised.
+          {t('about.story.body')}
         </p>
       </div>
 
@@ -29,29 +28,29 @@ import { Factory, FlaskConical, Globe, Calendar } from '@lucide/astro';
         <div class="ab-milestone">
           <div class="ab-milestone-icon"><Calendar size={18} /></div>
           <div class="ab-milestone-content">
-            <strong>1997</strong>
-            <span>Company founded by Siegfried Plasch in Krenglbach, Austria</span>
+            <strong>{t('about.milestone.1997')}</strong>
+            <span>{t('about.milestone.1997.text')}</span>
           </div>
         </div>
         <div class="ab-milestone">
           <div class="ab-milestone-icon"><FlaskConical size={18} /></div>
           <div class="ab-milestone-content">
-            <strong>Patented Wire Dynamics</strong>
-            <span>Core oscillation technology developed and refined entirely in-house</span>
+            <strong>{t('about.milestone.patent')}</strong>
+            <span>{t('about.milestone.patent.text')}</span>
           </div>
         </div>
         <div class="ab-milestone">
           <div class="ab-milestone-icon"><Factory size={18} /></div>
           <div class="ab-milestone-content">
-            <strong>Own Manufacturing</strong>
-            <span>R&D, assembly, and production under one roof in Austria</span>
+            <strong>{t('about.milestone.mfg')}</strong>
+            <span>{t('about.milestone.mfg.text')}</span>
           </div>
         </div>
         <div class="ab-milestone">
           <div class="ab-milestone-icon"><Globe size={18} /></div>
           <div class="ab-milestone-content">
-            <strong>Global Network</strong>
-            <span>Certified Partners on every continent — from Singapore to New Jersey</span>
+            <strong>{t('about.milestone.global')}</strong>
+            <span>{t('about.milestone.global.text')}</span>
           </div>
         </div>
       </div>

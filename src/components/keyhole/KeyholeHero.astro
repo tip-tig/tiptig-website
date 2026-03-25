@@ -1,38 +1,41 @@
 ---
+import { useTranslations, type Locale } from '../../i18n/utils';
+
+interface Props { lang?: Locale; }
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="kh-hero">
   <div class="kh-hero-bg"></div>
   <div class="inner">
-    <div class="kh-hero-eyebrow">TIP TIG focus</div>
-    <h1>Keyhole TIG<br><span class="blue">Welding</span></h1>
-    <p class="kh-hero-sub">Full-Penetration, Single-Pass</p>
+    <div class="kh-hero-eyebrow">{t('kh.hero.eyebrow')}</div>
+    <h1>{t('kh.hero.title')}<br><span class="blue">{t('kh.hero.title2')}</span></h1>
+    <p class="kh-hero-sub">{t('kh.hero.sub')}</p>
     <p class="kh-hero-desc">
-      The ideal solution for the highest quality weld seams — simple, cost-effective,
-      and with an extremely high energy density that enables the fastest welding speeds
-      with significantly reduced rework and preparation.
+      {t('kh.hero.desc')}
     </p>
     <div class="kh-hero-controls">
       <div class="unit-toggle" id="unit-toggle">
-        <button class="unit-btn active" data-unit="imperial">Imperial</button>
-        <button class="unit-btn" data-unit="metric">Metric</button>
+        <button class="unit-btn active" data-unit="imperial">{t('tech.unit.imperial')}</button>
+        <button class="unit-btn" data-unit="metric">{t('tech.unit.metric')}</button>
       </div>
 
       <div class="kh-hero-stats">
       <div class="kh-stat">
-        <span class="kh-stat-value u-imp">½ in</span>
+        <span class="kh-stat-value u-imp">&frac12; in</span>
         <span class="kh-stat-value u-met">12 mm</span>
-        <span class="kh-stat-label">Full Penetration</span>
+        <span class="kh-stat-label">{t('kh.hero.stat1.label')}</span>
       </div>
       <div class="kh-stat-divider"></div>
       <div class="kh-stat">
         <span class="kh-stat-value">600%</span>
-        <span class="kh-stat-label">Faster than TIG</span>
+        <span class="kh-stat-label">{t('kh.hero.stat2.label')}</span>
       </div>
       <div class="kh-stat-divider"></div>
       <div class="kh-stat">
         <span class="kh-stat-value">80%</span>
-        <span class="kh-stat-label">Cost Savings</span>
+        <span class="kh-stat-label">{t('kh.hero.stat3.label')}</span>
       </div>
       </div>
     </div>

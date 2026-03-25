@@ -1,0 +1,39 @@
+---
+import IndustryPage from '../../../components/industries/IndustryPage.astro';
+---
+
+<IndustryPage
+  lang="de"
+  title="Luft- & Raumfahrtschweißen"
+  subtitle="Wo Versagen keine Option ist. Missionskritische Schweißnähte mit null Toleranz für Defekte an den anspruchsvollsten Hochleistungslegierungen."
+  metaTitle="Luft- & Raumfahrtschweißen — TIP TIG"
+  metaDesc="TIP TIG liefert röntgenfähige, porositätsfreie Schweißnähte an Luft- und Raumfahrtlegierungen wie Invar 36, Inconel und Titan — mit minimalem Wärmeeintrag und Verzug."
+  heroImage="/images/industries/aerospace/hero.jpg"
+  introTitle="TIP TIG in der <br><span class='blue'>Luft- & Raumfahrt</span>"
+
+  intro="Die Luft- und Raumfahrt verlangt absolute Präzision an Strukturbauteilen aus Sonderlegierungen wie Invar 36, Inconel und Titan. Der niedrige Wärmeeintrag von TIP TIG minimiert den Verzug auf engste Toleranzen, während die einzigartige Drahtoszillation konstant porositätsfreie, röntgenfähige Schweißnähte unter 100 % Argon-Schutzgas erzeugt — ohne weitere Nachbehandlung als einfaches Drahtbürsten."
+  features={[
+    { title: 'Minimaler Verzug', desc: 'Extrem niedriger Wärmeeintrag bewahrt kritische Toleranzen an dünnwandigen und strukturellen Luftfahrtbauteilen und reduziert Nacharbeitsstunden drastisch.' },
+    { title: '100 % Röntgenqualität', desc: 'Einzigartige Schmelzbad-Oszillation liefert konstant porositätsfreie Schweißungen bei allen Materialstärken und erfüllt die strengsten Luftfahrtnormen.' },
+    { title: 'Expertise bei Sonderlegierungen', desc: 'Bewährte Leistung an Invar 36, Inconel, Titan und weiteren Hochleistungslegierungen der Flugzeug- und Raumfahrtfertigung.' },
+    { title: 'Sauberes Verfahren', desc: 'Verwendet 100 % Argon-Schutzgas und erzeugt Schweißnähte, die nicht mehr als einfaches Drahtbürsten erfordern — spart Zeit und Kosten.' },
+    { title: 'Weniger Nacharbeit', desc: 'Höhere Erstdurchlaufqualität bedeutet weniger Reparaturen, weniger Ausschuss und schnellere Produktionszyklen an missionskritischen Baugruppen.' },
+    { title: 'Weltraumerprobt', desc: 'Eingesetzt bei der Fertigung von Raumfahrzeugen und Raketenkomponenten für führende Raumfahrtprogramme weltweit.' },
+  ]}
+  caseStudy={{
+    title: 'Titanschweißen — Eliminierung des Oxidationsrisikos',
+    text: 'Konventionelles WIG-Schweißen an Titan dicker als 3 mm erzeugt Nachlauftemperaturen über 371 °C — weit über der Oxidationsschwelle, ab der Verfärbung und Versprödung einsetzen. TIP TIG reduziert die Nachlauftemperaturen auf nur 150–195 °C innerhalb von 3 mm der Kehlnahtflanke und erzeugt konstant 100 % silberfarbene Schweißnähte. Keine übergroßen Schutzdüsen, keine Schleppgasabdeckungen — einfach saubere, porositätsfreie Ergebnisse bei bis zu dreifacher Geschwindigkeit gegenüber Standard-WIG.',
+    textImperial: 'Konventionelles WIG-Schweißen an Titan dicker als 0,12" erzeugt Nachlauftemperaturen über 700 °F — weit über der Oxidationsschwelle, ab der Verfärbung und Versprödung einsetzen. TIP TIG reduziert die Nachlauftemperaturen auf nur 300–380 °F innerhalb von 0,12" der Kehlnahtflanke und erzeugt konstant 100 % silberfarbene Schweißnähte. Keine übergroßen Schutzdüsen, keine Schleppgasabdeckungen — einfach saubere, porositätsfreie Ergebnisse bei bis zu dreifacher Geschwindigkeit gegenüber Standard-WIG.',
+    images: [
+      { src: '/images/case-studies/titanium-welding-01.jpg', alt: 'Titanschweißen mit TIP TIG — silberfarbenes, oxidationsfreies Ergebnis' },
+      { src: '/images/case-studies/titanium-welding-02.jpg', alt: 'TIP TIG Titanschweißnaht Nahaufnahme — porositätsfreie Oberfläche' },
+      { src: '/images/case-studies/titanium-welding-03.jpg', alt: 'Titan schweißen mit TIP TIG' },
+    ],
+    stats: [
+      { value: '150–195 °C', imperial: '300–380 °F', label: 'Schweißtemperatur' },
+      { value: '100%', label: 'Silberne Nähte' },
+      { value: '300%', label: 'Schneller als Std. WIG' },
+    ],
+  }}
+  clients={['SpaceX', 'Boeing', 'NASA', 'Northrop Grumman', 'Blue Origin']}
+/>
