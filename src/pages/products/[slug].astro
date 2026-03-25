@@ -61,7 +61,7 @@ const jsonLd = {
         <div class="pd-gallery reveal" id="pdGallery">
           {product.images.map((img, i) => (
             <div class="pd-gallery-slide" data-index={i} style={i !== 0 ? 'display:none' : 'display:flex'}>
-              <img src={img} alt={`${product.name} — Image ${i + 1}`} />
+              <img src={img} alt={`${product.name} — Image ${i + 1}`} loading="lazy" />
             </div>
           ))}
           <div class="pd-gallery-nav">
@@ -76,7 +76,7 @@ const jsonLd = {
         </div>
       ) : (
         <div class="pd-image-wrap reveal">
-          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} loading="lazy" />
         </div>
       )}
     </div>
