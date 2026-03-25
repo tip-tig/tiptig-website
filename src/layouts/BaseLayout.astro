@@ -13,7 +13,7 @@ interface Props {
 const {
   title,
   description = 'TIP TIG — The original TIG welding innovation. Up to 300% faster, superior quality, proven ROI. Engineered in Austria.',
-  ogImage = '/images/logo-red-blue_new.webp',
+  ogImage = '/images/og-default.jpg',
   jsonLd,
 } = Astro.props;
 
@@ -116,8 +116,13 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Favicon -->
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1B3A8C" />
 
     <title>{title} | TIP TIG</title>
 
