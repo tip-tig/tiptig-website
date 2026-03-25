@@ -1,0 +1,216 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Asset optimization
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
+# Headers for performance & security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Redirects from old tiptig.com URLs to new structure
+# 301 = permanent redirect (SEO juice transfer)
+
+# Main pages
+[[redirects]]
+  from = "/welding-equipment/*"
+  to = "/products"
+  status = 301
+
+[[redirects]]
+  from = "/arc-welding-process/"
+  to = "/technology"
+  status = 301
+
+[[redirects]]
+  from = "/arc-welding-process"
+  to = "/technology"
+  status = 301
+
+[[redirects]]
+  from = "/keyhole-tig-welding/"
+  to = "/keyhole-tig-welding"
+  status = 301
+
+[[redirects]]
+  from = "/weld-overlay-cladding/"
+  to = "/weld-overlay-cladding"
+  status = 301
+
+[[redirects]]
+  from = "/about-us/"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/about-us"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/contact/"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/support/"
+  to = "/support"
+  status = 301
+
+# Industries
+[[redirects]]
+  from = "/aerospace-welding/"
+  to = "/industries/aerospace"
+  status = 301
+
+[[redirects]]
+  from = "/aerospace-welding"
+  to = "/industries/aerospace"
+  status = 301
+
+[[redirects]]
+  from = "/food-dairy-industry/"
+  to = "/industries/food-dairy"
+  status = 301
+
+[[redirects]]
+  from = "/food-dairy-industry"
+  to = "/industries/food-dairy"
+  status = 301
+
+[[redirects]]
+  from = "/heat-exchanger-manufacturing/"
+  to = "/industries/heat-exchangers"
+  status = 301
+
+[[redirects]]
+  from = "/heat-exchanger-manufacturing"
+  to = "/industries/heat-exchangers"
+  status = 301
+
+[[redirects]]
+  from = "/nuclear-industry/"
+  to = "/industries/nuclear"
+  status = 301
+
+[[redirects]]
+  from = "/nuclear-industry"
+  to = "/industries/nuclear"
+  status = 301
+
+[[redirects]]
+  from = "/offshore-oil-gas-industry/"
+  to = "/industries/oil-gas"
+  status = 301
+
+[[redirects]]
+  from = "/offshore-oil-gas-industry"
+  to = "/industries/oil-gas"
+  status = 301
+
+[[redirects]]
+  from = "/petro-chemical-industry/"
+  to = "/industries/petrochemical"
+  status = 301
+
+[[redirects]]
+  from = "/petro-chemical-industry"
+  to = "/industries/petrochemical"
+  status = 301
+
+[[redirects]]
+  from = "/power-generation-industry/"
+  to = "/industries/power-generation"
+  status = 301
+
+[[redirects]]
+  from = "/power-generation-industry"
+  to = "/industries/power-generation"
+  status = 301
+
+# Legal pages
+[[redirects]]
+  from = "/imprint/"
+  to = "/legal"
+  status = 301
+
+[[redirects]]
+  from = "/imprint"
+  to = "/legal"
+  status = 301
+
+[[redirects]]
+  from = "/privacy/"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/gtc/"
+  to = "/gtc"
+  status = 301
+
+[[redirects]]
+  from = "/warranty/"
+  to = "/support/warranty"
+  status = 301
+
+[[redirects]]
+  from = "/warranty"
+  to = "/support/warranty"
+  status = 301
+
+# Old blog/misc pages → homepage
+[[redirects]]
+  from = "/blog/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wallpaper/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/wallpaper"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/cart/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/cart"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/de/*"
+  to = "/"
+  status = 301
