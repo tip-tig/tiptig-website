@@ -21,8 +21,14 @@ import IndustryPage from '../../components/industries/IndustryPage.astro';
   caseStudy={{
     title: 'CNOOC Tianjin LNG Storage Tank',
     text: 'CNOOC selected TIP TIG for the inner tank wall plate welding of a 160,000 m³ LNG storage tank in Tianjin, China — the first time TIP TIG welding was applied to 9% nickel steel in the country. The project achieved a 99.18% first-pass weld success rate and reduced construction costs by approximately one-third per tank, completing 1.5 million safe working hours with zero recordable safety events.',
+    textImperial: 'CNOOC selected TIP TIG for the inner tank wall plate welding of a 5,650,000 ft³ LNG storage tank in Tianjin, China — the first time TIP TIG welding was applied to 9% nickel steel in the country. The project achieved a 99.18% first-pass weld success rate and reduced construction costs by approximately one-third per tank, completing 1.5 million safe working hours with zero recordable safety events.',
+    images: [
+      { src: '/images/case-studies/lng-tank-01.jpg', alt: 'LNG storage tank welded with TIP TIG' },
+      { src: '/images/case-studies/lng-tank-02.jpg', alt: 'TIP TIG welding on 9% nickel steel LNG tank' },
+      { src: '/images/case-studies/lng-tank-03.jpg', alt: 'CNOOC Tianjin LNG project welding' },
+    ],
     stats: [
-      { value: '160,000 m³', label: 'Tank Capacity' },
+      { value: '160,000 m³', imperial: '5,650,000 ft³', label: 'Tank Capacity' },
       { value: '99.18%', label: 'First-Pass Success Rate' },
       { value: '~33%', label: 'Cost Reduction' },
       { value: '0', label: 'Safety Incidents' },

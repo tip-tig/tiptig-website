@@ -21,8 +21,14 @@ import IndustryPage from '../../components/industries/IndustryPage.astro';
   caseStudy={{
     title: 'Möstl Anlagenbau — Beverage & Food Equipment',
     text: 'Austrian plant manufacturer Möstl Anlagenbau has been using TIP TIG systems since 2017 for stainless steel fabrication across the beverage, food, dairy, pharmaceutical, and chemical industries. Welding 5 mm stainless steel at 90 cm/min with 100% X-ray inspection quality, Möstl relies on the TIP TIG AllinOne and automated welding systems to meet their non-negotiable standards for service and quality.',
+    textImperial: 'Austrian plant manufacturer Möstl Anlagenbau has been using TIP TIG systems since 2017 for stainless steel fabrication across the beverage, food, dairy, pharmaceutical, and chemical industries. Welding 0.2" stainless steel at 35.4 in/min with 100% X-ray inspection quality, Möstl relies on the TIP TIG AllinOne and automated welding systems to meet their non-negotiable standards for service and quality.',
+    images: [
+      { src: '/images/case-studies/food-dairy-01.jpg', alt: 'Möstl Anlagenbau — automated TIP TIG welding on stainless steel vessel' },
+      { src: '/images/case-studies/food-dairy-02.jpg', alt: 'Stainless steel processing tank welded with TIP TIG' },
+      { src: '/images/case-studies/food-dairy-03.jpg', alt: 'Sanitary flange weld detail — food-grade stainless steel' },
+    ],
     stats: [
-      { value: '90 cm/min', label: 'Welding Speed' },
+      { value: '90 cm/min', imperial: '35.4 in/min', label: 'Welding Speed' },
       { value: '100%', label: 'X-Ray Quality' },
       { value: 'Since 2017', label: 'TIP TIG Customer' },
     ],

@@ -9,13 +9,16 @@ interface Feature {
 
 interface CaseStudyStat {
   value: string;
+  imperial?: string;
   label: string;
 }
 
 interface CaseStudy {
   title: string;
   text: string;
+  textImperial?: string;
   stats: CaseStudyStat[];
+  images?: { src: string; alt: string }[];
 }
 
 interface Props {
@@ -89,11 +92,29 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
       <div class="inner">
         <div class="section-eyebrow reveal"><span>Proven in the Field</span></div>
         <h2 class="section-title section-title--sm reveal">{caseStudy.title}</h2>
-        <p class="section-lead reveal">{caseStudy.text}</p>
+        <p class="section-lead reveal case-text" data-metric={caseStudy.text} data-imperial={caseStudy.textImperial || caseStudy.text}>{caseStudy.text}</p>
+
+        {caseStudy.images && caseStudy.images.length > 0 && (
+          <div class="case-gallery reveal">
+            {caseStudy.images.map((img) => (
+              <div class="case-gallery-item">
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {caseStudy.stats.some(s => s.imperial) && (
+          <div class="case-unit-toggle reveal">
+            <button class="case-unit-btn is-active" data-unit="metric">Metric</button>
+            <button class="case-unit-btn" data-unit="imperial">Imperial</button>
+          </div>
+        )}
+
         <div class="case-stats">
           {caseStudy.stats.map((s, i) => (
             <div class={`case-stat reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}>
-              <span class="case-stat-value">{s.value}</span>
+              <span class="case-stat-value" data-metric={s.value} data-imperial={s.imperial || s.value}>{s.value}</span>
               <span class="case-stat-label">{s.label}</span>
             </div>
           ))}
@@ -371,6 +392,72 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     letter-spacing: 0.04em;
   }
 
+  /* ── Case Unit Toggle ─────────────────────────── */
+  .case-unit-toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 4px;
+    width: fit-content;
+    margin-bottom: 24px;
+  }
+
+  .case-unit-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--gray-mid);
+    transition: all 0.2s;
+  }
+
+  .case-unit-btn.is-active {
+    background: var(--sapphire);
+    color: white;
+  }
+
+  .case-unit-btn:not(.is-active):hover {
+    color: var(--black);
+    background: var(--bg);
+  }
+
+  /* ── Case Gallery ──────────────────────────────── */
+  .case-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .case-gallery-item {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s;
+  }
+
+  .case-gallery-item:hover {
+    border-color: var(--sapphire-mid);
+    box-shadow: 0 8px 24px rgba(27, 58, 140, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .case-gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    background: var(--bg);
+    display: block;
+  }
+
   /* ── Applications ───────────────────────────────── */
   .ind-apps {
     padding: 110px 60px;
@@ -433,12 +520,38 @@ const { title, subtitle, metaTitle, metaDesc, heroImage, intro, features, applic
     .ind-features { padding: 72px 24px; }
     .features-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .ind-case { padding: 72px 24px; }
+    .case-gallery { grid-template-columns: repeat(2, 1fr); }
     .ind-apps { padding: 72px 24px; }
     .ind-clients { padding: 56px 24px; }
   }
 
   @media (max-width: 600px) {
     .features-grid { grid-template-columns: 1fr; }
+    .case-gallery { grid-template-columns: 1fr; }
     .ind-image-wrap { border-radius: 14px; }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.case-unit-toggle').forEach(toggle => {
+    const btns = toggle.querySelectorAll('.case-unit-btn');
+    const section = toggle.closest('.ind-case');
+    const values = section?.querySelectorAll('.case-stat-value');
+    const caseText = section?.querySelector('.case-text') as HTMLElement | null;
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const unit = btn.getAttribute('data-unit') as 'metric' | 'imperial';
+        btns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        values?.forEach(v => {
+          const el = v as HTMLElement;
+          el.textContent = el.dataset[unit] || el.textContent;
+        });
+        if (caseText) {
+          caseText.textContent = caseText.dataset[unit] || caseText.textContent;
+        }
+      });
+    });
+  });
+</script>

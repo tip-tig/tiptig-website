@@ -19,11 +19,17 @@ import IndustryPage from '../../components/industries/IndustryPage.astro';
   ]}
   caseStudy={{
     title: 'Xinjiang Pipeline Project — 33 km Duplex 2205',
-    text: 'TIP TIG was selected for a 33-kilometer pipeline project in Xinjiang, China, using Duplex 2205 (UNS S32305) stainless steel — 12-inch OD pipe with 10 mm wall thickness. Both TIP TIG AllinOne manual systems and TIP TIG Orbital welding systems were deployed to achieve the required weld quality and production rates across the full project length.',
+    text: 'TIP TIG was selected for a 33-kilometer pipeline project in Xinjiang, China, using Duplex 2205 (UNS S32305) stainless steel — DN300 pipe with 10 mm wall thickness. Both TIP TIG AllinOne manual systems and TIP TIG Orbital welding systems were deployed to achieve the required weld quality and production rates across the full project length.',
+    textImperial: 'TIP TIG was selected for a 20.5-mile pipeline project in Xinjiang, China, using Duplex 2205 (UNS S32305) stainless steel — 12-inch OD pipe with 0.394" wall thickness. Both TIP TIG AllinOne manual systems and TIP TIG Orbital welding systems were deployed to achieve the required weld quality and production rates across the full project length.',
+    images: [
+      { src: '/images/case-studies/xinjiang-pipeline-02.jpg', alt: 'Duplex 2205 pipeline weld with TIP TIG' },
+      { src: '/images/case-studies/xinjiang-pipeline-01.jpg', alt: 'TIP TIG orbital welding on Xinjiang duplex pipeline' },
+      { src: '/images/case-studies/xinjiang-pipeline-03.jpg', alt: 'Xinjiang 33 km pipeline project field welding' },
+    ],
     stats: [
-      { value: '33 km', label: 'Pipeline Length' },
-      { value: '12" OD', label: 'Pipe Diameter' },
-      { value: '10 mm', label: 'Wall Thickness' },
+      { value: '33 km', imperial: '20.5 mi', label: 'Pipeline Length' },
+      { value: 'DN300', imperial: '12"', label: 'Pipe Diameter' },
+      { value: '10 mm', imperial: '0.394"', label: 'Wall Thickness' },
       { value: 'Duplex 2205', label: 'Material Grade' },
     ],
   }}

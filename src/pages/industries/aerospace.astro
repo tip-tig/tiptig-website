@@ -20,9 +20,15 @@ import IndustryPage from '../../components/industries/IndustryPage.astro';
   ]}
   caseStudy={{
     title: 'Titanium Welding — Eliminating Oxidation Risk',
-    text: 'Conventional TIG welding on titanium thicker than 3 mm produces trailing temperatures exceeding 700 °F (371 °C) — well above the oxidation threshold. TIP TIG reduces weld temperatures to 300–380 °F (150–195 °C) within 3 mm of the fillet edge, producing 100% silver-colored welds without the need for extra-large shielding nozzles or trailing shields. The result: the lowest titanium weld porosity content achievable with any arc welding process.',
+    text: 'Conventional TIG welding on titanium thicker than 3 mm produces trailing temperatures exceeding 371 °C — far above the oxidation threshold where discoloration and embrittlement begin. TIP TIG reduces trailing temperatures to just 150–195 °C within 3 mm of the fillet edge, consistently producing 100% silver-colored welds. No extra-large shielding nozzles, no trailing shields — just clean, porosity-free results at up to three times the speed of standard TIG.',
+    textImperial: 'Conventional TIG welding on titanium thicker than 0.12" produces trailing temperatures exceeding 700 °F — far above the oxidation threshold where discoloration and embrittlement begin. TIP TIG reduces trailing temperatures to just 300–380 °F within 0.12" of the fillet edge, consistently producing 100% silver-colored welds. No extra-large shielding nozzles, no trailing shields — just clean, porosity-free results at up to three times the speed of standard TIG.',
+    images: [
+      { src: '/images/case-studies/titanium-welding-01.jpg', alt: 'Titanium welding with TIP TIG — silver-colored, oxidation-free result' },
+      { src: '/images/case-studies/titanium-welding-02.jpg', alt: 'TIP TIG titanium weld close-up — porosity-free finish' },
+      { src: '/images/case-studies/titanium-welding-03.jpg', alt: 'How to weld titanium with TIP TIG' },
+    ],
     stats: [
-      { value: '300–380 °F', label: 'Weld Temperature' },
+      { value: '150–195 °C', imperial: '300–380 °F', label: 'Weld Temperature' },
       { value: '100%', label: 'Silver Welds' },
       { value: '300%', label: 'Faster Than Std. TIG' },
     ],
