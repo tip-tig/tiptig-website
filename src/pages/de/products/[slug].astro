@@ -133,12 +133,6 @@ const jsonLd = {
       <div class="pd-inner pd-specs-inner">
         <div class="pd-specs-header reveal">
           <h2>{t('product.specs')}</h2>
-          {product.specs.some(s => s.imperial) && (
-            <div class="pd-unit-toggle" id="unitToggle">
-              <button class="pd-unit-btn is-active" data-unit="metric">{t('product.metric')}</button>
-              <button class="pd-unit-btn" data-unit="imperial">{t('product.imperial')}</button>
-            </div>
-          )}
         </div>
         <div class="pd-specs-list reveal reveal-delay-1">
           {product.specs.map(s => (

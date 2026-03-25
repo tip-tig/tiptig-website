@@ -14,7 +14,7 @@ import CTA from '../../components/home/CTA.astro';
   description="TIP TIG TwinWire RapidClad 2.0 liefert bis zu 9,1 kg/h Abschmelzleistung bei 80 % reduzierter Aufmischung — der höchste Standard im Auftragschweißen."
   lang="de"
 >
-  <div id="cl-page" data-units="imperial">
+  <div id="cl-page" data-units="metric">
     <CladdingHero lang="de" />
     <CladdingIntro lang="de" />
     <CladdingVideo lang="de" />
@@ -26,30 +26,6 @@ import CTA from '../../components/home/CTA.astro';
 </BaseLayout>
 
 <style is:global>
-  #cl-page[data-units="imperial"] .u-met { display: none !important; }
-  #cl-page[data-units="metric"] .u-imp { display: none !important; }
+  #cl-page .u-imp { display: none !important; }
+  #cl-page #unit-toggle { display: none !important; }
 </style>
-
-<script>
-  const page = document.getElementById('cl-page');
-  const toggle = document.getElementById('unit-toggle');
-
-  if (toggle && page) {
-    toggle.addEventListener('click', (e) => {
-      const btn = (e.target as HTMLElement).closest('.unit-btn') as HTMLElement;
-      if (!btn) return;
-      const unit = btn.dataset.unit;
-      if (!unit) return;
-
-      page.dataset.units = unit;
-      toggle.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Update deposition chart bar widths
-      document.querySelectorAll('.dep-bar-fill[data-imp-width]').forEach(bar => {
-        const el = bar as HTMLElement;
-        el.style.width = unit === 'imperial' ? el.dataset.impWidth! : el.dataset.metWidth!;
-      });
-    });
-  }
-</script>
