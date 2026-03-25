@@ -35,7 +35,7 @@ import { MapPin, Mail, Phone } from '@lucide/astro';
       </div>
 
       <div class="ct-form-card reveal">
-        <form action="#" method="POST">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" action="/success">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your name" />

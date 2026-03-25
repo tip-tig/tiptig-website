@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Search } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you are looking for does not exist."
+>
+  <section class="nf-hero">
+    <div class="nf-inner">
+      <div class="nf-icon"><Search size={56} strokeWidth={1.5} /></div>
+      <div class="nf-code">404</div>
+      <h1>Page Not Found</h1>
+      <p class="nf-desc">
+        The page you are looking for doesn't exist or has been moved.
+      </p>
+      <div class="nf-buttons">
+        <a href="/" class="nf-btn-primary">Back to Homepage</a>
+        <a href="/contact" class="nf-btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 160px 60px 96px;
+    background: linear-gradient(135deg, var(--bg) 0%, white 100%);
+  }
+  .nf-inner {
+    text-align: center;
+    max-width: 500px;
+  }
+  .nf-icon {
+    color: var(--gray-mid);
+    opacity: 0.4;
+    margin-bottom: 16px;
+  }
+  .nf-code {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 5rem;
+    letter-spacing: -0.03em;
+    color: var(--sapphire);
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.15;
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    color: var(--black);
+    margin-bottom: 14px;
+  }
+  .nf-desc {
+    font-size: 1.05rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+  .nf-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nf-btn-primary {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    background: var(--sapphire);
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .nf-btn-primary:hover {
+    background: var(--sapphire-light);
+    transform: translateY(-1px);
+  }
+  .nf-btn-outline {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    background: transparent;
+    border: 1.5px solid var(--gray-light);
+    padding: 13px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .nf-btn-outline:hover {
+    border-color: var(--sapphire);
+    color: var(--sapphire);
+  }
+  @media (max-width: 768px) {
+    .nf-hero { padding: 120px 24px 72px; }
+    .nf-code { font-size: 3.5rem; }
+  }
+</style>

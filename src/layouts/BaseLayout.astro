@@ -12,11 +12,12 @@ interface Props {
 const {
   title,
   description = 'TIP TIG — The original TIG welding innovation. Up to 300% faster, superior quality, proven ROI. Engineered in Austria.',
-  ogImage = '/images/og-default.jpg',
+  ogImage = '/images/logo-red-blue_new.webp',
 } = Astro.props;
 
-const siteURL = Astro.site ?? 'http://localhost:4321';
+const siteURL = Astro.site ?? 'https://tiptig.com';
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const ogImageURL = new URL(ogImage, siteURL).href;
 ---
 
 <!doctype html>
@@ -27,11 +28,18 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL);
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={`${title} | TIP TIG`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TIP TIG" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | TIP TIG`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
