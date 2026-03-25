@@ -1,4 +1,5 @@
 ---
+import { Languages } from '@lucide/astro';
 import { categories } from '../../data/products';
 import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
@@ -46,12 +47,11 @@ const companyLinks = [
   { label: t('nav.com.contact'), href: lp('/contact') },
 ];
 
-// Language switcher: link to same page in other language
+// Language switcher: paths for both languages
 const currentPath = Astro.url.pathname;
-const switchLang = lang === 'de' ? 'en' : 'de';
-const switchPath = lang === 'de'
-  ? currentPath.replace(/^\/de/, '') || '/'
-  : `/de${currentPath === '/' ? '' : currentPath}`;
+const enPath = lang === 'de' ? (currentPath.replace(/^\/de/, '') || '/') : currentPath;
+const dePath = lang === 'de' ? currentPath : `/de${currentPath === '/' ? '' : currentPath}`;
+const switchPath = lang === 'de' ? enPath : dePath;
 
 const navSections = [
   { label: t('nav.products'), href: lp('/products'), links: productLinks },
@@ -78,8 +78,12 @@ const navSections = [
         </ul>
       </li>
     ))}
-    <li class="lang-switch">
-      <a href={switchPath}>{t('lang.switch')}</a>
+    <li class="lang-switch has-dropdown">
+      <button class="lang-toggle" aria-label="Language"><Languages size={18} /></button>
+      <ul class="dropdown lang-dropdown">
+        <li><a href={enPath} class={lang === 'en' ? 'is-active' : ''}>English</a></li>
+        <li><a href={dePath} class={lang === 'de' ? 'is-active' : ''}>Deutsch</a></li>
+      </ul>
     </li>
   </ul>
 
@@ -103,7 +107,10 @@ const navSections = [
       </li>
     ))}
     <li class="mobile-lang">
-      <a href={switchPath}>{t('lang.switch')}</a>
+      <div class="mobile-lang-links">
+        <a href={enPath} class={lang === 'en' ? 'is-active' : ''}>English</a>
+        <a href={dePath} class={lang === 'de' ? 'is-active' : ''}>Deutsch</a>
+      </div>
     </li>
   </ul>
 </div>
@@ -149,21 +156,36 @@ const navSections = [
   }
   .nav-links a:hover { color: var(--sapphire); }
 
-  /* Language switcher */
-  .lang-switch a {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+  /* Language switcher — globe icon */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--gray-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  .lang-toggle:hover {
+    border-color: var(--sapphire);
     color: var(--sapphire);
     background: var(--sapphire-light);
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--sapphire-mid);
-    transition: all 0.2s;
   }
-  .lang-switch a:hover {
-    background: var(--sapphire);
-    color: white;
+  .lang-switch .lang-dropdown {
+    min-width: 140px;
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+  .lang-switch .lang-dropdown a.is-active {
+    color: var(--sapphire);
+    font-weight: 600;
+    background: var(--sapphire-light, #e8eeff);
   }
 
   /* Dropdown */
@@ -309,8 +331,30 @@ const navSections = [
     padding-top: 12px;
     border-top: 1px solid var(--gray-light);
   }
-  .mobile-lang a {
+  .mobile-lang-links {
+    display: flex;
+    gap: 8px;
+  }
+  .mobile-lang-links a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .mobile-lang-links a.is-active {
+    color: var(--sapphire);
     font-weight: 700;
+    border-color: var(--sapphire);
+    background: var(--sapphire-light);
+  }
+  .mobile-lang-links a:not(.is-active):hover {
+    border-color: var(--sapphire);
     color: var(--sapphire);
   }
 
