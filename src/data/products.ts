@@ -50,13 +50,13 @@ export const products: Product[] = [
     category: 'Wire Feed Systems',
     categorySlug: 'wire-feed-systems',
     tagline: 'The flagship TIP TIG wire feed system — engineered for precision, built for demanding workshop and field environments.',
-    description: 'The TIP TIG AllinOne combines hot wire technology with a dynamic wire oscillation mechanism and a four-drive-roll feeder in a single, compact unit. It connects to any standard TIG/GTAW power source — no proprietary equipment required — and delivers consistently higher deposition rates, lower heat input, and virtually porosity-free welds compared to conventional TIG welding.',
+    description: 'The TIP TIG AllinOne combines hot wire technology with a dynamic wire oscillation mechanism and a four-drive-roll feeder in a single, compact unit. It connects to any standard TIG power source — no special equipment needed — and delivers higher deposition rates, lower heat input, and virtually porosity-free welds compared to conventional TIG.',
     image: '/images/products/allinone.jpg',
     features: [
-      { title: 'Hot Wire Technology', text: 'Resistive preheating of the filler wire increases deposition rates and reduces heat input into the base material — resulting in less distortion and a wider process window.' },
-      { title: 'Four Drive Rolls', text: 'A robust four-roll drive mechanism maintains consistent wire feed pressure across the full diameter range, eliminating slippage and ensuring repeatable results.' },
-      { title: 'Dynamic Wire Oscillation', text: 'Controlled wire agitation stirs the weld pool for superior sidewall fusion, improved tie-in, and the elimination of gas porosity — even in critical applications.' },
-      { title: 'Universal Compatibility', text: 'Connects directly to any water-cooled TIG/GTAW power source on the market. No proprietary welder, no lock-in — integrate TIP TIG into your existing setup.' },
+      { title: 'Hot Wire Technology', text: 'The filler wire is electrically preheated — boosting deposition rates and reducing heat input into the base material. Less distortion, wider process window.' },
+      { title: 'Four Drive Rolls', text: 'Four drive rolls maintain consistent feed pressure across all wire diameters — no slippage, repeatable results.' },
+      { title: 'Dynamic Wire Oscillation', text: 'Controlled wire movement stirs the weld pool for clean sidewall fusion, better tie-in, and no porosity — even in critical applications.' },
+      { title: 'Universal Compatibility', text: 'Connects to any water-cooled TIG power source. No special welder needed, no vendor lock-in — plug TIP TIG into your existing setup.' },
     ],
     specs: [
       { label: 'Hot Wire Current', value: '80 – 100 A' },
@@ -75,12 +75,12 @@ export const products: Product[] = [
     category: 'Wire Feed Systems',
     categorySlug: 'wire-feed-systems',
     tagline: 'Full TIP TIG performance in a rugged, portable suitcase — engineered for field service and on-site welding.',
-    description: 'The Portable AllinOne delivers the same hot wire technology, dynamic wire oscillation, and four-drive-roll feeding as the standard AllinOne — housed in a robust, lightweight suitcase. At just 31 kg, it is purpose-built for field service, maintenance shutdowns, and any application where mobility is essential without compromising weld quality or process capability.',
+    description: 'The Portable AllinOne delivers the same hot wire technology, dynamic wire oscillation, and four-drive-roll feeding as the standard AllinOne — in a rugged, lightweight suitcase. At just 31 kg, it is built for field service, shutdowns, and any job where you need to stay mobile without giving up weld quality.',
     image: '/images/products/portable-allinone.jpg',
     features: [
       { title: 'Suitcase Design', text: 'A compact, impact-resistant housing with integrated carry handle makes transport effortless — from the workshop to elevated platforms, confined spaces, and remote job sites.' },
       { title: 'Full Feature Set', text: 'Identical hot wire, oscillation, and wire feed capabilities as the standard AllinOne. No compromises on process performance despite the reduced footprint.' },
-      { title: 'Quick Setup', text: 'Connects to any water-cooled TIG/GTAW power source in minutes. Designed for rapid deployment during planned shutdowns, turnarounds, and emergency repairs.' },
+      { title: 'Quick Setup', text: 'Connects to any water-cooled TIG power source in minutes. Designed for rapid deployment during planned shutdowns, turnarounds, and emergency repairs.' },
       { title: 'Rugged Construction', text: 'Reinforced housing and sealed connectors protect the electronics in harsh industrial environments — dust, moisture, and vibration.' },
     ],
     specs: [
@@ -100,7 +100,7 @@ export const products: Product[] = [
     category: 'Wire Feed Systems',
     categorySlug: 'wire-feed-systems',
     tagline: 'Ultra-compact, manhole-compatible wire feeder at just 17.5 kg — engineered for confined spaces, shipbuilding, and vessel interiors.',
-    description: 'The Portable Wire Feeder Small is purpose-built for applications where access is severely limited. Compact enough to pass through standard manholes, it reaches spaces that conventional wire feeders cannot — inside pressure vessels, between structural frames, and through narrow access points. At just 17.5 kg and 213 × 330 × 457 mm, it delivers the same hot wire and oscillation performance as the full-size AllinOne.',
+    description: 'Built for tight spaces where standard wire feeders do not fit. Small enough to pass through a standard manhole — inside pressure vessels, between structural frames, and through narrow access points. At just 17.5 kg and 213 × 330 × 457 mm, it delivers the same hot wire and oscillation performance as the full-size AllinOne.',
     image: '/images/products/wire-feeder-small.jpg',
     images: ['/images/products/wire-feeder-small.jpg', '/images/products/wire-feeder-small-pcb.jpg'],
     features: [
@@ -169,7 +169,7 @@ export const products: Product[] = [
     category: 'Automated & Collaborative Welding',
     categorySlug: 'automated-welding',
     tagline: 'Mechanized TIP TIG welding along curved and straight seams — up to 300 % faster than conventional TIG, with perfect repeatability.',
-    description: 'The Welding Carriage with Flexible Track turns TIP TIG into a fully mechanized process. A flexible magnetic rail conforms to the workpiece geometry while a motorized carriage maintains precise, constant travel speed along the seam. Combined with dynamic wire feeding, hot wire technology, and AVC (Arc Voltage Control), the system delivers up to 300 % faster welding speeds and up to 400 % higher deposition rates compared to conventional TIG — with dilution reduced by up to 80 %. All components are pre-installed, tested, and weld-proven.',
+    description: 'The Welding Carriage with Flexible Track turns TIP TIG into a fully mechanized process. A flexible magnetic rail conforms to the workpiece geometry while a motorized carriage maintains precise, constant travel speed along the seam. Combined with dynamic wire feeding, hot wire technology, and AVC (Arc Voltage Control), the system delivers up to 300 % faster welding speeds and up to 400 % higher deposition rates compared to conventional TIG — with dilution reduced by up to 80 %. Every component is pre-installed, tested, and weld-proven — ready to produce from day one.',
     image: '/images/products/welding-carriage.jpg',
     features: [
       { title: 'Dynamic Wire Feed & Hot Wire', text: 'Sinusoidal wire oscillation creates a controllable weld pool even in positional welding. Hot wire preheating increases deposition rates and reduces the risk of weld defects — perfect bead appearance with no spatter.' },
@@ -187,7 +187,7 @@ export const products: Product[] = [
     category: 'Specialty Systems',
     categorySlug: 'specialty-systems',
     tagline: 'PLC-controlled turnkey cladding system with TIP TIG hot wire — for ring grooves, tee joints, and weld overlay up to 1200 mm diameter.',
-    description: 'The Compact Cladding Cell is a fully automated weld overlay system built around TIP TIG hot wire technology. PLC-controlled with AVC, stepper-driven X/Z/OSC axes, a 3500 kg turntable, and optional laser tracking, it delivers precise corrosion-resistant overlays on pipes, vessels, flanges, and valve bodies up to 1200 mm diameter and 2000 mm height. All parameters are adjustable on the fly from a hand-held pendant — with real-time position measurement, data logging with heat input calculation, and remote diagnostics.',
+    description: 'A fully automated weld overlay system built around TIP TIG hot wire. PLC-controlled with AVC, stepper-driven axes, and a 3500 kg turntable. Handles pipes, vessels, flanges, and valve bodies up to 1200 mm diameter and 2000 mm height. Optional laser tracking. All parameters adjustable on the fly from a hand-held pendant, with data logging and remote diagnostics.',
     image: '/images/products/cladding-cell.jpg',
     features: [
       { title: 'PLC Control with AVC', text: 'Fully automated welding with Arc Voltage Control, constant surface speed, and override of amps, wire feed speed, and table speed during welding. 50 internal programs, 2 GB compact flash storage, and multi-language HMI with metric/imperial switching.' },
@@ -262,7 +262,7 @@ export const products: Product[] = [
     category: 'Pipeline Equipment',
     categorySlug: 'pipeline-equipment',
     tagline: 'Pneumatic internal pipe alignment and purge system for 4" to 60" — precision fit-up for flawless root passes.',
-    description: 'The TIP TIG Internal Line Up Clamp (ILUC) works inside the pipe to simultaneously align and purge two pipe joints for external welding. Pneumatically operated, it ensures perfect concentricity, consistent root gap, and an inert purge atmosphere — the three critical prerequisites for defect-free root passes on pipeline joints. Available for pipe sizes from 4" to 60" (101.6 mm to 1524 mm).',
+    description: 'The TIP TIG Internal Line Up Clamp (ILUC) works inside the pipe to simultaneously align and purge two pipe joints for external welding. Pneumatically operated, it ensures perfect concentricity, consistent root gap, and an inert purge atmosphere — everything you need for clean root passes. Available for pipe sizes from 4" to 60" (101.6 mm to 1524 mm).',
     image: '/images/products/iluc.jpg',
     features: [
       { title: 'Align & Purge in One', text: 'Combines internal pipe alignment and gas purging in a single tool — clamp the joint and establish an inert atmosphere simultaneously, eliminating a separate purge setup.' },

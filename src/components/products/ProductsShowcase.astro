@@ -1,11 +1,14 @@
 ---
-import { categories, products, getProductsByCategory } from '../../data/products';
+import { categories as categoriesEN, getProductsByCategory as getProductsByCategoryEN } from '../../data/products';
+import { categories as categoriesDE, getProductsByCategory as getProductsByCategoryDE } from '../../data/products-de';
 import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
 interface Props { lang?: Locale; }
 const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 const lp = (path: string) => localizedPath(path, lang);
+const categories = lang === 'de' ? categoriesDE : categoriesEN;
+const getProductsByCategory = lang === 'de' ? getProductsByCategoryDE : getProductsByCategoryEN;
 ---
 
 <section class="ps-section">
