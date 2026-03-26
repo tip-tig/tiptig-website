@@ -7,6 +7,18 @@ export const ui = {
     'nav.support': 'Support',
     'nav.company': 'Company',
 
+    // Nav > Products dropdown (category names)
+    'nav.cat.wire-feed-systems': 'Wire Feed Systems',
+    'nav.cat.automated-welding': 'Automated & Collaborative Welding',
+    'nav.cat.specialty-systems': 'Specialty Systems',
+    'nav.cat.pipeline-equipment': 'Pipeline Equipment',
+
+    // Products category descriptions
+    'products.cat.wire-feed-systems': 'The core of every TIP TIG setup. Our wire feed systems combine hot wire technology with a dynamic oscillation mechanism to deliver precise, high-quality welds.',
+    'products.cat.automated-welding': 'From collaborative robots to mechanized carriages — automation solutions that integrate seamlessly with TIP TIG wire feed technology.',
+    'products.cat.specialty-systems': 'Purpose-built systems for weld overlay cladding, orbital welding, and advanced keyhole TIG applications.',
+    'products.cat.pipeline-equipment': 'Field-proven tools for pipeline construction — from orbital cutting to precision internal alignment.',
+
     // Nav > Technology dropdown
     'nav.tech.process': 'The TIP TIG Process',
     'nav.tech.keyhole': 'Keyhole TIG Welding',
@@ -628,6 +640,18 @@ export const ui = {
     'nav.industries': 'Branchen',
     'nav.support': 'Support',
     'nav.company': 'Unternehmen',
+
+    // Nav > Products dropdown (category names)
+    'nav.cat.wire-feed-systems': 'Drahtvorschub-Systeme',
+    'nav.cat.automated-welding': 'Automatisiertes Schweißen',
+    'nav.cat.specialty-systems': 'Spezialsysteme',
+    'nav.cat.pipeline-equipment': 'Pipeline-Ausrüstung',
+
+    // Products category descriptions
+    'products.cat.wire-feed-systems': 'Das Herzstück jeder TIP TIG Anlage. Unsere Drahtvorschub-Systeme kombinieren Heißdraht-Technologie mit einem dynamischen Oszillationsmechanismus für präzise, hochwertige Schweißnähte.',
+    'products.cat.automated-welding': 'Von kollaborativen Robotern bis zu mechanisierten Fahrwerken — Automatisierungslösungen, die sich nahtlos in die TIP TIG Drahtvorschub-Technologie integrieren.',
+    'products.cat.specialty-systems': 'Speziell entwickelte Systeme für Auftragschweißen, Orbitalschweißen und fortschrittliche Keyhole-WIG-Anwendungen.',
+    'products.cat.pipeline-equipment': 'Felderprobte Werkzeuge für den Pipelinebau — von Orbitalschneiden bis zur präzisen Innenausrichtung.',
 
     // Nav > Technology dropdown
     'nav.tech.process': 'Das TIP TIG Verfahren',

@@ -68,14 +68,17 @@ const logos = [
   @media (max-width: 960px) {
     .logo-bar {
       padding: 20px 24px;
+      flex-direction: column;
       gap: 16px;
     }
     .logo-bar-logos {
-      gap: 20px 32px;
+      gap: 16px 24px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .logo-bar-img {
-      height: 32px;
-      width: 110px;
+      height: 28px;
+      width: 90px;
     }
   }
 </style>

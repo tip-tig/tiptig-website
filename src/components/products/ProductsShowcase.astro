@@ -13,8 +13,8 @@ const lp = (path: string) => localizedPath(path, lang);
     {categories.map((cat, i) => (
       <div class={`ps-category reveal ${i > 0 ? '' : ''}`} id={cat.slug}>
         <div class="ps-cat-header">
-          <span class="ps-cat-badge">{cat.name}</span>
-          <p class="ps-cat-desc">{cat.description}</p>
+          <span class="ps-cat-badge">{t(`nav.cat.${cat.slug}`)}</span>
+          <p class="ps-cat-desc">{t(`products.cat.${cat.slug}`)}</p>
         </div>
         <div class="ps-grid">
           {getProductsByCategory(cat.slug).map((product, j) => (

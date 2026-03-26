@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 const lp = (path: string) => localizedPath(path, lang);
 
 const productLinks = categories.map(cat => ({
-  label: cat.name,
+  label: t(`nav.cat.${cat.slug}`),
   href: lp(`/products#${cat.slug}`),
 }));
 
@@ -278,11 +278,13 @@ const navSections = [
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 68px; left: 0; right: 0;
+    top: 68px; left: 0; right: 0; bottom: 0;
     background: var(--white);
     border-bottom: 1px solid var(--gray-light);
     padding: 16px 24px 24px;
     z-index: 99;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mobile-menu.is-open { display: block; }
   .mobile-menu ul { display: flex; flex-direction: column; gap: 4px; }
