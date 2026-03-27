@@ -340,11 +340,11 @@ export const ui = {
     'tech.hw.eyebrow': 'How It Works',
     'tech.hw.title': 'Hot Wire TIG —',
     'tech.hw.title2': 'Reinvented',
-    'tech.hw.desc': 'The filler wire is heated to melting point with a low open circuit voltage (OCV). It flows smoothly into the weld pool for much higher deposition rates.',
+    'tech.hw.desc': 'A separate low-voltage source heats the filler wire close to melting point. It flows smoothly into the weld pool for much higher deposition rates.',
     'tech.hw.point1.title': 'Enhanced Wetting',
     'tech.hw.point1.desc': 'The heated wire improves weld pool wetting instead of cooling it. Unlike cold wire TIG.',
     'tech.hw.point2.title': 'No Secondary Arc',
-    'tech.hw.point2.desc': 'Low OCV prevents arcing between wire and base metal. The tungsten maintains the primary arc. A separate power source heats the wire.',
+    'tech.hw.point2.desc': 'The low voltage prevents arcing between wire and base metal. The tungsten maintains the primary arc. A separate power source heats the wire.',
     'tech.hw.point3.title': 'Easy to Learn',
     'tech.hw.point3.desc': 'Works manually in all positions. Easy to learn. Pays for itself right away.',
     'tech.hw.stat.label': 'Peak Deposition Rate',
@@ -432,7 +432,7 @@ export const ui = {
     // Technology page — TechVideo
     'tech.tv.eyebrow': 'See It in Action',
     'tech.tv.title': 'Watch How TIP TIG Works',
-    'tech.tv.desc': 'See the dynamic wire feed in motion. Oscillating at up to 4 meters per second, it agitates the weld pool for porosity-free, X-ray quality results.',
+    'tech.tv.desc': 'See the dynamic wire feed in motion. The oscillating wire agitates the weld pool for porosity-free, X-ray quality results.',
 
     // Keyhole page — KeyholeHero
     'kh.hero.eyebrow': 'TIP TIG focus',
@@ -978,11 +978,11 @@ export const ui = {
     'tech.hw.eyebrow': 'Funktionsweise',
     'tech.hw.title': 'Heißdraht-WIG —',
     'tech.hw.title2': 'neu erfunden',
-    'tech.hw.desc': 'Eine niedrige Leerlaufspannung (OCV) erhitzt den Draht elektrisch bis nahe an die Schmelztemperatur. So fließt er sauber ins Schmelzbad — mit deutlich höherer Abschmelzung.',
+    'tech.hw.desc': 'Eine separate, niedrige Spannung erwärmt den Draht bis nahe an die Schmelztemperatur. So fließt er sauber ins Schmelzbad — mit deutlich höherer Abschmelzung.',
     'tech.hw.point1.title': 'Bessere Benetzung',
     'tech.hw.point1.desc': 'Der warme Draht benetzt das Schmelzbad besser, statt es abzukühlen — anders als beim Kaltdraht-Verfahren.',
     'tech.hw.point2.title': 'Kein Sekundärlichtbogen',
-    'tech.hw.point2.desc': 'Die niedrige OCV verhindert einen zweiten Lichtbogen zwischen Draht und Werkstück. Die Wolfram-Elektrode hält den Hauptlichtbogen. Eine separate Stromquelle speist den Draht.',
+    'tech.hw.point2.desc': 'Die niedrige Spannung verhindert einen zweiten Lichtbogen zwischen Draht und Werkstück. Die Wolfram-Elektrode hält den Hauptlichtbogen. Eine separate Stromquelle heizt den Draht vor.',
     'tech.hw.point3.title': 'Einfach erlernbar',
     'tech.hw.point3.desc': 'Manuelle Bedienung in allen Positionen. Kurze Lernkurve — sofort wirtschaftlich einsetzbar.',
     'tech.hw.stat.label': 'Maximale Abschmelzleistung',
@@ -1070,7 +1070,7 @@ export const ui = {
     // Technologie-Seite — TechVideo
     'tech.tv.eyebrow': 'In Aktion sehen',
     'tech.tv.title': 'So funktioniert TIP TIG',
-    'tech.tv.desc': 'Der dynamische Drahtvorschub in Aktion — oszillierend mit bis zu 4 m/s. Das Ergebnis: porenfrei und röntgensicher.',
+    'tech.tv.desc': 'Der dynamische Drahtvorschub in Aktion. Der oszillierende Draht rührt das Schmelzbad — porenfrei und röntgensicher.',
 
     // Keyhole-Seite — KeyholeHero
     'kh.hero.eyebrow': 'TIP TIG focus',
