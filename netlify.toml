@@ -210,7 +210,3 @@
   to = "/"
   status = 301
 
-[[redirects]]
-  from = "/de/*"
-  to = "/"
-  status = 301

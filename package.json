@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@lucide/astro": "^0.574.0",
     "astro": "^5.18.1",
     "d3-geo": "^3.1.1",
