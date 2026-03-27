@@ -1,5 +1,5 @@
 ---
-import { Factory, FlaskConical, Globe, Calendar } from '@lucide/astro';
+import { Factory, FlaskConical, Globe, Calendar, Rocket } from '@lucide/astro';
 import { useTranslations, localizedPath, type Locale } from '../../i18n/utils';
 
 interface Props { lang?: Locale; }
@@ -44,6 +44,13 @@ const lp = (path: string) => localizedPath(path, lang);
           <div class="ab-milestone-content">
             <strong>{t('about.milestone.mfg')}</strong>
             <span>{t('about.milestone.mfg.text')}</span>
+          </div>
+        </div>
+        <div class="ab-milestone">
+          <div class="ab-milestone-icon"><Rocket size={18} /></div>
+          <div class="ab-milestone-content">
+            <strong>{t('about.milestone.spacex')}</strong>
+            <span>{t('about.milestone.spacex.text')}</span>
           </div>
         </div>
         <div class="ab-milestone">
